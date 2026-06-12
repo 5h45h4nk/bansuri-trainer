@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GenUI Concierge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Adaptive Interface</p>
+          <h1>Your UI should change when your job changes.</h1>
+          <p class="hero-text">
+            Describe what you need to do. The assistant will interpret the goal,
+            generate a focused interface, and keep reshaping it as your task evolves.
+          </p>
+        </div>
+        <div class="hero-panel">
+          <p class="panel-label">Try prompts</p>
+          <div class="prompt-chips" id="promptChips"></div>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="column column-chat">
+          <div class="section-header">
+            <div>
+              <p class="section-kicker">1. Talk to it</p>
+              <h2>Task Brief</h2>
+            </div>
+            <span class="status-pill" id="assistantStatus">Listening</span>
+          </div>
+
+          <div class="chat-thread" id="chatThread" aria-live="polite"></div>
+
+          <form class="composer" id="taskForm">
+            <label class="composer-label" for="taskInput">
+              What do you want to do?
+            </label>
+            <textarea
+              id="taskInput"
+              name="task"
+              rows="4"
+              placeholder="Example: I need a trip planner for a 5-day Japan trip with budget tracking and a packing checklist."
+            ></textarea>
+            <div class="composer-actions">
+              <p class="hint">The UI below will regenerate based on your request.</p>
+              <button type="submit" class="primary-button">Generate My UI</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="column column-ui">
+          <div class="section-header">
+            <div>
+              <p class="section-kicker">2. Use it</p>
+              <h2>Generated Workspace</h2>
+            </div>
+            <span class="status-pill accent" id="workspaceType">No UI yet</span>
+          </div>
+
+          <div class="generated-shell">
+            <aside class="ui-brief" id="uiBrief">
+              <p class="empty-title">Ready when you are.</p>
+              <p class="empty-copy">
+                Tell the assistant what you want to accomplish and it will create
+                a purpose-built interface here.
+              </p>
+            </aside>
+            <section class="ui-canvas" id="uiCanvas">
+              <div class="empty-state">
+                <p>Describe a job, workflow, or outcome to generate your controls.</p>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="messageTemplate">
+      <article class="message">
+        <p class="message-role"></p>
+        <p class="message-text"></p>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

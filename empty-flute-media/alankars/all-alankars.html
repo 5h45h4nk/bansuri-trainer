@@ -1,0 +1,3440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Alankars</title>
+  <style>
+    :root {
+      --bg-1: #f3ead9;
+      --bg-2: #e5d4ba;
+      --ink: #1d2228;
+      --muted: #5e645d;
+      --line: #d5d8dc;
+      --panel: rgba(255, 250, 242, 0.8);
+      --panel-strong: rgba(255, 253, 248, 0.94);
+      --panel-dark: #17313d;
+      --accent: #dff0ee;
+      --accent-strong: #2f7f7a;
+      --gold: #f3bf4c;
+      --gold-deep: #d58c17;
+      --shadow: 0 20px 50px rgba(57, 39, 10, 0.11);
+      --shadow-soft: 0 12px 30px rgba(47, 36, 17, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(255, 244, 201, 0.65), transparent 28%),
+        radial-gradient(circle at 85% 12%, rgba(154, 212, 207, 0.33), transparent 24%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+      min-height: 100vh;
+    }
+
+    main {
+      width: min(1680px, calc(100vw - 24px));
+      margin: 0 auto;
+      padding: 16px 10px 30px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Baskerville", "Iowan Old Style", serif;
+      font-size: clamp(2.6rem, 6vw, 4.9rem);
+      line-height: 0.94;
+      letter-spacing: -0.03em;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+      padding: 18px 20px;
+      border: 1px solid rgba(116, 98, 64, 0.18);
+      border-radius: 24px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.86), rgba(255,248,238,0.72)),
+        linear-gradient(160deg, rgba(43, 96, 100, 0.06), rgba(240, 178, 58, 0.06));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 220px;
+      height: 220px;
+      right: -50px;
+      top: -70px;
+      background: radial-gradient(circle, rgba(64, 160, 154, 0.16), transparent 68%);
+    }
+
+    .hero::after {
+      width: 260px;
+      height: 260px;
+      left: -80px;
+      bottom: -110px;
+      background: radial-gradient(circle, rgba(243, 191, 76, 0.16), transparent 68%);
+    }
+
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(420px, 0.95fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(28, 96, 112, 0.08);
+      color: #215160;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .intro {
+      max-width: 58ch;
+      margin: 12px 0 0;
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--muted);
+      font-family: "Baskerville", "Palatino Linotype", serif;
+    }
+
+    .hero-copy {
+      padding-right: 4px;
+    }
+
+    .hero-aside {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      align-content: start;
+    }
+
+    .hero-card {
+      padding: 14px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(248,243,235,0.8));
+      border: 1px solid rgba(111, 98, 83, 0.12);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-card.dark {
+      background: linear-gradient(165deg, rgba(23,49,61,0.98), rgba(33,74,91,0.95));
+      color: #f7f0e8;
+    }
+
+    .hero-card h2,
+    .tempo-panel h2,
+    .section-label,
+    .page-title h2 {
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .stat {
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(145, 129, 102, 0.14);
+    }
+
+    .dark .stat {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    .stat .value {
+      display: block;
+      font-size: 1.35rem;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .stat .label {
+      display: block;
+      margin-top: 6px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: inherit;
+      opacity: 0.72;
+    }
+
+    .section-label {
+      margin: 0 0 8px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #72807d;
+    }
+
+    .tempo-panel {
+      margin: 0;
+      padding: 18px;
+      border: 1px solid rgba(140, 128, 107, 0.18);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(251,246,238,0.84));
+      box-shadow: var(--shadow-soft);
+    }
+
+    .tempo-panel h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .tempo-panel p {
+      margin: 0 0 18px;
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .tempo-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tempo-row input[type="range"] {
+      flex: 1 1 360px;
+      appearance: none;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #2b6875 0%, #f0ae2e 100%);
+      outline: none;
+    }
+
+    .tempo-row input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid #214e5c;
+      box-shadow: 0 6px 18px rgba(33, 78, 92, 0.2);
+      cursor: pointer;
+    }
+
+    .tempo-row input[type="range"]::-moz-range-thumb {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid #214e5c;
+      box-shadow: 0 6px 18px rgba(33, 78, 92, 0.2);
+      cursor: pointer;
+    }
+
+    .tempo-readout {
+      min-width: 110px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: #17313d;
+      color: #f9f4ec;
+      text-align: center;
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .tempo-presets {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .tempo-presets button {
+      border: 1px solid rgba(38, 76, 88, 0.14);
+      border-radius: 999px;
+      padding: 9px 12px;
+      background: rgba(255,255,255,0.85);
+      color: #204c59;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
+    }
+
+    .tempo-presets button:hover,
+    .player-controls button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(46, 68, 74, 0.12);
+    }
+
+    .tempo-presets button.active {
+      background: #17313d;
+      color: #fff8ef;
+      border-color: #17313d;
+    }
+
+    .metronome-panel {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(23,49,61,0.08), rgba(255,255,255,0.78));
+      border: 1px solid rgba(91, 106, 112, 0.14);
+    }
+
+    .metronome-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .metronome-head strong {
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #1d4957;
+    }
+
+    .metronome-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #31525d;
+    }
+
+    .metronome-toggle input {
+      accent-color: #235f74;
+    }
+
+    .metronome-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      align-items: end;
+    }
+
+    .metronome-grid label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6a736f;
+    }
+
+    .metronome-grid select,
+    .metronome-grid input[type="range"] {
+      width: 100%;
+    }
+
+    .metronome-grid select {
+      padding: 10px 12px;
+      border: 1px solid rgba(121, 114, 95, 0.14);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.88);
+      font: inherit;
+      color: #244754;
+    }
+
+    .metronome-volume {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .metronome-volume output {
+      min-width: 42px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1d4957;
+      text-align: right;
+    }
+
+    .metronome-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .metronome-actions button {
+      border: none;
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #235f74, #2f8d87);
+      color: white;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .metronome-actions button.stop {
+      background: rgba(23,49,61,0.1);
+      color: #224652;
+      border: 1px solid rgba(35,95,116,0.14);
+    }
+
+    .metronome-status {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #56605c;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-bottom: 0;
+    }
+
+    .tool-panel {
+      padding: 18px;
+      border: 1px solid rgba(140, 128, 107, 0.18);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(251,246,238,0.84));
+      box-shadow: var(--shadow-soft);
+    }
+
+    .tool-panel h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .tool-panel p {
+      margin: 0 0 12px;
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .tuner-display {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(240px, 0.9fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .tuner-main {
+      padding: 18px;
+      border-radius: 20px;
+      background: linear-gradient(160deg, #17313d, #214b59);
+      color: #fff8ef;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .tuner-note {
+      font-family: "Baskerville", "Iowan Old Style", serif;
+      font-size: clamp(3rem, 7vw, 4.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+
+    .tuner-primary {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(180px, 0.75fr);
+      gap: 16px;
+      align-items: end;
+    }
+
+    .tuner-swara-block {
+      padding: 16px 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .tuner-swara-label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,248,239,0.66);
+    }
+
+    .tuner-swara {
+      font-family: "Avenir Next Condensed", "Avenir Next", sans-serif;
+      font-size: clamp(2.5rem, 6vw, 3.6rem);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      color: #ffe7a4;
+    }
+
+    .tuner-swara-name {
+      display: block;
+      margin-top: 8px;
+      font-size: 1rem;
+      color: rgba(255,248,239,0.84);
+    }
+
+    .tuner-sub {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+      color: rgba(255,248,239,0.82);
+      font-size: 14px;
+    }
+
+    .swara-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .swara-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,248,239,0.88);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    .swara-chip strong {
+      color: #fff;
+    }
+
+    .tuner-meter-card {
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.84);
+      border: 1px solid rgba(121, 114, 95, 0.12);
+    }
+
+    .meter {
+      position: relative;
+      height: 14px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: linear-gradient(90deg, #8f5643 0%, #e3be66 24%, #5aa598 50%, #e3be66 76%, #8f5643 100%);
+    }
+
+    .meter-line {
+      position: absolute;
+      top: -6px;
+      bottom: -6px;
+      left: 50%;
+      width: 2px;
+      background: rgba(29, 34, 40, 0.32);
+    }
+
+    .meter-needle {
+      position: absolute;
+      top: -5px;
+      width: 16px;
+      height: 24px;
+      margin-left: -8px;
+      border-radius: 999px;
+      background: #17313d;
+      box-shadow: 0 8px 16px rgba(23, 49, 61, 0.2);
+      transform: translateX(0);
+      transition: left 80ms linear;
+    }
+
+    .meter-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #67716d;
+    }
+
+    .tuner-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .tuner-stat {
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(121, 114, 95, 0.1);
+    }
+
+    .tuner-stat .value {
+      display: block;
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .tuner-stat .label {
+      display: block;
+      margin-top: 6px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6f7873;
+    }
+
+    .tuner-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .tuner-actions button,
+    .select-wrap select {
+      border-radius: 999px;
+      font: inherit;
+    }
+
+    .tuner-actions button {
+      border: none;
+      padding: 11px 16px;
+      background: linear-gradient(135deg, #235f74, #2f8d87);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .tuner-actions button.stop {
+      background: linear-gradient(135deg, #9b5e44, #7b4636);
+    }
+
+    .select-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      color: #5d6562;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .select-wrap select {
+      border: 1px solid rgba(32, 76, 89, 0.14);
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.92);
+      color: #1f4b59;
+    }
+
+    .tuner-status {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(37, 105, 118, 0.08);
+      color: #49615e;
+      font-size: 13px;
+    }
+
+    .game-panel {
+      margin-bottom: 0;
+      padding: 18px;
+      border: 1px solid rgba(140, 128, 107, 0.18);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(251,246,238,0.84));
+      box-shadow: var(--shadow-soft);
+    }
+
+    .game-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: start;
+      margin-bottom: 12px;
+    }
+
+    .game-header p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+      max-width: 62ch;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .game-card {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(122, 112, 94, 0.14);
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,244,238,0.84));
+    }
+
+    .game-controls {
+      display: grid;
+      gap: 14px;
+    }
+
+    .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .control-row label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #63706d;
+    }
+
+    .control-row select {
+      min-width: 180px;
+      border: 1px solid rgba(32, 76, 89, 0.14);
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.92);
+      color: #1f4b59;
+      font: inherit;
+    }
+
+    .game-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .game-buttons button {
+      border: none;
+      border-radius: 999px;
+      padding: 11px 16px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: white;
+      background: linear-gradient(135deg, #235f74, #2f8d87);
+      cursor: pointer;
+    }
+
+    .game-buttons button.stop {
+      background: linear-gradient(135deg, #9b5e44, #7b4636);
+    }
+
+    .game-buttons button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .game-target {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .target-box {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(23,49,61,0.96);
+      color: #fff8ef;
+    }
+
+    .target-box.secondary {
+      background: rgba(255,255,255,0.9);
+      color: #17313d;
+      border: 1px solid rgba(122, 112, 94, 0.12);
+    }
+
+    .target-label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.72;
+    }
+
+    .target-value {
+      display: block;
+      font-family: "Avenir Next Condensed", "Avenir Next", sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+
+    .target-sub {
+      display: block;
+      margin-top: 8px;
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    .score-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .score-stat {
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.84);
+      border: 1px solid rgba(122, 112, 94, 0.12);
+    }
+
+    .score-stat .value {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .score-stat .label {
+      display: block;
+      margin-top: 6px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6f7873;
+    }
+
+    .progress-track {
+      position: relative;
+      height: 12px;
+      margin-top: 16px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(26, 72, 81, 0.12);
+    }
+
+    .progress-fill {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #2b6875, #f0ae2e);
+      transition: width 120ms linear;
+    }
+
+    .game-status {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(37, 105, 118, 0.08);
+      color: #49615e;
+      font-size: 14px;
+    }
+
+    .game-results {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(122, 112, 94, 0.12);
+    }
+
+    .practice-layout {
+      display: grid;
+      grid-template-columns: minmax(400px, 500px) minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .practice-sidebar {
+      position: sticky;
+      top: 8px;
+      align-self: start;
+      display: grid;
+      gap: 18px;
+    }
+
+    .practice-main {
+      min-width: 0;
+    }
+
+    .practice-sidebar .tempo-panel,
+    .practice-sidebar .tool-panel,
+    .practice-sidebar .game-panel {
+      padding: 16px;
+    }
+
+    .practice-sidebar .tuner-display {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .practice-sidebar .tuner-primary {
+      grid-template-columns: minmax(0, 1fr) minmax(150px, 0.72fr);
+    }
+
+    .practice-sidebar .stat-row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .practice-sidebar .score-strip {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tip-panel {
+      display: none;
+    }
+
+    .section-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .audio-card {
+      margin: 0;
+      padding: 18px;
+      border: 1px solid rgba(122, 112, 94, 0.14);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,244,238,0.84));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.55);
+    }
+
+    .audio-card strong {
+      display: block;
+      margin-bottom: 10px;
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #60716d;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 10px;
+      filter: sepia(18%);
+    }
+
+    .player-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 6px;
+    }
+
+    .player-controls button {
+      border: none;
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: linear-gradient(135deg, #235f74, #2f8d87);
+      color: white;
+      transition: transform 140ms ease, box-shadow 140ms ease, opacity 140ms ease;
+    }
+
+    .player-controls button.stop {
+      background: linear-gradient(135deg, #9b5e44, #7b4636);
+    }
+
+    .player-controls button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .player-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(37, 105, 118, 0.08);
+      font-size: 13px;
+      color: #49615e;
+    }
+
+    .player-status::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #8ca8a3;
+      box-shadow: 0 0 0 4px rgba(140, 168, 163, 0.18);
+    }
+
+    .page-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .page-title {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .page-audio {
+      flex: 0 0 260px;
+      margin: 0;
+    }
+
+    .page {
+      position: relative;
+      page-break-after: always;
+      break-after: page;
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(251,246,238,0.84));
+      border: 1px solid rgba(140, 128, 107, 0.16);
+      border-radius: 28px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      margin: 0 0 14px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 56ch;
+    }
+
+    .meta-strip {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(32, 88, 97, 0.07);
+      color: #355862;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      margin: 0;
+      font-family: "Avenir Next Condensed", "Avenir Next", sans-serif;
+      font-size: 22px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(213, 216, 220, 0.9);
+    }
+
+    td, th {
+      border: 1px solid var(--line);
+      text-align: center;
+      padding: 10px 4px;
+      height: 54px;
+      transition: background-color 120ms ease, box-shadow 120ms ease, color 120ms ease;
+    }
+
+    th.label, td.label {
+      width: 7%;
+      font-weight: 700;
+      background: linear-gradient(180deg, #e7f4f1, #d7ece8);
+      color: #24555f;
+    }
+
+    .group-head {
+      background: linear-gradient(180deg, #faf4e7, #f0e4cb);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      color: #655b4e;
+    }
+
+
+    .sequence {
+      font-family: "Avenir Next Condensed", "Avenir Next", sans-serif;
+      font-size: 28px;
+      line-height: 1.7;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--line);
+      padding: 22px;
+      border-radius: 22px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+
+    .sequence-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 14px;
+    }
+
+    .note-token {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.8em;
+      padding: 4px 7px;
+      border-radius: 12px;
+      transition: background-color 120ms ease, box-shadow 120ms ease, color 120ms ease;
+    }
+
+    .is-current {
+      background: linear-gradient(180deg, #ffe7a4, #ffd264);
+      color: #2e2300;
+      box-shadow: inset 0 0 0 2px #f2b400, 0 10px 18px rgba(233, 175, 15, 0.18);
+      transform: translateY(-1px);
+    }
+
+    .note-correct {
+      background: linear-gradient(180deg, #d8f4e8, #b8ebd4);
+      color: #144c33;
+      box-shadow: inset 0 0 0 2px rgba(34, 126, 81, 0.18);
+    }
+
+    .note-close {
+      background: linear-gradient(180deg, #fff0bf, #ffe19a);
+      color: #5e4300;
+      box-shadow: inset 0 0 0 2px rgba(212, 155, 32, 0.2);
+    }
+
+    .note-missed {
+      background: linear-gradient(180deg, #f7d8d0, #f0bbb0);
+      color: #69261f;
+      box-shadow: inset 0 0 0 2px rgba(152, 70, 58, 0.16);
+    }
+
+    .page.is-playing {
+      border-color: rgba(47, 127, 122, 0.38);
+      box-shadow: 0 18px 40px rgba(31, 100, 106, 0.12);
+    }
+
+    .page.is-playing .player-status {
+      background: rgba(39, 124, 117, 0.12);
+      color: #235953;
+    }
+
+    .page.is-playing .player-status::before {
+      background: #2f8d87;
+      box-shadow: 0 0 0 4px rgba(47, 141, 135, 0.18);
+    }
+
+    .page.is-playing .page-title h2 {
+      color: #204f58;
+    }
+
+    @media (min-width: 981px) {
+      .hero {
+        margin-left: 446px;
+      }
+
+      .practice-layout {
+        display: block;
+      }
+
+      .practice-sidebar {
+        position: fixed;
+        top: 10px;
+        left: max(10px, calc((100vw - min(1680px, calc(100vw - 24px))) / 2 + 10px));
+        width: 430px;
+        max-height: calc(100vh - 20px);
+        overflow-x: hidden;
+        overflow-y: auto;
+        z-index: 10;
+        padding-right: 6px;
+        scrollbar-gutter: stable;
+      }
+
+      .practice-main {
+        margin-left: 446px;
+      }
+
+      .practice-sidebar .section-label {
+        margin-bottom: 6px;
+        font-size: 10px;
+      }
+
+      .practice-sidebar .tempo-panel h2,
+      .practice-sidebar .tool-panel h2,
+      .practice-sidebar .game-panel h2 {
+        font-size: 20px;
+        margin-bottom: 6px;
+      }
+
+      .practice-sidebar .tempo-panel p,
+      .practice-sidebar .tool-panel p,
+      .practice-sidebar .game-header p {
+        display: none;
+      }
+
+      .practice-sidebar .swara-legend,
+      .practice-sidebar .game-results {
+        display: none;
+      }
+
+      .practice-sidebar .tempo-panel,
+      .practice-sidebar .tool-panel,
+      .practice-sidebar .game-panel,
+      .practice-sidebar .game-card {
+        border-radius: 16px;
+      }
+
+      .practice-sidebar .tempo-row,
+      .practice-sidebar .tempo-presets,
+      .practice-sidebar .tuner-sub,
+      .practice-sidebar .tuner-actions,
+      .practice-sidebar .select-wrap,
+      .practice-sidebar .game-buttons,
+      .practice-sidebar .score-strip,
+      .practice-sidebar .game-status,
+      .practice-sidebar .progress-track {
+        margin-top: 8px;
+      }
+
+      .practice-sidebar .tempo-panel,
+      .practice-sidebar .tool-panel,
+      .practice-sidebar .game-panel {
+        padding: 14px;
+      }
+
+      .practice-sidebar .tuner-main {
+        padding: 14px;
+      }
+
+      .practice-sidebar .tuner-meter-card {
+        padding: 10px;
+      }
+
+      .practice-sidebar .tuner-stat {
+        padding: 10px;
+      }
+
+      .practice-sidebar .score-stat {
+        padding: 10px;
+      }
+
+      .practice-sidebar .target-box {
+        padding: 12px;
+      }
+
+      .practice-sidebar .target-value {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .page-header,
+      .tools-grid,
+      .tuner-display,
+      .game-grid,
+      .practice-layout {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .hero-copy {
+        padding-right: 0;
+      }
+
+      .hero-aside {
+        grid-template-columns: 1fr;
+      }
+
+      .page-audio {
+        flex: 1 1 auto;
+      }
+
+      .stat-row {
+        grid-template-columns: 1fr;
+      }
+
+      .practice-sidebar {
+        position: static;
+        max-height: none;
+        overflow: visible;
+        padding-right: 0;
+      }
+
+      .tip-panel {
+        display: block;
+      }
+
+      .score-strip,
+      .game-target {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      main {
+        width: calc(100vw - 16px);
+        padding: 12px 4px 28px;
+      }
+
+      .hero,
+      .tool-panel,
+      .tempo-panel,
+      .page {
+        padding: 18px;
+        border-radius: 22px;
+      }
+
+      .tempo-row {
+        align-items: stretch;
+      }
+
+      .tempo-readout {
+        width: 100%;
+      }
+
+      .score-strip,
+      .game-target {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        font-size: 17px;
+      }
+
+      td, th {
+        height: 46px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      main {
+        padding: 0;
+      }
+
+      .page {
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        margin: 0;
+        padding: 16mm 12mm;
+      }
+
+      .tempo-panel,
+      .hero,
+      .player-controls,
+      .player-status,
+      audio {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Empty Flute Practice Studio</div>
+          <h1>All Alankars</h1>
+          <p class="intro">A focused practice view for all digitized alankars, with live bansuri-style playback, tempo shaping, and note-following. Taar Sa is written as <strong>S'</strong>, and each exercise can be practiced interactively or compared against the fixed reference recording.</p>
+        </div>
+        <div class="hero-aside">
+          <div class="hero-card dark">
+            <p class="section-label">Session Snapshot</p>
+            <div class="stat-row">
+              <div class="stat">
+                <span class="value">3</span>
+                <span class="label">Alankars</span>
+              </div>
+              <div class="stat">
+                <span class="value">20-500</span>
+                <span class="label">Tempo Range</span>
+              </div>
+              <div class="stat">
+                <span class="value" id="heroTempo">120</span>
+                <span class="label">Current BPM</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-card">
+            <p class="section-label">How To Use</p>
+            <div class="stat-row">
+              <div class="stat">
+                <span class="value">1</span>
+                <span class="label">Set Tempo</span>
+              </div>
+              <div class="stat">
+                <span class="value">2</span>
+                <span class="label">Live Play</span>
+              </div>
+              <div class="stat">
+                <span class="value">3</span>
+                <span class="label">Follow Highlight</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="practice-layout">
+      <aside class="practice-sidebar">
+    <section class="tempo-panel">
+      <p class="section-label">Practice Controls</p>
+      <h2>Shape The Tempo In Real Time</h2>
+      <p>Use live playback for immediate tempo changes from 20 to 500 BPM. Playback will use your recorded bansuri note samples when available and fall back to the synth only when a sample is missing.</p>
+      <div class="tempo-row">
+        <label for="tempo"><strong>Tempo</strong></label>
+        <input id="tempo" type="range" min="20" max="500" step="1" value="120" />
+        <div class="tempo-readout"><span id="tempoValue">120</span> BPM</div>
+      </div>
+      <div class="tempo-presets">
+        <button type="button" data-tempo-preset="60">Vilambit 60</button>
+        <button type="button" class="active" data-tempo-preset="120">Madhya 120</button>
+        <button type="button" data-tempo-preset="180">Drut 180</button>
+        <button type="button" data-tempo-preset="240">Sprint 240</button>
+      </div>
+      <div class="metronome-panel">
+        <div class="metronome-head">
+          <strong>Metronome</strong>
+          <label class="metronome-toggle">
+            <input type="checkbox" id="metronomeEnabled" checked />
+            Sync On
+          </label>
+        </div>
+        <div class="metronome-grid">
+          <div>
+            <label for="metronomeAccent">Accent Every</label>
+            <select id="metronomeAccent">
+              <option value="1">Every beat</option>
+              <option value="2">2 beats</option>
+              <option value="4" selected>4 beats</option>
+              <option value="8">8 beats</option>
+            </select>
+          </div>
+          <div>
+            <label for="metronomeVolume">Click Volume</label>
+            <div class="metronome-volume">
+              <input id="metronomeVolume" type="range" min="0" max="100" step="1" value="55" />
+              <output id="metronomeVolumeValue">55%</output>
+            </div>
+          </div>
+        </div>
+        <div class="metronome-actions">
+          <button type="button" id="startMetronome">Preview Click</button>
+          <button type="button" id="stopMetronome" class="stop">Stop Click</button>
+        </div>
+        <div class="metronome-status" id="metronomeStatus">Metronome is armed and will sync with Live Play and the game.</div>
+      </div>
+      <div class="metronome-panel">
+        <div class="metronome-head">
+          <strong>Ornament</strong>
+        </div>
+        <div class="metronome-grid">
+          <div>
+            <label for="ornamentMode">Transition Style</label>
+            <select id="ornamentMode">
+              <option value="plain">Plain</option>
+              <option value="meend" selected>Meend</option>
+              <option value="gamak">Gamak</option>
+              <option value="auto">Auto</option>
+            </select>
+          </div>
+          <div>
+            <label for="ornamentDepth">Expression</label>
+            <div class="metronome-volume">
+              <input id="ornamentDepth" type="range" min="0" max="100" step="1" value="55" />
+              <output id="ornamentDepthValue">55%</output>
+            </div>
+          </div>
+        </div>
+        <div class="metronome-status" id="ornamentStatus">Recorded note samples will glide into one another using a smoother ornament engine.</div>
+      </div>
+      <div class="metronome-panel">
+        <div class="metronome-head">
+          <strong>Repeat Touch</strong>
+        </div>
+        <div class="metronome-grid">
+          <div>
+            <label for="repeatTouchMode">Repeated Note Style</label>
+            <select id="repeatTouchMode">
+              <option value="none">None</option>
+              <option value="upper">Upper Touch</option>
+              <option value="lower">Lower Touch</option>
+              <option value="auto" selected>Auto</option>
+            </select>
+          </div>
+          <div>
+            <label for="repeatTouchDepth">Touch Length</label>
+            <div class="metronome-volume">
+              <input id="repeatTouchDepth" type="range" min="0" max="100" step="1" value="40" />
+              <output id="repeatTouchDepthValue">40%</output>
+            </div>
+          </div>
+        </div>
+        <div class="metronome-status" id="repeatTouchStatus">Repeated notes can use a brief neighboring swara touch before the second note lands.</div>
+      </div>
+    </section>
+
+    <section class="tools-grid">
+      <div class="tool-panel">
+        <p class="section-label">Live Tuner</p>
+        <h2>Listen To Your Flute In Real Time</h2>
+        <p>The mic tuner runs entirely in your browser on this Mac. Start listening, play a sustained note, and it will estimate the closest pitch, show the swara, and indicate whether you are sharp or flat.</p>
+        <div class="tuner-display">
+          <div class="tuner-main">
+            <div class="tuner-primary">
+              <div>
+                <div class="tuner-note" id="detectedNote">--</div>
+              </div>
+              <div class="tuner-swara-block">
+                <span class="tuner-swara-label">Swara</span>
+                <div class="tuner-swara" id="detectedSwaraBig">--</div>
+                <span class="tuner-swara-name" id="detectedSwaraLong">--</span>
+              </div>
+            </div>
+            <div class="tuner-sub">
+              <span>Swara: <strong id="detectedSwara">--</strong></span>
+              <span>Frequency: <strong id="detectedFreq">-- Hz</strong></span>
+            </div>
+            <div class="swara-legend">
+              <span class="swara-chip"><strong>S</strong> Sa</span>
+              <span class="swara-chip"><strong>R</strong> Re</span>
+              <span class="swara-chip"><strong>G</strong> Ga</span>
+              <span class="swara-chip"><strong>M</strong> Ma</span>
+              <span class="swara-chip"><strong>P</strong> Pa</span>
+              <span class="swara-chip"><strong>D</strong> Dha</span>
+              <span class="swara-chip"><strong>N</strong> Ni</span>
+            </div>
+            <div class="select-wrap">
+              <label for="saRoot">Sa Root</label>
+              <select id="saRoot">
+                <option value="60" selected>C</option>
+                <option value="61">C# / Db</option>
+                <option value="62">D</option>
+                <option value="63">D# / Eb</option>
+                <option value="64">E</option>
+                <option value="65">F</option>
+                <option value="66">F# / Gb</option>
+                <option value="67">G</option>
+                <option value="68">G# / Ab</option>
+                <option value="69">A</option>
+                <option value="70">A# / Bb</option>
+                <option value="71">B</option>
+              </select>
+            </div>
+            <div class="tuner-actions">
+              <button type="button" id="startTuner">Start Mic</button>
+              <button type="button" id="stopTuner" class="stop">Stop Mic</button>
+            </div>
+            <div class="tuner-status" id="tunerStatus">Mic idle. Click Start Mic and allow microphone access.</div>
+          </div>
+          <div class="tuner-meter-card">
+            <div>
+              <p class="section-label">Intonation</p>
+              <div class="meter">
+                <div class="meter-line"></div>
+                <div class="meter-needle" id="meterNeedle"></div>
+              </div>
+              <div class="meter-labels">
+                <span>Flat</span>
+                <span>In Tune</span>
+                <span>Sharp</span>
+              </div>
+            </div>
+            <div class="tuner-stats">
+              <div class="tuner-stat">
+                <span class="value" id="detectedCents">0 cents</span>
+                <span class="label">Offset</span>
+              </div>
+              <div class="tuner-stat">
+                <span class="value" id="detectedConcert">--</span>
+                <span class="label">Concert Note</span>
+              </div>
+              <div class="tuner-stat">
+                <span class="value" id="detectedConfidence">Low</span>
+                <span class="label">Signal</span>
+              </div>
+              <div class="tuner-stat">
+                <span class="value" id="detectedAdvice">Waiting</span>
+                <span class="label">Guidance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tool-panel tip-panel">
+        <p class="section-label">Practice Tip</p>
+        <h2>Best Results For Detection</h2>
+        <p>Play one sustained note at a time, keep the room as quiet as possible, and hold the flute steady for at least half a second. The tuner is most accurate when the tone is stable and not heavily ornamented.</p>
+        <div class="stat-row">
+          <div class="stat">
+            <span class="value">Single</span>
+            <span class="label">Note First</span>
+          </div>
+          <div class="stat">
+            <span class="value">Quiet</span>
+            <span class="label">Background</span>
+          </div>
+          <div class="stat">
+            <span class="value">Steady</span>
+            <span class="label">Breath</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="game-panel">
+      <div class="game-header">
+        <div>
+          <p class="section-label">Follow Along Game</p>
+          <h2>Play The Alankar And Get Scored</h2>
+          <p>The game uses the current BPM, highlights the target note, listens to your mic, and scores note accuracy with a forgiving first-pass model focused on correct swara and pitch closeness.</p>
+        </div>
+      </div>
+      <div class="game-grid">
+        <div class="game-card game-controls">
+          <div class="control-row">
+            <label for="gameAlankar">Alankar</label>
+            <select id="gameAlankar"></select>
+          </div>
+          <div class="game-buttons">
+            <button type="button" id="startGame">Start Game</button>
+            <button type="button" id="stopGame" class="stop">Stop Game</button>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="gameProgress"></div>
+          </div>
+          <div class="game-status" id="gameStatus">Pick an alankar, start the mic tuner, then press Start Game.</div>
+          <div class="game-results" id="gameResults">No run yet. Your score summary will appear here after a practice pass.</div>
+        </div>
+        <div class="game-card">
+          <div class="game-target">
+            <div class="target-box">
+              <span class="target-label">Target Swara</span>
+              <span class="target-value" id="targetSwara">--</span>
+              <span class="target-sub" id="targetConcert">Waiting for game start</span>
+            </div>
+            <div class="target-box secondary">
+              <span class="target-label">Your Note</span>
+              <span class="target-value" id="playerSwara">--</span>
+              <span class="target-sub" id="playerConcert">Listening not started</span>
+            </div>
+          </div>
+          <div class="score-strip">
+            <div class="score-stat">
+              <span class="value" id="gameScore">0</span>
+              <span class="label">Score</span>
+            </div>
+            <div class="score-stat">
+              <span class="value" id="gameAccuracy">0%</span>
+              <span class="label">Accuracy</span>
+            </div>
+            <div class="score-stat">
+              <span class="value" id="gameStreak">0</span>
+              <span class="label">Streak</span>
+            </div>
+            <div class="score-stat">
+              <span class="value" id="gameNoteCount">0 / 0</span>
+              <span class="label">Notes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      </aside>
+      <section class="practice-main">
+    <div class="section-stack">
+    <div id="generatedAlankars"></div>
+    <section class="page" data-alankar="25">
+      <div class="page-header">
+        <div class="page-title">
+          <h2>Alankar 25</h2>
+          <p class="subtitle">Ascending and descending grid pattern</p>
+          <div class="meta-strip">
+            <span class="meta-pill">Grid Exercise</span>
+            <span class="meta-pill">10 Rows</span>
+            <span class="meta-pill">160 Notes</span>
+          </div>
+        </div>
+        <div class="audio-card page-audio">
+          <strong>Play Alankar 25</strong>
+          <div class="player-controls">
+            <button type="button" data-play="25">Live Play</button>
+            <button type="button" class="stop" data-stop="25">Stop</button>
+          </div>
+          <div class="player-status" id="status-25">Ready at 120 BPM</div>
+          <audio controls preload="metadata" src="alankar-25-practice.wav"></audio>
+        </div>
+      </div>
+      <table>
+        <tr>
+          <th class="label">25</th>
+          <th class="group-head" colspan="4">A</th>
+          <th class="group-head" colspan="4">B</th>
+          <th class="group-head" colspan="4">C</th>
+          <th class="group-head" colspan="4">D</th>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>S</td><td>S</td><td>R</td><td>S</td>
+          <td>S</td><td>R</td><td>S</td><td>R</td>
+          <td>S</td><td>S</td><td>R</td><td>R</td>
+          <td>G</td><td>G</td><td>M</td><td>M</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>R</td><td>R</td><td>G</td><td>R</td>
+          <td>R</td><td>G</td><td>R</td><td>G</td>
+          <td>R</td><td>R</td><td>G</td><td>G</td>
+          <td>M</td><td>M</td><td>P</td><td>P</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>G</td><td>G</td><td>M</td><td>G</td>
+          <td>G</td><td>M</td><td>G</td><td>M</td>
+          <td>G</td><td>G</td><td>M</td><td>M</td>
+          <td>P</td><td>P</td><td>D</td><td>D</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>M</td><td>M</td><td>P</td><td>M</td>
+          <td>M</td><td>P</td><td>M</td><td>P</td>
+          <td>M</td><td>M</td><td>P</td><td>P</td>
+          <td>D</td><td>D</td><td>N</td><td>N</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>P</td><td>P</td><td>D</td><td>P</td>
+          <td>P</td><td>D</td><td>P</td><td>D</td>
+          <td>P</td><td>P</td><td>D</td><td>D</td>
+          <td>N</td><td>N</td><td>S'</td><td>S'</td>
+        </tr>
+        <tr>
+          <th class="label"></th>
+          <th class="group-head" colspan="4">A</th>
+          <th class="group-head" colspan="4">B</th>
+          <th class="group-head" colspan="4">C</th>
+          <th class="group-head" colspan="4">D</th>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>S'</td><td>S'</td><td>N</td><td>S'</td>
+          <td>S'</td><td>N</td><td>S'</td><td>N</td>
+          <td>S'</td><td>S'</td><td>N</td><td>N</td>
+          <td>D</td><td>D</td><td>P</td><td>P</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>N</td><td>N</td><td>D</td><td>N</td>
+          <td>N</td><td>D</td><td>N</td><td>D</td>
+          <td>N</td><td>N</td><td>D</td><td>D</td>
+          <td>P</td><td>P</td><td>M</td><td>M</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>D</td><td>D</td><td>P</td><td>D</td>
+          <td>D</td><td>P</td><td>D</td><td>P</td>
+          <td>D</td><td>D</td><td>P</td><td>P</td>
+          <td>M</td><td>M</td><td>G</td><td>G</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>P</td><td>P</td><td>M</td><td>P</td>
+          <td>P</td><td>M</td><td>P</td><td>M</td>
+          <td>P</td><td>P</td><td>M</td><td>M</td>
+          <td>G</td><td>G</td><td>R</td><td>R</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>M</td><td>M</td><td>G</td><td>M</td>
+          <td>M</td><td>G</td><td>M</td><td>G</td>
+          <td>M</td><td>M</td><td>G</td><td>G</td>
+          <td>R</td><td>R</td><td>S</td><td>S</td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="page" data-alankar="26">
+      <div class="page-header">
+        <div class="page-title">
+          <h2>Alankar 26</h2>
+          <p class="subtitle">Digitized from the split source images for the upper and lower sections</p>
+          <div class="meta-strip">
+            <span class="meta-pill">Mirror Pattern</span>
+            <span class="meta-pill">10 Rows</span>
+            <span class="meta-pill">160 Notes</span>
+          </div>
+        </div>
+        <div class="audio-card page-audio">
+          <strong>Play Alankar 26</strong>
+          <div class="player-controls">
+            <button type="button" data-play="26">Live Play</button>
+            <button type="button" class="stop" data-stop="26">Stop</button>
+          </div>
+          <div class="player-status" id="status-26">Ready at 120 BPM</div>
+          <audio controls preload="metadata" src="alankar-26-practice.wav"></audio>
+        </div>
+      </div>
+      <table>
+        <tr>
+          <th class="label">26</th>
+          <th class="group-head" colspan="4">A</th>
+          <th class="group-head" colspan="4">B</th>
+          <th class="group-head" colspan="4">C</th>
+          <th class="group-head" colspan="4">D</th>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>S</td><td>S</td><td>R</td><td>R</td>
+          <td>G</td><td>S</td><td>R</td><td>G</td>
+          <td>S</td><td>S</td><td>R</td><td>R</td>
+          <td>G</td><td>G</td><td>M</td><td>M</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>R</td><td>R</td><td>G</td><td>G</td>
+          <td>M</td><td>R</td><td>G</td><td>M</td>
+          <td>R</td><td>R</td><td>G</td><td>G</td>
+          <td>M</td><td>M</td><td>P</td><td>P</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>G</td><td>G</td><td>M</td><td>M</td>
+          <td>P</td><td>G</td><td>M</td><td>P</td>
+          <td>G</td><td>G</td><td>M</td><td>M</td>
+          <td>P</td><td>P</td><td>D</td><td>D</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>M</td><td>M</td><td>P</td><td>P</td>
+          <td>D</td><td>M</td><td>P</td><td>D</td>
+          <td>M</td><td>M</td><td>P</td><td>P</td>
+          <td>D</td><td>D</td><td>N</td><td>N</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>P</td><td>P</td><td>D</td><td>D</td>
+          <td>N</td><td>P</td><td>D</td><td>N</td>
+          <td>P</td><td>P</td><td>D</td><td>D</td>
+          <td>N</td><td>N</td><td>S'</td><td>S'</td>
+        </tr>
+        <tr>
+          <th class="label"></th>
+          <th class="group-head" colspan="4">A</th>
+          <th class="group-head" colspan="4">B</th>
+          <th class="group-head" colspan="4">C</th>
+          <th class="group-head" colspan="4">D</th>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>S'</td><td>S'</td><td>N</td><td>N</td>
+          <td>D</td><td>S'</td><td>N</td><td>D</td>
+          <td>S'</td><td>S'</td><td>N</td><td>N</td>
+          <td>D</td><td>D</td><td>P</td><td>P</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>N</td><td>N</td><td>D</td><td>D</td>
+          <td>P</td><td>N</td><td>D</td><td>P</td>
+          <td>N</td><td>N</td><td>D</td><td>D</td>
+          <td>P</td><td>P</td><td>M</td><td>M</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>D</td><td>D</td><td>P</td><td>P</td>
+          <td>M</td><td>D</td><td>P</td><td>M</td>
+          <td>D</td><td>D</td><td>P</td><td>P</td>
+          <td>M</td><td>M</td><td>G</td><td>G</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>P</td><td>P</td><td>M</td><td>M</td>
+          <td>G</td><td>P</td><td>M</td><td>G</td>
+          <td>P</td><td>P</td><td>M</td><td>M</td>
+          <td>G</td><td>G</td><td>R</td><td>R</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td>M</td><td>M</td><td>G</td><td>G</td>
+          <td>R</td><td>M</td><td>G</td><td>R</td>
+          <td>M</td><td>M</td><td>G</td><td>G</td>
+          <td>R</td><td>R</td><td>S</td><td>S</td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="page" data-alankar="27">
+      <div class="page-header">
+        <div class="page-title">
+          <h2>Alankar 27</h2>
+          <p class="subtitle">Linear pattern</p>
+          <div class="meta-strip">
+            <span class="meta-pill">Linear Flow</span>
+            <span class="meta-pill">2 Lines</span>
+            <span class="meta-pill">80 Notes</span>
+          </div>
+        </div>
+        <div class="audio-card page-audio">
+          <strong>Play Alankar 27</strong>
+          <div class="player-controls">
+            <button type="button" data-play="27">Live Play</button>
+            <button type="button" class="stop" data-stop="27">Stop</button>
+          </div>
+          <div class="player-status" id="status-27">Ready at 120 BPM</div>
+          <audio controls preload="metadata" src="alankar-27-practice.wav"></audio>
+        </div>
+      </div>
+      <div class="sequence" data-sequence-id="27">
+        <div class="sequence-line">
+          <span class="note-token">S</span><span class="note-token">S</span>
+          <span class="note-token">R</span><span class="note-token">R</span>
+          <span class="note-token">G</span><span class="note-token">G</span>
+          <span class="note-token">M</span><span class="note-token">M</span>
+          <span class="note-token">R</span><span class="note-token">R</span>
+          <span class="note-token">G</span><span class="note-token">G</span>
+          <span class="note-token">M</span><span class="note-token">M</span>
+          <span class="note-token">P</span><span class="note-token">P</span>
+          <span class="note-token">G</span><span class="note-token">G</span>
+          <span class="note-token">M</span><span class="note-token">M</span>
+          <span class="note-token">P</span><span class="note-token">P</span>
+          <span class="note-token">D</span><span class="note-token">D</span>
+          <span class="note-token">M</span><span class="note-token">M</span>
+          <span class="note-token">P</span><span class="note-token">P</span>
+          <span class="note-token">D</span><span class="note-token">D</span>
+          <span class="note-token">N</span><span class="note-token">N</span>
+          <span class="note-token">P</span><span class="note-token">P</span>
+          <span class="note-token">D</span><span class="note-token">D</span>
+          <span class="note-token">N</span><span class="note-token">N</span>
+          <span class="note-token">S'</span><span class="note-token">S'</span>
+        </div>
+        <div class="sequence-line">
+          <span class="note-token">S'</span><span class="note-token">S'</span>
+          <span class="note-token">N</span><span class="note-token">N</span>
+          <span class="note-token">D</span><span class="note-token">D</span>
+          <span class="note-token">P</span><span class="note-token">P</span>
+          <span class="note-token">N</span><span class="note-token">N</span>
+          <span class="note-token">D</span><span class="note-token">D</span>
+          <span class="note-token">P</span><span class="note-token">P</span>
+          <span class="note-token">M</span><span class="note-token">M</span>
+          <span class="note-token">D</span><span class="note-token">D</span>
+          <span class="note-token">P</span><span class="note-token">P</span>
+          <span class="note-token">M</span><span class="note-token">M</span>
+          <span class="note-token">G</span><span class="note-token">G</span>
+          <span class="note-token">P</span><span class="note-token">P</span>
+          <span class="note-token">M</span><span class="note-token">M</span>
+          <span class="note-token">G</span><span class="note-token">G</span>
+          <span class="note-token">R</span><span class="note-token">R</span>
+          <span class="note-token">M</span><span class="note-token">M</span>
+          <span class="note-token">G</span><span class="note-token">G</span>
+          <span class="note-token">R</span><span class="note-token">R</span>
+          <span class="note-token">S</span><span class="note-token">S</span>
+        </div>
+      </div>
+    </section>
+    </div>
+      </section>
+    </div>
+  </main>
+  <script src="alankars-data.js"></script>
+  <script>
+    const NOTE_TO_MIDI = {
+      "S": 60,
+      "R": 62,
+      "G": 64,
+      "M": 65,
+      "P": 67,
+      "D": 69,
+      "N": 71,
+      "S'": 72
+    };
+
+    const sequences = {
+      "25": [
+        "S","S","R","S","S","R","S","R","S","S","R","R","G","G","M","M",
+        "R","R","G","R","R","G","R","G","R","R","G","G","M","M","P","P",
+        "G","G","M","G","G","M","G","M","G","G","M","M","P","P","D","D",
+        "M","M","P","M","M","P","M","P","M","M","P","P","D","D","N","N",
+        "P","P","D","P","P","D","P","D","P","P","D","D","N","N","S'","S'",
+        "S'","S'","N","S'","S'","N","S'","N","S'","S'","N","N","D","D","P","P",
+        "N","N","D","N","N","D","N","D","N","N","D","D","P","P","M","M",
+        "D","D","P","D","D","P","D","P","D","D","P","P","M","M","G","G",
+        "P","P","M","P","P","M","P","M","P","P","M","M","G","G","R","R",
+        "M","M","G","M","M","G","M","G","M","M","G","G","R","R","S","S"
+      ],
+      "26": [
+        "S","S","R","R","G","S","R","G","S","S","R","R","G","G","M","M",
+        "R","R","G","G","M","R","G","M","R","R","G","G","M","M","P","P",
+        "G","G","M","M","P","G","M","P","G","G","M","M","P","P","D","D",
+        "M","M","P","P","D","M","P","D","M","M","P","P","D","D","N","N",
+        "P","P","D","D","N","P","D","N","P","P","D","D","N","N","S'","S'",
+        "S'","S'","N","N","D","S'","N","D","S'","S'","N","N","D","D","P","P",
+        "N","N","D","D","P","N","D","P","N","N","D","D","P","P","M","M",
+        "D","D","P","P","M","D","P","M","D","D","P","P","M","M","G","G",
+        "P","P","M","M","G","P","M","G","P","P","M","M","G","G","R","R",
+        "M","M","G","G","R","M","G","R","M","M","G","G","R","R","S","S"
+      ],
+      "27": [
+        "S","S","R","R","G","G","M","M",
+        "R","R","G","G","M","M","P","P",
+        "G","G","M","M","P","P","D","D",
+        "M","M","P","P","D","D","N","N",
+        "P","P","D","D","N","N","S'","S'",
+        "S'","S'","N","N","D","D","P","P",
+        "N","N","D","D","P","P","M","M",
+        "D","D","P","P","M","M","G","G",
+        "P","P","M","M","G","G","R","R",
+        "M","M","G","G","R","R","S","S"
+      ]
+    };
+
+    const SAMPLE_CANDIDATES = {
+      "S": [
+        "../swaras/Sa.m4a",
+        "../swaras/sa.m4a",
+        "./swaras/sa.wav",
+        "./swaras/Sa.wav",
+        "./swaras/SA.wav",
+        "./swaras/s.wav"
+      ],
+      "R": [
+        "../swaras/Re.m4a",
+        "../swaras/re.m4a",
+        "./swaras/re.wav",
+        "./swaras/Re.wav",
+        "./swaras/RE.wav",
+        "./swaras/r.wav"
+      ],
+      "G": [
+        "../swaras/Ga.m4a",
+        "../swaras/ga.m4a",
+        "./swaras/ga.wav",
+        "./swaras/Ga.wav",
+        "./swaras/GA.wav",
+        "./swaras/g.wav"
+      ],
+      "M": [
+        "../swaras/Ma.m4a",
+        "../swaras/ma.m4a",
+        "./swaras/ma.wav",
+        "./swaras/Ma.wav",
+        "./swaras/MA.wav",
+        "./swaras/m.wav"
+      ],
+      "P": [
+        "../swaras/Pa.m4a",
+        "../swaras/pa.m4a",
+        "./swaras/pa.wav",
+        "./swaras/Pa.wav",
+        "./swaras/PA.wav",
+        "./swaras/p.wav"
+      ],
+      "D": [
+        "../swaras/Dha.m4a",
+        "../swaras/dha.m4a",
+        "./swaras/dha.wav",
+        "./swaras/Dha.wav",
+        "./swaras/DHA.wav",
+        "./swaras/d.wav"
+      ],
+      "N": [
+        "../swaras/Ne.m4a",
+        "../swaras/Ni.m4a",
+        "../swaras/ne.m4a",
+        "../swaras/ni.m4a",
+        "./swaras/ni.wav",
+        "./swaras/Ni.wav",
+        "./swaras/NI.wav",
+        "./swaras/n.wav"
+      ],
+      "S'": [
+        "../swaras/Sa’.m4a",
+        "../swaras/Sa'.m4a",
+        "../swaras/sa’.m4a",
+        "../swaras/sa'.m4a",
+        "./swaras/sa'.wav",
+        "./swaras/Sa'.wav",
+        "./swaras/SA'.wav",
+        "./swaras/sa-prime.wav",
+        "./swaras/sa_high.wav",
+        "./swaras/upper-sa.wav"
+      ]
+    };
+
+    const GENERATED_ALANKARS = window.ALANKAR_DATA?.generatedAlankars || {};
+
+    Object.entries(GENERATED_ALANKARS).forEach(([id, data]) => {
+      sequences[id] = data.lines.flat();
+    });
+
+    function sectionHeaderLabels(count) {
+      const labels = [];
+      for (let i = 0; i < count; i += 1) {
+        labels.push(String.fromCharCode(65 + (i % 26)));
+      }
+      return labels;
+    }
+
+    function renderGeneratedAlankars() {
+      const container = document.getElementById("generatedAlankars");
+      if (!container) return;
+      const ids = Object.keys(GENERATED_ALANKARS).sort((a, b) => Number(a) - Number(b));
+      container.innerHTML = ids.map((id) => {
+        const data = GENERATED_ALANKARS[id];
+        const totalNotes = data.lines.reduce((sum, line) => sum + line.length, 0);
+        const columnCount = Math.max(...data.lines.map((line) => line.length));
+        const groupSize = 4;
+        const groupCount = Math.ceil(columnCount / groupSize);
+        const headerMarkup = sectionHeaderLabels(groupCount)
+          .map((label) => `<th class="group-head" colspan="${groupSize}">${label}</th>`)
+          .join("");
+        const rowMarkup = data.lines.map((line, rowIndex) => {
+          const padded = [...line];
+          while (padded.length < columnCount) padded.push("");
+          return `
+            <tr>
+              <td class="label">${data.lines.length > 2 ? rowIndex + 1 : ""}</td>
+              ${padded.map((note) => `<td>${note}</td>`).join("")}
+            </tr>
+          `;
+        }).join("");
+        const tableMarkup = `
+          <table>
+            <tr>
+              <th class="label">${id}</th>
+              ${headerMarkup}
+            </tr>
+            ${rowMarkup}
+          </table>
+        `;
+        return `
+          <section class="page" data-alankar="${id}">
+            <div class="page-header">
+              <div class="page-title">
+                <h2>Alankar ${id}</h2>
+                <p class="subtitle">${data.subtitle}</p>
+                <div class="meta-strip">
+                  <span class="meta-pill">Digitized</span>
+                  <span class="meta-pill">${data.lines.length} Lines</span>
+                  <span class="meta-pill">${totalNotes} Notes</span>
+                </div>
+              </div>
+              <div class="audio-card page-audio">
+                <strong>Play Alankar ${id}</strong>
+                <div class="player-controls">
+                  <button type="button" data-play="${id}">Live Play</button>
+                  <button type="button" class="stop" data-stop="${id}">Stop</button>
+                </div>
+                <div class="player-status" id="status-${id}">Ready at 120 BPM</div>
+              </div>
+            </div>
+            ${tableMarkup}
+          </section>
+        `;
+      }).join("");
+    }
+
+    renderGeneratedAlankars();
+
+    const tempoInput = document.getElementById("tempo");
+    const tempoValue = document.getElementById("tempoValue");
+    const heroTempo = document.getElementById("heroTempo");
+    const presetButtons = Array.from(document.querySelectorAll("[data-tempo-preset]"));
+    const detectedNote = document.getElementById("detectedNote");
+    const detectedSwara = document.getElementById("detectedSwara");
+    const detectedSwaraBig = document.getElementById("detectedSwaraBig");
+    const detectedSwaraLong = document.getElementById("detectedSwaraLong");
+    const detectedFreq = document.getElementById("detectedFreq");
+    const detectedCents = document.getElementById("detectedCents");
+    const detectedConcert = document.getElementById("detectedConcert");
+    const detectedConfidence = document.getElementById("detectedConfidence");
+    const detectedAdvice = document.getElementById("detectedAdvice");
+    const tunerStatus = document.getElementById("tunerStatus");
+    const meterNeedle = document.getElementById("meterNeedle");
+    const startTunerButton = document.getElementById("startTuner");
+    const stopTunerButton = document.getElementById("stopTuner");
+    const saRootSelect = document.getElementById("saRoot");
+    const gameAlankarSelect = document.getElementById("gameAlankar");
+    const startGameButton = document.getElementById("startGame");
+    const stopGameButton = document.getElementById("stopGame");
+    const metronomeEnabledInput = document.getElementById("metronomeEnabled");
+    const metronomeAccentSelect = document.getElementById("metronomeAccent");
+    const metronomeVolumeInput = document.getElementById("metronomeVolume");
+    const metronomeVolumeValue = document.getElementById("metronomeVolumeValue");
+    const startMetronomeButton = document.getElementById("startMetronome");
+    const stopMetronomeButton = document.getElementById("stopMetronome");
+    const metronomeStatus = document.getElementById("metronomeStatus");
+    const ornamentModeSelect = document.getElementById("ornamentMode");
+    const ornamentDepthInput = document.getElementById("ornamentDepth");
+    const ornamentDepthValue = document.getElementById("ornamentDepthValue");
+    const ornamentStatus = document.getElementById("ornamentStatus");
+    const repeatTouchModeSelect = document.getElementById("repeatTouchMode");
+    const repeatTouchDepthInput = document.getElementById("repeatTouchDepth");
+    const repeatTouchDepthValue = document.getElementById("repeatTouchDepthValue");
+    const repeatTouchStatus = document.getElementById("repeatTouchStatus");
+    const gameProgress = document.getElementById("gameProgress");
+    const gameStatus = document.getElementById("gameStatus");
+    const gameResults = document.getElementById("gameResults");
+    const targetSwara = document.getElementById("targetSwara");
+    const targetConcert = document.getElementById("targetConcert");
+    const playerSwara = document.getElementById("playerSwara");
+    const playerConcert = document.getElementById("playerConcert");
+    const gameScore = document.getElementById("gameScore");
+    const gameAccuracy = document.getElementById("gameAccuracy");
+    const gameStreak = document.getElementById("gameStreak");
+    const gameNoteCount = document.getElementById("gameNoteCount");
+    const noteElements = Object.fromEntries(
+      Array.from(document.querySelectorAll(".page[data-alankar]")).map((page) => [
+        page.dataset.alankar,
+        Array.from(page.querySelectorAll('.note-token, table td:not(.label)'))
+      ])
+    );
+    let audioContext;
+    let currentRun = null;
+    let sampleLibrary = null;
+    let sampleLibraryPromise = null;
+    let tunerStream = null;
+    let tunerAudioContext = null;
+    let tunerAnalyser = null;
+    let tunerSource = null;
+    let tunerData = null;
+    let tunerRAF = null;
+    let lastDetectedMidi = null;
+    let pitchHistory = [];
+    let lastStableFrequency = null;
+    let lastStableMidi = null;
+    let lastStableClarity = 0;
+    let weakFrameCount = 0;
+    let currentDetection = null;
+    let activeGame = null;
+    let metronomePreviewTimeout = null;
+    let metronomePreviewBeat = 0;
+
+    const NOTE_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+    const SWARA_NAMES = ["S", "r", "R", "g", "G", "M", "m", "P", "d", "D", "n", "N"];
+    const SWARA_FULL_NAMES = {
+      "S": "Sa",
+      "r": "Komal Re",
+      "R": "Re",
+      "g": "Komal Ga",
+      "G": "Ga",
+      "M": "Ma",
+      "m": "Tivra Ma",
+      "P": "Pa",
+      "d": "Komal Dha",
+      "D": "Dha",
+      "n": "Komal Ni",
+      "N": "Ni"
+    };
+
+    function midiToFreq(midi) {
+      return 440 * Math.pow(2, (midi - 69) / 12);
+    }
+
+    function freqToMidi(freq) {
+      return 69 + 12 * Math.log2(freq / 440);
+    }
+
+    function formatConcertNote(midi) {
+      const rounded = Math.round(midi);
+      const name = NOTE_NAMES[((rounded % 12) + 12) % 12];
+      const octave = Math.floor(rounded / 12) - 1;
+      return `${name}${octave}`;
+    }
+
+    function swaraFromMidi(midi) {
+      const saRoot = Number(saRootSelect.value);
+      const rounded = Math.round(midi);
+      const interval = ((rounded - saRoot) % 12 + 12) % 12;
+      return SWARA_NAMES[interval] || "--";
+    }
+
+    function ensureAudioContext() {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioContext.state === "suspended") {
+        return audioContext.resume();
+      }
+      return Promise.resolve();
+    }
+
+    function probeSampleUrl(url) {
+      return new Promise((resolve) => {
+        const audio = new Audio();
+        let settled = false;
+        const cleanup = () => {
+          audio.removeEventListener("canplaythrough", onReady);
+          audio.removeEventListener("loadedmetadata", onReady);
+          audio.removeEventListener("error", onError);
+        };
+        const onReady = () => {
+          if (settled) return;
+          settled = true;
+          cleanup();
+          resolve(url);
+        };
+        const onError = () => {
+          if (settled) return;
+          settled = true;
+          cleanup();
+          resolve(null);
+        };
+        audio.preload = "metadata";
+        audio.addEventListener("canplaythrough", onReady, { once: true });
+        audio.addEventListener("loadedmetadata", onReady, { once: true });
+        audio.addEventListener("error", onError, { once: true });
+        audio.src = url;
+        audio.load();
+        window.setTimeout(() => {
+          if (settled) return;
+          settled = true;
+          cleanup();
+          resolve(null);
+        }, 1200);
+      });
+    }
+
+    async function initializeSamples() {
+      if (sampleLibrary) return sampleLibrary;
+      if (sampleLibraryPromise) return sampleLibraryPromise;
+
+      sampleLibraryPromise = (async () => {
+        const library = {};
+        for (const [note, candidates] of Object.entries(SAMPLE_CANDIDATES)) {
+          let resolved = null;
+          for (const candidate of candidates) {
+            resolved = await probeSampleUrl(candidate);
+            if (resolved) break;
+          }
+          if (resolved) {
+            const audio = new Audio(resolved);
+            audio.preload = "auto";
+            audio.load();
+            library[note] = { url: resolved, baseMidi: NOTE_TO_MIDI[note], audio };
+          }
+        }
+        sampleLibrary = library;
+        return sampleLibrary;
+      })();
+
+      return sampleLibraryPromise;
+    }
+
+    function setStatus(id, message) {
+      const node = document.getElementById(`status-${id}`);
+      if (node) node.textContent = message;
+    }
+
+    function getMetronomeVolume() {
+      return Number(metronomeVolumeInput.value) / 100;
+    }
+
+    function isMetronomeEnabled() {
+      return metronomeEnabledInput.checked;
+    }
+
+    function getOrnamentDepth() {
+      return Number(ornamentDepthInput.value) / 100;
+    }
+
+    function getRepeatTouchDepth() {
+      return Number(repeatTouchDepthInput.value) / 100;
+    }
+
+    function getScaleMidis() {
+      return [...new Set(Object.values(NOTE_TO_MIDI))].sort((a, b) => a - b);
+    }
+
+    function getAdjacentScaleMidi(targetMidi, direction = 1) {
+      const scaleMidis = getScaleMidis();
+      const index = scaleMidis.indexOf(targetMidi);
+      if (index === -1) return targetMidi + direction;
+      const nextIndex = Math.max(0, Math.min(scaleMidis.length - 1, index + (direction >= 0 ? 1 : -1)));
+      return scaleMidis[nextIndex] ?? targetMidi;
+    }
+
+    function getNoteKeyForMidi(targetMidi) {
+      return Object.keys(NOTE_TO_MIDI).find((key) => NOTE_TO_MIDI[key] === targetMidi) || null;
+    }
+
+    function getRepeatTouchDirection(targetMidi, nextNextMidi) {
+      const mode = repeatTouchModeSelect.value;
+      if (mode === "none") return 0;
+      if (mode === "upper") return 1;
+      if (mode === "lower") return -1;
+      if (nextNextMidi !== null && nextNextMidi !== undefined && nextNextMidi !== targetMidi) {
+        return Math.sign(nextNextMidi - targetMidi) || 1;
+      }
+      return 1;
+    }
+
+    function getTransitionStyle(currentMidi, nextMidi) {
+      const mode = ornamentModeSelect.value;
+      if (mode !== "auto") return mode;
+      if (nextMidi === null || nextMidi === undefined) return "plain";
+      const interval = Math.abs(nextMidi - currentMidi);
+      if (interval <= 2) return "meend";
+      if (interval <= 5) return "gamak";
+      return "plain";
+    }
+
+    function stopMetronomePreview(message = "Metronome stopped.") {
+      if (metronomePreviewTimeout) {
+        window.clearTimeout(metronomePreviewTimeout);
+        metronomePreviewTimeout = null;
+      }
+      metronomePreviewBeat = 0;
+      startMetronomeButton.disabled = false;
+      stopMetronomeButton.disabled = true;
+      metronomeStatus.textContent = message;
+    }
+
+    async function triggerMetronomeBeat(beatIndex = 0) {
+      if (!isMetronomeEnabled()) return;
+      await ensureAudioContext();
+
+      const accentEvery = Math.max(1, Number(metronomeAccentSelect.value) || 4);
+      const accented = beatIndex % accentEvery === 0;
+      const startTime = audioContext.currentTime + 0.002;
+      const osc = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      const filter = audioContext.createBiquadFilter();
+      const peak = Math.max(0.02, getMetronomeVolume() * (accented ? 0.9 : 0.58));
+
+      filter.type = "bandpass";
+      filter.frequency.setValueAtTime(accented ? 2200 : 1600, startTime);
+      filter.Q.value = 1.2;
+      osc.type = accented ? "triangle" : "square";
+      osc.frequency.setValueAtTime(accented ? 1560 : 1120, startTime);
+      gain.gain.setValueAtTime(0.0001, startTime);
+      gain.gain.exponentialRampToValueAtTime(peak, startTime + 0.002);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + (accented ? 0.08 : 0.055));
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(audioContext.destination);
+
+      osc.start(startTime);
+      osc.stop(startTime + 0.09);
+    }
+
+    function runMetronomePreview() {
+      if (!isMetronomeEnabled()) {
+        stopMetronomePreview("Enable Sync On to hear the metronome.");
+        return;
+      }
+
+      triggerMetronomeBeat(metronomePreviewBeat);
+      metronomePreviewBeat += 1;
+      const intervalMs = (60 / Number(tempoInput.value)) * 1000;
+      metronomePreviewTimeout = window.setTimeout(runMetronomePreview, intervalMs);
+    }
+
+    function startMetronomePreview() {
+      stopMetronomePreview("Metronome restarting...");
+      startMetronomeButton.disabled = true;
+      stopMetronomeButton.disabled = false;
+      metronomeStatus.textContent = `Previewing click at ${tempoInput.value} BPM.`;
+      runMetronomePreview();
+    }
+
+    function setPlayingCard(id, isPlaying) {
+      const page = document.querySelector(`.page[data-alankar="${id}"]`);
+      if (page) page.classList.toggle("is-playing", isPlaying);
+    }
+
+    function clearHighlight(id) {
+      (noteElements[id] || []).forEach((node) => node.classList.remove("is-current"));
+    }
+
+    function clearNoteResults(id) {
+      (noteElements[id] || []).forEach((node) => node.classList.remove("note-correct", "note-close", "note-missed"));
+    }
+
+    function highlightNote(id, index) {
+      clearHighlight(id);
+      const node = (noteElements[id] || [])[index];
+      if (node) {
+        node.classList.add("is-current");
+        node.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });
+      }
+    }
+
+    function resetTunerDisplay(message = "Mic idle. Click Start Mic and allow microphone access.") {
+      lastDetectedMidi = null;
+      pitchHistory = [];
+      lastStableFrequency = null;
+      lastStableMidi = null;
+      lastStableClarity = 0;
+      weakFrameCount = 0;
+      detectedNote.textContent = "--";
+      detectedSwara.textContent = "--";
+      detectedSwaraBig.textContent = "--";
+      detectedSwaraLong.textContent = "--";
+      detectedFreq.textContent = "-- Hz";
+      detectedCents.textContent = "0 cents";
+      detectedConcert.textContent = "--";
+      detectedConfidence.textContent = "Low";
+      detectedAdvice.textContent = "Waiting";
+      meterNeedle.style.left = "50%";
+      tunerStatus.textContent = message;
+      currentDetection = null;
+      playerSwara.textContent = "--";
+      playerConcert.textContent = "Listening not started";
+    }
+
+    function yinDetect(buffer, sampleRate) {
+      let rms = 0;
+      for (let i = 0; i < buffer.length; i += 1) rms += buffer[i] * buffer[i];
+      rms = Math.sqrt(rms / buffer.length);
+      if (rms < 0.005) return null;
+
+      const minSamples = Math.floor(sampleRate / 1200);
+      const maxSamples = Math.floor(sampleRate / 70);
+      const yinBuffer = new Float32Array(maxSamples + 2);
+
+      for (let tau = 1; tau <= maxSamples; tau += 1) {
+        let sum = 0;
+        for (let i = 0; i < buffer.length - tau; i += 1) {
+          const delta = buffer[i] - buffer[i + tau];
+          sum += delta * delta;
+        }
+        yinBuffer[tau] = sum;
+      }
+
+      yinBuffer[0] = 1;
+      let runningSum = 0;
+      for (let tau = 1; tau <= maxSamples; tau += 1) {
+        runningSum += yinBuffer[tau];
+        yinBuffer[tau] = runningSum === 0 ? 1 : (yinBuffer[tau] * tau) / runningSum;
+      }
+
+      const threshold = 0.11;
+      let tauEstimate = -1;
+      for (let tau = minSamples; tau <= maxSamples; tau += 1) {
+        if (yinBuffer[tau] < threshold) {
+          while (tau + 1 <= maxSamples && yinBuffer[tau + 1] < yinBuffer[tau]) {
+            tau += 1;
+          }
+          tauEstimate = tau;
+          break;
+        }
+      }
+
+      if (tauEstimate === -1) {
+        let bestTau = -1;
+        let bestValue = 1;
+        for (let tau = minSamples; tau <= maxSamples; tau += 1) {
+          if (yinBuffer[tau] < bestValue) {
+            bestValue = yinBuffer[tau];
+            bestTau = tau;
+          }
+        }
+        if (bestTau === -1 || bestValue > 0.22) return null;
+        tauEstimate = bestTau;
+      }
+
+      let refinedTau = tauEstimate;
+      if (tauEstimate > minSamples && tauEstimate < maxSamples) {
+        const left = yinBuffer[tauEstimate - 1];
+        const center = yinBuffer[tauEstimate];
+        const right = yinBuffer[tauEstimate + 1];
+        const denom = left + right - 2 * center;
+        if (denom !== 0) {
+          refinedTau = tauEstimate + (left - right) / (2 * denom);
+        }
+      }
+
+      const periodicity = 1 - Math.min(1, yinBuffer[tauEstimate]);
+      return {
+        frequency: sampleRate / refinedTau,
+        clarity: Math.max(0, Math.min(1, (periodicity - 0.78) / 0.22)),
+        rms
+      };
+    }
+
+    function median(values) {
+      if (!values.length) return null;
+      const sorted = [...values].sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+    }
+
+    function getSmoothedFrequency(frequency) {
+      pitchHistory.push(frequency);
+      if (pitchHistory.length > 5) pitchHistory.shift();
+      return median(pitchHistory);
+    }
+
+    function normalizeOctave(midi) {
+      let candidate = midi;
+      const saRoot = Number(saRootSelect.value);
+      const anchor = lastStableMidi !== null ? lastStableMidi : saRoot;
+
+      while (candidate - anchor > 6) candidate -= 12;
+      while (anchor - candidate > 6) candidate += 12;
+
+      if (lastStableMidi === null) {
+        while (candidate >= saRoot + 12) candidate -= 12;
+        while (candidate < saRoot) candidate += 12;
+      }
+
+      return candidate;
+    }
+
+    function updateTunerDisplay(frequency, clarity) {
+      const midi = normalizeOctave(freqToMidi(frequency));
+      const roundedMidi = Math.round(midi);
+      lastDetectedMidi = roundedMidi;
+      const cents = Math.round((midi - roundedMidi) * 100);
+      const absCents = Math.abs(cents);
+      const noteName = formatConcertNote(roundedMidi);
+      const swara = swaraFromMidi(roundedMidi);
+      const swaraLong = SWARA_FULL_NAMES[swara] || "--";
+      const needlePct = 50 + Math.max(-50, Math.min(50, cents)) * 0.9;
+
+      detectedNote.textContent = noteName;
+      detectedSwara.textContent = swara;
+      detectedSwaraBig.textContent = swara;
+      detectedSwaraLong.textContent = swaraLong;
+      detectedFreq.textContent = `${frequency.toFixed(1)} Hz`;
+      detectedCents.textContent = `${cents > 0 ? "+" : ""}${cents} cents`;
+      detectedConcert.textContent = noteName;
+      detectedConfidence.textContent = clarity > 0.75 ? "High" : clarity > 0.45 ? "Medium" : "Low";
+      detectedAdvice.textContent = absCents < 8 ? "In Tune" : cents < 0 ? "Raise Pitch" : "Lower Pitch";
+      meterNeedle.style.left = `${needlePct}%`;
+      tunerStatus.textContent = `Listening... ${clarity > 0.75 ? "stable note detected" : "finding a steadier pitch"}.`;
+      currentDetection = {
+        frequency,
+        midi: roundedMidi,
+        swara,
+        swaraLong,
+        noteName,
+        cents,
+        clarity,
+        timestamp: performance.now()
+      };
+      playerSwara.textContent = swara;
+      playerConcert.textContent = `${noteName} • ${frequency.toFixed(1)} Hz`;
+    }
+
+    function resetGameUI() {
+      gameProgress.style.width = "0%";
+      targetSwara.textContent = "--";
+      targetConcert.textContent = "Waiting for game start";
+      gameScore.textContent = "0";
+      gameAccuracy.textContent = "0%";
+      gameStreak.textContent = "0";
+      gameNoteCount.textContent = "0 / 0";
+      if (!currentDetection) {
+        playerSwara.textContent = "--";
+        playerConcert.textContent = "Listening not started";
+      }
+    }
+
+    function swaraMatches(targetNote, detectedSwara) {
+      return swaraFromMidi(NOTE_TO_MIDI[targetNote]) === detectedSwara;
+    }
+
+    function scoreAttempt(targetNote, attempt) {
+      if (!attempt) {
+        return { score: 0, result: "missed", label: "Missed", cents: null };
+      }
+
+      const targetMidi = NOTE_TO_MIDI[targetNote];
+      const targetSwaraValue = swaraFromMidi(targetMidi);
+      const swaraOk = attempt.swara === targetSwaraValue;
+      const centsError = Math.abs(freqToMidi(attempt.frequency) - targetMidi) * 100;
+
+      if (!swaraOk) {
+        return { score: 18, result: "missed", label: "Wrong Swara", cents: centsError };
+      }
+      if (centsError <= 12) {
+        return { score: 100, result: "correct", label: "Great", cents: centsError };
+      }
+      if (centsError <= 28) {
+        return { score: 82, result: "correct", label: "Good", cents: centsError };
+      }
+      return { score: 62, result: "close", label: "Close", cents: centsError };
+    }
+
+    function applyNoteResult(id, index, result) {
+      const node = (noteElements[id] || [])[index];
+      if (!node) return;
+      node.classList.remove("note-correct", "note-close", "note-missed");
+      node.classList.add(result === "correct" ? "note-correct" : result === "close" ? "note-close" : "note-missed");
+    }
+
+    function stopGame(message = "Game stopped.") {
+      if (!activeGame) {
+        gameStatus.textContent = message;
+        return;
+      }
+      activeGame.cancelled = true;
+      activeGame.timeouts.forEach((timeoutId) => clearTimeout(timeoutId));
+      clearHighlight(activeGame.id);
+      activeGame = null;
+      startGameButton.disabled = false;
+      stopGameButton.disabled = true;
+      gameStatus.textContent = message;
+      if (isMetronomeEnabled() && !metronomePreviewTimeout) {
+        metronomeStatus.textContent = "Metronome ready to sync with the next game or playback.";
+      }
+    }
+
+    function finishGame(run) {
+      if (activeGame !== run) return;
+      clearHighlight(run.id);
+      activeGame = null;
+      startGameButton.disabled = false;
+      stopGameButton.disabled = true;
+
+      const scoredNotes = run.results.filter((item) => item.score > 0).length;
+      const correctNotes = run.results.filter((item) => item.result === "correct").length;
+      const avgCentsSource = run.results.filter((item) => typeof item.cents === "number");
+      const avgCents = avgCentsSource.length
+        ? Math.round(avgCentsSource.reduce((sum, item) => sum + item.cents, 0) / avgCentsSource.length)
+        : null;
+      const maxScore = run.notes.length * 100;
+      const percent = maxScore ? Math.round((run.score / maxScore) * 100) : 0;
+
+      gameStatus.textContent = `Finished ${run.label}. ${correctNotes} clean notes out of ${run.notes.length}.`;
+      gameResults.textContent = `Score ${run.score}/${maxScore} (${percent}%). Correct: ${correctNotes}. Detected notes: ${scoredNotes}. Average cents error: ${avgCents === null ? "--" : avgCents}. Longest streak: ${run.bestStreak}.`;
+      if (isMetronomeEnabled() && !metronomePreviewTimeout) {
+        metronomeStatus.textContent = `Metronome synced through ${run.label} at ${run.bpm} BPM.`;
+      }
+    }
+
+    function runGameplay(run) {
+      const evaluateNext = () => {
+        if (activeGame !== run || run.cancelled) return;
+        if (run.noteIndex >= run.notes.length) {
+          finishGame(run);
+          return;
+        }
+
+        const index = run.noteIndex;
+        const note = run.notes[index];
+        const targetMidiValue = NOTE_TO_MIDI[note];
+        const targetSwaraValue = swaraFromMidi(targetMidiValue);
+        const startWindow = performance.now();
+
+        highlightNote(run.id, index);
+        if (isMetronomeEnabled()) {
+          triggerMetronomeBeat(index);
+        }
+        targetSwara.textContent = targetSwaraValue;
+        targetConcert.textContent = `${formatConcertNote(targetMidiValue)} • note ${index + 1} of ${run.notes.length}`;
+        gameNoteCount.textContent = `${index + 1} / ${run.notes.length}`;
+        gameProgress.style.width = `${(index / run.notes.length) * 100}%`;
+
+        let bestAttempt = run.noteIndex === 0 && run.seedAttempt ? { ...run.seedAttempt } : null;
+        const sampleAttempt = () => {
+          if (activeGame !== run || run.cancelled) return;
+          if (!currentDetection) return;
+          if (currentDetection.timestamp < startWindow - 40) return;
+          const candidateScore = swaraMatches(note, currentDetection.swara)
+            ? 100 - Math.min(100, Math.abs(currentDetection.cents))
+            : currentDetection.clarity * 10;
+          if (!bestAttempt || candidateScore > bestAttempt.rank) {
+            bestAttempt = { ...currentDetection, rank: candidateScore };
+          }
+        };
+
+        const sampler = window.setInterval(sampleAttempt, Math.max(35, run.noteDurationMs / 8));
+        run.timeouts.push(sampler);
+
+        const noteTimeout = window.setTimeout(() => {
+          window.clearInterval(sampler);
+          const scored = scoreAttempt(note, bestAttempt);
+          run.results.push(scored);
+          applyNoteResult(run.id, index, scored.result);
+          run.score += scored.score;
+          if (scored.result === "correct") {
+            run.correctCount += 1;
+            run.streak += 1;
+            run.bestStreak = Math.max(run.bestStreak, run.streak);
+          } else {
+            run.streak = 0;
+          }
+
+          const maxScore = (index + 1) * 100;
+          const accuracyPct = Math.round((run.score / maxScore) * 100);
+          gameScore.textContent = String(run.score);
+          gameAccuracy.textContent = `${accuracyPct}%`;
+          gameStreak.textContent = String(run.streak);
+          gameProgress.style.width = `${((index + 1) / run.notes.length) * 100}%`;
+          gameStatus.textContent = `Note ${index + 1}: ${scored.label}${typeof scored.cents === "number" ? ` • ${Math.round(scored.cents)} cents` : ""}`;
+
+          run.noteIndex += 1;
+          evaluateNext();
+        }, run.noteDurationMs);
+        run.timeouts.push(noteTimeout);
+      };
+
+      evaluateNext();
+    }
+
+    function startGame() {
+      const id = gameAlankarSelect.value;
+      const notes = sequences[id];
+      const bpm = Number(tempoInput.value);
+      const noteDurationMs = (60 / bpm) * 1000;
+
+      stopMetronomePreview(`Syncing metronome to ${bpm} BPM game timing...`);
+      stopGame("Preparing new game...");
+      clearNoteResults(id);
+      clearHighlight(id);
+      resetGameUI();
+
+      const run = {
+        id,
+        label: `Alankar ${id}`,
+        notes,
+        bpm,
+        noteDurationMs,
+        noteIndex: 0,
+        score: 0,
+        streak: 0,
+        bestStreak: 0,
+        correctCount: 0,
+        results: [],
+        timeouts: [],
+        cancelled: false,
+        armedAt: performance.now(),
+        seedAttempt: null
+      };
+      activeGame = run;
+      startGameButton.disabled = true;
+      stopGameButton.disabled = false;
+      gameResults.textContent = "Armed and waiting for your first steady note...";
+      targetSwara.textContent = "Ready";
+      targetConcert.textContent = "Play your first note to begin";
+
+      if (!tunerStream) {
+        gameStatus.textContent = "Start the mic tuner first, then press Start Game again.";
+        stopGameButton.disabled = true;
+        startGameButton.disabled = false;
+        activeGame = null;
+        return;
+      }
+
+      gameStatus.textContent = `Armed for ${run.label}. Play a steady note to start immediately.`;
+      if (isMetronomeEnabled()) {
+        metronomeStatus.textContent = `Metronome armed for ${run.label} at ${bpm} BPM.`;
+      }
+
+      const waitForFirstNote = () => {
+        if (activeGame !== run || run.cancelled) return;
+        const detection = currentDetection;
+        const freshEnough = detection && performance.now() - detection.timestamp < 180;
+        const stableEnough = detection && detection.clarity >= 0.48;
+
+        if (freshEnough && stableEnough) {
+          run.seedAttempt = { ...detection, rank: 100 - Math.min(100, Math.abs(detection.cents)) };
+          targetSwara.textContent = detection.swara;
+          targetConcert.textContent = `${detection.noteName} heard`;
+          gameStatus.textContent = `Heard your first note. Starting ${run.label} now.`;
+          gameResults.textContent = "Scoring in progress...";
+          runGameplay(run);
+          return;
+        }
+
+        const timeoutId = window.setTimeout(waitForFirstNote, 80);
+        run.timeouts.push(timeoutId);
+      };
+
+      waitForFirstNote();
+    }
+
+    function tunerLoop() {
+      if (!tunerAnalyser || !tunerData) return;
+      tunerAnalyser.getFloatTimeDomainData(tunerData);
+      const result = yinDetect(tunerData, tunerAudioContext.sampleRate);
+      if (result) {
+        weakFrameCount = 0;
+        let nextFrequency = result.frequency;
+
+        if (lastStableFrequency !== null) {
+          const intervalDelta = Math.abs(12 * Math.log2(nextFrequency / lastStableFrequency));
+          if (intervalDelta > 1.6 && result.clarity < 0.72) {
+            nextFrequency = lastStableFrequency;
+          }
+        }
+
+        const smoothedFrequency = getSmoothedFrequency(nextFrequency);
+        lastStableFrequency = smoothedFrequency;
+        lastStableMidi = Math.round(normalizeOctave(freqToMidi(smoothedFrequency)));
+        lastStableClarity = result.clarity;
+        updateTunerDisplay(smoothedFrequency, result.clarity);
+      } else {
+        weakFrameCount += 1;
+        if (lastStableFrequency !== null && weakFrameCount <= 10) {
+          updateTunerDisplay(lastStableFrequency, Math.max(0.22, lastStableClarity * 0.6));
+          detectedConfidence.textContent = "Holding";
+          detectedAdvice.textContent = "Keep Steady";
+          tunerStatus.textContent = "Holding last stable note. Sustain a little longer.";
+        } else {
+          pitchHistory = [];
+          lastStableFrequency = null;
+          lastStableMidi = null;
+          lastStableClarity = 0;
+          detectedConfidence.textContent = "Low";
+          detectedAdvice.textContent = "Hold Steady";
+          tunerStatus.textContent = "Listening... play a clearer sustained note.";
+          detectedNote.textContent = "--";
+          detectedSwara.textContent = "--";
+          detectedSwaraBig.textContent = "--";
+          detectedSwaraLong.textContent = "--";
+          detectedFreq.textContent = "-- Hz";
+          detectedCents.textContent = "0 cents";
+          detectedConcert.textContent = "--";
+          meterNeedle.style.left = "50%";
+          currentDetection = null;
+          playerSwara.textContent = "--";
+          playerConcert.textContent = "Listening for your note";
+        }
+      }
+      tunerRAF = window.requestAnimationFrame(tunerLoop);
+    }
+
+    async function startTuner() {
+      try {
+        stopTuner();
+        tunerStream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            echoCancellation: false,
+            noiseSuppression: false,
+            autoGainControl: false
+          }
+        });
+        tunerAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+        tunerAnalyser = tunerAudioContext.createAnalyser();
+        tunerAnalyser.fftSize = 4096;
+        tunerData = new Float32Array(tunerAnalyser.fftSize);
+        tunerSource = tunerAudioContext.createMediaStreamSource(tunerStream);
+        tunerSource.connect(tunerAnalyser);
+        tunerStatus.textContent = "Mic active. Play a sustained flute note.";
+        pitchHistory = [];
+        lastStableFrequency = null;
+        lastStableMidi = null;
+        lastStableClarity = 0;
+        weakFrameCount = 0;
+        startTunerButton.disabled = true;
+        stopTunerButton.disabled = false;
+        tunerLoop();
+      } catch (error) {
+        startTunerButton.disabled = false;
+        stopTunerButton.disabled = true;
+        resetTunerDisplay("Microphone access was denied or unavailable.");
+      }
+    }
+
+    function stopTuner() {
+      if (tunerRAF) {
+        window.cancelAnimationFrame(tunerRAF);
+        tunerRAF = null;
+      }
+      if (tunerSource) {
+        try { tunerSource.disconnect(); } catch (error) {}
+        tunerSource = null;
+      }
+      if (tunerStream) {
+        tunerStream.getTracks().forEach((track) => track.stop());
+        tunerStream = null;
+      }
+      if (tunerAudioContext) {
+        tunerAudioContext.close();
+        tunerAudioContext = null;
+      }
+      tunerAnalyser = null;
+      tunerData = null;
+      startTunerButton.disabled = false;
+      stopTunerButton.disabled = true;
+      resetTunerDisplay();
+    }
+
+    function stopCurrentPlayback() {
+      if (!currentRun) return;
+      currentRun.cancelled = true;
+      currentRun.timeouts.forEach((timeoutId) => clearTimeout(timeoutId));
+      currentRun.nodes.forEach((node) => {
+        try { node.startTimer && clearTimeout(node.startTimer); } catch (error) {}
+        try { node.fadeTimer && clearInterval(node.fadeTimer); } catch (error) {}
+        try { node.rateTimer && clearInterval(node.rateTimer); } catch (error) {}
+        try { node.releaseTimer && clearTimeout(node.releaseTimer); } catch (error) {}
+        try { node.stopTimer && clearTimeout(node.stopTimer); } catch (error) {}
+        try { node.audio?.pause(); } catch (error) {}
+        try { node.audio && (node.audio.currentTime = 0); } catch (error) {}
+        try { node.pause?.(); } catch (error) {}
+        try { node.currentTime = 0; } catch (error) {}
+        try { node.stop?.(); } catch (error) {}
+        try { node.disconnect?.(); } catch (error) {}
+      });
+      clearHighlight(currentRun.id);
+      setPlayingCard(currentRun.id, false);
+      setStatus(currentRun.id, `Stopped at ${tempoInput.value} BPM`);
+      if (isMetronomeEnabled() && !metronomePreviewTimeout) {
+        metronomeStatus.textContent = "Metronome ready to sync with the next playback.";
+      }
+      currentRun = null;
+    }
+
+    function scheduleNote(freq, startTime, duration) {
+      const gain = audioContext.createGain();
+      const filter = audioContext.createBiquadFilter();
+      const osc1 = audioContext.createOscillator();
+      const osc2 = audioContext.createOscillator();
+      const lfo = audioContext.createOscillator();
+      const lfoGain = audioContext.createGain();
+
+      filter.type = "lowpass";
+      filter.frequency.setValueAtTime(2200, startTime);
+      filter.Q.value = 0.6;
+
+      osc1.type = "sine";
+      osc2.type = "triangle";
+      osc1.frequency.setValueAtTime(freq, startTime);
+      osc2.frequency.setValueAtTime(freq * 2.01, startTime);
+
+      lfo.type = "sine";
+      lfo.frequency.setValueAtTime(5, startTime);
+      lfoGain.gain.setValueAtTime(0, startTime);
+      lfoGain.gain.linearRampToValueAtTime(freq * 0.003, startTime + duration * 0.5);
+      lfo.connect(lfoGain);
+      lfoGain.connect(osc1.frequency);
+
+      gain.gain.setValueAtTime(0.0001, startTime);
+      gain.gain.exponentialRampToValueAtTime(0.14, startTime + duration * 0.16);
+      gain.gain.exponentialRampToValueAtTime(0.11, startTime + duration * 0.5);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+      osc1.connect(gain);
+      osc2.connect(gain);
+      gain.connect(filter);
+      filter.connect(audioContext.destination);
+
+      osc1.start(startTime);
+      osc2.start(startTime);
+      lfo.start(startTime);
+      osc1.stop(startTime + duration);
+      osc2.stop(startTime + duration);
+      lfo.stop(startTime + duration);
+
+      return [osc1, osc2, lfo, gain, filter, lfoGain];
+    }
+
+    function playSampleNote(sample, targetMidi, duration, options = {}) {
+      const audio = sample.audio.cloneNode();
+      const baseRate = Math.pow(2, (targetMidi - sample.baseMidi) / 12);
+      const prevMidi = options.prevMidi ?? null;
+      const nextMidi = options.nextMidi ?? null;
+      const nextNextMidi = options.nextNextMidi ?? null;
+      const transitionStyle = getTransitionStyle(targetMidi, nextMidi);
+      const expression = getOrnamentDepth();
+      const hasRepeatedPrev = prevMidi === targetMidi;
+      const repeatTouchDirection = hasRepeatedPrev ? getRepeatTouchDirection(targetMidi, nextMidi) : 0;
+      const repeatTouchMidi = repeatTouchDirection === 0 ? targetMidi : getAdjacentScaleMidi(targetMidi, repeatTouchDirection);
+      const startRate = prevMidi === null
+        ? baseRate
+        : Math.pow(2, ((prevMidi + (targetMidi - prevMidi) * 0.42 * expression) - sample.baseMidi) / 12);
+      const endTargetMidi = nextMidi === null
+        ? targetMidi
+        : targetMidi + (nextMidi - targetMidi) * (transitionStyle === "meend" ? 0.82 : transitionStyle === "gamak" ? 0.22 : 0);
+      const endRate = Math.pow(2, (endTargetMidi - sample.baseMidi) / 12);
+      const attackMs = Math.max(10, Math.min(26, duration * 160));
+      const releaseMs = Math.max(70, Math.min(180, duration * 360));
+      const safeDuration = Math.max(0.12, duration);
+      const fadeOutStartMs = Math.max(0, safeDuration * 1000 - releaseMs);
+      const startOffset = 0.01;
+      const startDelayMs = Math.max(0, options.startDelayMs ?? 0);
+      const attackFloor = options.attackFloor ?? 0.02;
+      const attackPeak = options.attackPeak ?? 0.92;
+
+      audio.preload = "auto";
+      audio.playbackRate = Math.max(0.7, Math.min(1.35, startRate));
+      audio.preservesPitch = false;
+      audio.volume = attackFloor;
+      audio.currentTime = startOffset;
+      const startTimer = window.setTimeout(() => {
+        audio.play().catch(() => {});
+      }, startDelayMs);
+
+      const attackStart = performance.now() + startDelayMs;
+      const fadeTimer = window.setInterval(() => {
+        const elapsed = Math.max(0, performance.now() - attackStart);
+        const progress = Math.min(1, elapsed / attackMs);
+        audio.volume = attackFloor + (attackPeak - attackFloor) * progress;
+        if (progress >= 1) {
+          window.clearInterval(fadeTimer);
+          audio.volume = attackPeak;
+        }
+      }, 12);
+
+      const pitchAnimationStart = performance.now() + startDelayMs;
+      const rateTimer = window.setInterval(() => {
+        const elapsed = Math.max(0, performance.now() - pitchAnimationStart);
+        const t = Math.min(1, elapsed / (safeDuration * 1000));
+        let shapedRate = baseRate;
+
+        if (transitionStyle === "plain") {
+          shapedRate = baseRate;
+        } else if (transitionStyle === "meend") {
+          const startWindow = prevMidi === null ? 0 : Math.min(0.24, 0.12 + expression * 0.16);
+          const endWindow = nextMidi === null ? 0 : Math.min(0.34, 0.16 + expression * 0.18);
+          if (prevMidi !== null && t < startWindow) {
+            const phase = t / startWindow;
+            shapedRate = startRate + (baseRate - startRate) * phase;
+          } else if (nextMidi !== null && t > 1 - endWindow) {
+            const phase = (t - (1 - endWindow)) / endWindow;
+            shapedRate = baseRate + (endRate - baseRate) * phase;
+          } else {
+            shapedRate = baseRate;
+          }
+        } else if (transitionStyle === "gamak") {
+          const direction = nextMidi === null ? 1 : Math.sign(nextMidi - targetMidi) || 1;
+          const wobbleSemitones = 0.12 + expression * 0.55;
+          const wobbleHz = 6 + expression * 5;
+          const wobble = Math.sin(t * Math.PI * 2 * wobbleHz) * wobbleSemitones * direction;
+          const settleBias = nextMidi === null ? 0 : (nextMidi - targetMidi) * 0.08 * expression * Math.max(0, t - 0.45);
+          shapedRate = Math.pow(2, ((targetMidi + wobble + settleBias) - sample.baseMidi) / 12);
+        }
+
+        audio.playbackRate = Math.max(0.7, Math.min(1.35, shapedRate));
+        if (t >= 1) {
+          window.clearInterval(rateTimer);
+        }
+      }, 16);
+
+      const releaseTimer = window.setTimeout(() => {
+        const releaseStart = performance.now();
+        const fadeDown = window.setInterval(() => {
+          const elapsed = performance.now() - releaseStart;
+          const progress = Math.min(1, elapsed / releaseMs);
+          audio.volume = Math.max(0.0001, 0.92 * (1 - progress));
+          if (progress >= 1) {
+            window.clearInterval(fadeDown);
+          }
+        }, 12);
+      }, startDelayMs + fadeOutStartMs);
+
+      const stopTimer = window.setTimeout(() => {
+        audio.pause();
+        audio.currentTime = 0;
+      }, startDelayMs + safeDuration * 1000 + 30);
+
+      return { audio, fadeTimer, stopTimer, releaseTimer, rateTimer, startTimer };
+    }
+
+    function playGraceTouchSample(sample, targetMidi, duration) {
+      const audio = sample.audio.cloneNode();
+      const rate = Math.pow(2, (targetMidi - sample.baseMidi) / 12);
+      const safeDuration = Math.max(0.04, duration);
+      const attackMs = 8;
+      const releaseMs = Math.max(24, safeDuration * 520);
+
+      audio.preload = "auto";
+      audio.playbackRate = Math.max(0.78, Math.min(1.28, rate));
+      audio.preservesPitch = false;
+      audio.volume = 0.04;
+      audio.currentTime = 0.01;
+      audio.play().catch(() => {});
+
+      const attackStart = performance.now();
+      const fadeTimer = window.setInterval(() => {
+        const elapsed = performance.now() - attackStart;
+        const progress = Math.min(1, elapsed / attackMs);
+        audio.volume = 0.04 + 0.92 * progress;
+        if (progress >= 1) {
+          window.clearInterval(fadeTimer);
+          audio.volume = 0.96;
+        }
+      }, 8);
+
+      const releaseTimer = window.setTimeout(() => {
+        const fadeStart = performance.now();
+        const fadeDown = window.setInterval(() => {
+          const elapsed = performance.now() - fadeStart;
+          const progress = Math.min(1, elapsed / releaseMs);
+          audio.volume = Math.max(0.0001, 0.96 * (1 - progress));
+          if (progress >= 1) {
+            window.clearInterval(fadeDown);
+          }
+        }, 8);
+      }, Math.max(0, safeDuration * 1000 - releaseMs));
+
+      const stopTimer = window.setTimeout(() => {
+        audio.pause();
+        audio.currentTime = 0;
+      }, safeDuration * 1000 + 20);
+
+      return { audio, fadeTimer, releaseTimer, stopTimer };
+    }
+
+    function resolveSequenceMidi(notes, index) {
+      const direct = NOTE_TO_MIDI[notes[index]];
+      if (direct !== undefined) return direct;
+      for (let i = index - 1; i >= 0; i -= 1) {
+        const previous = NOTE_TO_MIDI[notes[i]];
+        if (previous !== undefined) return previous;
+      }
+      return null;
+    }
+
+    function resolveSequenceNoteKey(notes, index) {
+      if (NOTE_TO_MIDI[notes[index]] !== undefined) return notes[index];
+      for (let i = index - 1; i >= 0; i -= 1) {
+        if (NOTE_TO_MIDI[notes[i]] !== undefined) return notes[i];
+      }
+      return null;
+    }
+
+    function countFollowingSustainSteps(notes, index) {
+      let count = 0;
+      for (let i = index + 1; i < notes.length; i += 1) {
+        if (notes[i] !== "-") break;
+        count += 1;
+      }
+      return count;
+    }
+
+    async function playSequence(id) {
+      stopMetronomePreview(`Syncing metronome to Alankar ${id}...`);
+      stopCurrentPlayback();
+      await ensureAudioContext();
+      const samples = await initializeSamples();
+
+      const notes = sequences[id];
+      const run = { id, cancelled: false, nodes: [], timeouts: [], noteIndex: 0 };
+      currentRun = run;
+
+      const playNextNote = () => {
+        if (currentRun !== run || run.cancelled) return;
+        if (run.noteIndex >= notes.length) {
+          clearHighlight(id);
+          setPlayingCard(id, false);
+          setStatus(id, `Finished at ${tempoInput.value} BPM`);
+          currentRun = null;
+          return;
+        }
+
+        const bpm = Number(tempoInput.value);
+        const noteDuration = 60 / bpm;
+        const overlap = Math.min(0.14, Math.max(0.05, noteDuration * 0.32));
+        const note = notes[run.noteIndex];
+        const sustainSteps = NOTE_TO_MIDI[note] !== undefined ? countFollowingSustainSteps(notes, run.noteIndex) : 0;
+        const gate = Math.max(0.16, noteDuration * (1 + sustainSteps) + overlap);
+        const targetMidi = resolveSequenceMidi(notes, run.noteIndex);
+        const noteKey = resolveSequenceNoteKey(notes, run.noteIndex);
+        const prevMidi = run.noteIndex > 0 ? resolveSequenceMidi(notes, run.noteIndex - 1) : null;
+        const nextMidi = run.noteIndex < notes.length - 1 ? resolveSequenceMidi(notes, run.noteIndex + 1) : null;
+        const nextNextMidi = run.noteIndex < notes.length - 2 ? resolveSequenceMidi(notes, run.noteIndex + 2) : null;
+        const sample = noteKey ? samples[noteKey] : null;
+        const hasRepeatedPrev = prevMidi === targetMidi;
+        const repeatTouchDirection = hasRepeatedPrev ? getRepeatTouchDirection(targetMidi, nextMidi) : 0;
+        const repeatTouchMidi = repeatTouchDirection === 0 ? null : getAdjacentScaleMidi(targetMidi, repeatTouchDirection);
+        const repeatTouchKey = repeatTouchMidi === null ? null : getNoteKeyForMidi(repeatTouchMidi);
+        const repeatTouchSample = repeatTouchKey ? samples[repeatTouchKey] : null;
+        const graceDuration = Math.max(0.07, Math.min(0.22, noteDuration * (0.24 + getRepeatTouchDepth() * 0.34)));
+        if (isMetronomeEnabled()) {
+          triggerMetronomeBeat(run.noteIndex);
+        }
+        if (note === "-") {
+          // Sustain steps inherit the previous note sound; no retrigger here.
+        } else if (sample) {
+          if (hasRepeatedPrev && repeatTouchSample) {
+            run.nodes.push(playGraceTouchSample(repeatTouchSample, repeatTouchMidi, graceDuration));
+          }
+          run.nodes.push(playSampleNote(sample, targetMidi, gate, {
+            prevMidi,
+            nextMidi,
+            nextNextMidi,
+            startDelayMs: hasRepeatedPrev && repeatTouchSample ? graceDuration * 1000 * 0.88 : 0,
+            attackFloor: hasRepeatedPrev && repeatTouchSample ? 0.0 : 0.02,
+            attackPeak: hasRepeatedPrev && repeatTouchSample ? 0.84 : 0.92
+          }));
+        } else {
+          const freq = midiToFreq(targetMidi);
+          const startTime = audioContext.currentTime + 0.02;
+          run.nodes.push(...scheduleNote(freq, startTime, gate));
+        }
+
+        highlightNote(id, run.noteIndex);
+        run.noteIndex += 1;
+        setStatus(
+          id,
+          note === "-"
+            ? `Sustaining previous note ${run.noteIndex} of ${notes.length} at ${bpm} BPM`
+            : `Playing note ${run.noteIndex} of ${notes.length} at ${bpm} BPM${sample ? " using samples" : " using synth fallback"}`
+        );
+
+        const handoffMs = Math.max(24, (noteDuration - overlap) * 1000);
+        const timeoutId = window.setTimeout(playNextNote, handoffMs);
+        run.timeouts.push(timeoutId);
+      };
+
+      const loadedCount = Object.keys(samples).length;
+      setStatus(id, `Playing live at ${tempoInput.value} BPM${loadedCount ? ` with ${loadedCount} sample notes` : " with synth fallback"}`);
+      ornamentStatus.textContent = `${ornamentModeSelect.options[ornamentModeSelect.selectedIndex].text} shaping active at ${tempoInput.value} BPM.`;
+      repeatTouchStatus.textContent = `${repeatTouchModeSelect.options[repeatTouchModeSelect.selectedIndex].text} articulation ready for repeated notes.`;
+      if (isMetronomeEnabled()) {
+        metronomeStatus.textContent = `Metronome synced to Alankar ${id} at ${tempoInput.value} BPM.`;
+      }
+      setPlayingCard(id, true);
+      playNextNote();
+    }
+
+    function updateTempoUI() {
+      tempoValue.textContent = tempoInput.value;
+      heroTempo.textContent = tempoInput.value;
+      metronomeVolumeValue.textContent = `${metronomeVolumeInput.value}%`;
+      ornamentDepthValue.textContent = `${ornamentDepthInput.value}%`;
+      repeatTouchDepthValue.textContent = `${repeatTouchDepthInput.value}%`;
+      presetButtons.forEach((button) => {
+        button.classList.toggle("active", Number(button.dataset.tempoPreset) === Number(tempoInput.value));
+      });
+      document.querySelectorAll(".player-status").forEach((node) => {
+        if (!currentRun) {
+          node.textContent = `Ready at ${tempoInput.value} BPM`;
+        }
+      });
+      if (metronomePreviewTimeout) {
+        metronomeStatus.textContent = `Previewing click at ${tempoInput.value} BPM.`;
+      }
+    }
+
+    function populateGameAlankars() {
+      const ids = Object.keys(sequences).sort((a, b) => Number(a) - Number(b));
+      gameAlankarSelect.innerHTML = ids.map((id) => (
+        `<option value="${id}"${id === "25" ? " selected" : ""}>Alankar ${id}</option>`
+      )).join("");
+    }
+
+    tempoInput.addEventListener("input", () => {
+      updateTempoUI();
+    });
+
+    presetButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        tempoInput.value = button.dataset.tempoPreset;
+        updateTempoUI();
+      });
+    });
+
+    startTunerButton.addEventListener("click", () => startTuner());
+    stopTunerButton.addEventListener("click", () => stopTuner());
+    startGameButton.addEventListener("click", () => startGame());
+    stopGameButton.addEventListener("click", () => stopGame("Game stopped."));
+    startMetronomeButton.addEventListener("click", () => startMetronomePreview());
+    stopMetronomeButton.addEventListener("click", () => stopMetronomePreview("Metronome stopped."));
+    metronomeEnabledInput.addEventListener("change", () => {
+      if (!isMetronomeEnabled()) {
+        stopMetronomePreview("Metronome disabled.");
+      } else {
+        metronomeStatus.textContent = "Metronome is armed and will sync with Live Play and the game.";
+      }
+    });
+    metronomeVolumeInput.addEventListener("input", () => {
+      metronomeVolumeValue.textContent = `${metronomeVolumeInput.value}%`;
+    });
+    ornamentModeSelect.addEventListener("change", () => {
+      ornamentStatus.textContent = `${ornamentModeSelect.options[ornamentModeSelect.selectedIndex].text} shaping is ready for the next playback.`;
+    });
+    ornamentDepthInput.addEventListener("input", () => {
+      ornamentDepthValue.textContent = `${ornamentDepthInput.value}%`;
+      ornamentStatus.textContent = `Expression depth set to ${ornamentDepthInput.value}%.`;
+    });
+    repeatTouchModeSelect.addEventListener("change", () => {
+      repeatTouchStatus.textContent = `${repeatTouchModeSelect.options[repeatTouchModeSelect.selectedIndex].text} articulation is ready for repeated notes.`;
+    });
+    repeatTouchDepthInput.addEventListener("input", () => {
+      repeatTouchDepthValue.textContent = `${repeatTouchDepthInput.value}%`;
+      repeatTouchStatus.textContent = `Repeated-note touch length set to ${repeatTouchDepthInput.value}%.`;
+    });
+    saRootSelect.addEventListener("change", () => {
+      if (lastDetectedMidi !== null) {
+        const swara = swaraFromMidi(lastDetectedMidi);
+        detectedSwara.textContent = swara;
+        detectedSwaraBig.textContent = swara;
+        detectedSwaraLong.textContent = SWARA_FULL_NAMES[swara] || "--";
+      }
+      tunerStatus.textContent = `Sa root set to ${saRootSelect.options[saRootSelect.selectedIndex].text}.`;
+    });
+
+    document.querySelectorAll("[data-play]").forEach((button) => {
+      button.addEventListener("click", () => playSequence(button.dataset.play));
+    });
+
+    document.querySelectorAll("[data-stop]").forEach((button) => {
+      button.addEventListener("click", () => stopCurrentPlayback());
+    });
+
+    populateGameAlankars();
+    updateTempoUI();
+    stopTunerButton.disabled = true;
+    stopGameButton.disabled = true;
+    stopMetronomeButton.disabled = true;
+    resetGameUI();
+    resetTunerDisplay();
+  </script>
+</body>
+</html>
