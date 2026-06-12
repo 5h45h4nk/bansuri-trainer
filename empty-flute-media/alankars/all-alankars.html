@@ -2358,18 +2358,34 @@
       if (sampleLibraryPromise) return sampleLibraryPromise;
 
       sampleLibraryPromise = (async () => {
+        await ensureAudioContext();
         const library = {};
         for (const [note, candidates] of Object.entries(SAMPLE_CANDIDATES)) {
-          let resolved = null;
+          let loadedSample = null;
           for (const candidate of candidates) {
-            resolved = await probeSampleUrl(candidate);
-            if (resolved) break;
+            if (window.location.protocol === "file:") {
+              const resolved = await probeSampleUrl(candidate);
+              if (!resolved) continue;
+              const audio = new Audio(resolved);
+              audio.preload = "auto";
+              audio.load();
+              loadedSample = { url: resolved, baseMidi: NOTE_TO_MIDI[note], audio };
+              break;
+            }
+
+            try {
+              const response = await fetch(candidate);
+              if (!response.ok) continue;
+              const data = await response.arrayBuffer();
+              const decoded = await audioContext.decodeAudioData(data.slice(0));
+              loadedSample = { url: candidate, baseMidi: NOTE_TO_MIDI[note], buffer: decoded };
+              break;
+            } catch (error) {
+              // Try the next candidate path.
+            }
           }
-          if (resolved) {
-            const audio = new Audio(resolved);
-            audio.preload = "auto";
-            audio.load();
-            library[note] = { url: resolved, baseMidi: NOTE_TO_MIDI[note], audio };
+          if (loadedSample) {
+            library[note] = loadedSample;
           }
         }
         sampleLibrary = library;
@@ -3083,7 +3099,7 @@
       return [osc1, osc2, lfo, gain, filter, lfoGain];
     }
 
-    function playSampleNote(sample, targetMidi, duration, options = {}) {
+    function playHtmlSampleNote(sample, targetMidi, duration, options = {}) {
       const audio = sample.audio.cloneNode();
       const baseRate = Math.pow(2, (targetMidi - sample.baseMidi) / 12);
       const prevMidi = options.prevMidi ?? null;
@@ -3185,7 +3201,7 @@
       return { audio, fadeTimer, stopTimer, releaseTimer, rateTimer, startTimer };
     }
 
-    function playGraceTouchSample(sample, targetMidi, duration) {
+    function playHtmlGraceTouchSample(sample, targetMidi, duration) {
       const audio = sample.audio.cloneNode();
       const rate = Math.pow(2, (targetMidi - sample.baseMidi) / 12);
       const safeDuration = Math.max(0.04, duration);
@@ -3228,6 +3244,154 @@
       }, safeDuration * 1000 + 20);
 
       return { audio, fadeTimer, releaseTimer, stopTimer };
+    }
+
+    function buildGamakCurve(startRate, baseRate, endRate, safeDuration, expression) {
+      const steps = Math.max(24, Math.min(96, Math.round(safeDuration * 120)));
+      const curve = new Float32Array(steps);
+      for (let i = 0; i < steps; i += 1) {
+        const t = steps === 1 ? 1 : i / (steps - 1);
+        const wobble = Math.sin(t * Math.PI * 2 * (2.5 + expression * 2.6)) * (0.022 + expression * 0.065);
+        const drift = startRate + (endRate - startRate) * Math.max(0, t - 0.42) * 0.34;
+        curve[i] = Math.max(0.7, Math.min(1.35, baseRate * (1 + wobble) + (drift - baseRate) * 0.28));
+      }
+      curve[0] = Math.max(0.7, Math.min(1.35, startRate));
+      curve[steps - 1] = Math.max(0.7, Math.min(1.35, endRate));
+      return curve;
+    }
+
+    function playBufferSampleNote(sample, targetMidi, duration, options = {}) {
+      const source = audioContext.createBufferSource();
+      source.buffer = sample.buffer;
+
+      const gain = audioContext.createGain();
+      const filter = audioContext.createBiquadFilter();
+      filter.type = "lowpass";
+      filter.frequency.value = 5200;
+      filter.Q.value = 0.25;
+
+      source.connect(filter);
+      filter.connect(gain);
+      gain.connect(audioContext.destination);
+
+      const baseRate = Math.pow(2, (targetMidi - sample.baseMidi) / 12);
+      const prevMidi = options.prevMidi ?? null;
+      const nextMidi = options.nextMidi ?? null;
+      const transitionStyle = getTransitionStyle(targetMidi, nextMidi);
+      const expression = getOrnamentDepth();
+      const startRate = prevMidi === null
+        ? baseRate
+        : Math.pow(2, ((prevMidi + (targetMidi - prevMidi) * 0.42 * expression) - sample.baseMidi) / 12);
+      const endTargetMidi = nextMidi === null
+        ? targetMidi
+        : targetMidi + (nextMidi - targetMidi) * (transitionStyle === "meend" ? 0.82 : transitionStyle === "gamak" ? 0.22 : 0);
+      const endRate = Math.pow(2, (endTargetMidi - sample.baseMidi) / 12);
+      const startDelayMs = Math.max(0, options.startDelayMs ?? 0);
+      const attackFloor = options.attackFloor ?? 0.02;
+      const attackPeak = options.attackPeak ?? 0.92;
+      const safeDuration = Math.max(0.12, duration);
+      const releaseSec = Math.max(0.07, Math.min(0.18, duration * 0.36));
+      const attackSec = Math.max(0.01, Math.min(0.026, duration * 0.16));
+      const startOffset = 0.01;
+      const when = audioContext.currentTime + startDelayMs / 1000;
+      const endAt = when + safeDuration;
+      const stopAt = endAt + 0.05;
+
+      gain.gain.cancelScheduledValues(when);
+      gain.gain.setValueAtTime(Math.max(0.0001, attackFloor), when);
+      gain.gain.linearRampToValueAtTime(Math.max(0.0001, attackPeak), when + attackSec);
+      gain.gain.setValueAtTime(Math.max(0.0001, attackPeak), Math.max(when + attackSec, endAt - releaseSec));
+      gain.gain.exponentialRampToValueAtTime(0.0001, endAt);
+
+      source.playbackRate.cancelScheduledValues(when);
+      if (transitionStyle === "plain") {
+        source.playbackRate.setValueAtTime(baseRate, when);
+      } else if (transitionStyle === "meend") {
+        const startWindow = prevMidi === null ? 0 : Math.min(0.24, 0.12 + expression * 0.16);
+        const endWindow = nextMidi === null ? 0 : Math.min(0.34, 0.16 + expression * 0.18);
+        source.playbackRate.setValueAtTime(startRate, when);
+        if (startWindow > 0) {
+          source.playbackRate.linearRampToValueAtTime(baseRate, when + safeDuration * startWindow);
+        } else {
+          source.playbackRate.setValueAtTime(baseRate, when);
+        }
+        if (endWindow > 0) {
+          source.playbackRate.setValueAtTime(baseRate, Math.max(when, endAt - safeDuration * endWindow));
+          source.playbackRate.linearRampToValueAtTime(endRate, endAt);
+        }
+      } else {
+        source.playbackRate.setValueCurveAtTime(
+          buildGamakCurve(startRate, baseRate, endRate, safeDuration, expression),
+          when,
+          safeDuration
+        );
+      }
+
+      source.start(when, startOffset);
+      source.stop(stopAt);
+
+      return {
+        source,
+        gain,
+        filter,
+        stop() {
+          try { source.stop(); } catch (error) {}
+        },
+        disconnect() {
+          try { source.disconnect(); } catch (error) {}
+          try { filter.disconnect(); } catch (error) {}
+          try { gain.disconnect(); } catch (error) {}
+        }
+      };
+    }
+
+    function playBufferGraceTouchSample(sample, targetMidi, duration) {
+      const source = audioContext.createBufferSource();
+      source.buffer = sample.buffer;
+      const gain = audioContext.createGain();
+      source.connect(gain);
+      gain.connect(audioContext.destination);
+
+      const safeDuration = Math.max(0.04, duration);
+      const when = audioContext.currentTime;
+      const endAt = when + safeDuration;
+      const stopAt = endAt + 0.03;
+      const rate = Math.pow(2, (targetMidi - sample.baseMidi) / 12);
+
+      source.playbackRate.setValueAtTime(Math.max(0.78, Math.min(1.28, rate)), when);
+      gain.gain.setValueAtTime(0.0001, when);
+      gain.gain.linearRampToValueAtTime(0.96, when + 0.01);
+      gain.gain.setValueAtTime(0.96, Math.max(when + 0.01, endAt - 0.03));
+      gain.gain.exponentialRampToValueAtTime(0.0001, endAt);
+
+      source.start(when, 0.01);
+      source.stop(stopAt);
+
+      return {
+        source,
+        gain,
+        stop() {
+          try { source.stop(); } catch (error) {}
+        },
+        disconnect() {
+          try { source.disconnect(); } catch (error) {}
+          try { gain.disconnect(); } catch (error) {}
+        }
+      };
+    }
+
+    function playSampleNote(sample, targetMidi, duration, options = {}) {
+      if (sample.buffer) {
+        return playBufferSampleNote(sample, targetMidi, duration, options);
+      }
+      return playHtmlSampleNote(sample, targetMidi, duration, options);
+    }
+
+    function playGraceTouchSample(sample, targetMidi, duration) {
+      if (sample.buffer) {
+        return playBufferGraceTouchSample(sample, targetMidi, duration);
+      }
+      return playHtmlGraceTouchSample(sample, targetMidi, duration);
     }
 
     function resolveSequenceMidi(notes, index) {
