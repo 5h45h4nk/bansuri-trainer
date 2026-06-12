@@ -1,18 +1,15 @@
-# GenUI Concierge
+# Bansuri Trainer
 
-Small prototype for an adaptive interface that asks what the user wants to do and generates a purpose-built UI on the fly.
+A static flute practice site with alankars, swara playback, live pitch detection, follow-along practice, metronome support, and downloadable practice material.
 
-## Run
+## Run locally
 
-Open [`index.html`](/Users/shashanksrinivas/Documents/Codex/genui/index.html) in a browser.
+Open [all-alankars.html](/Users/shashanksrinivas/Documents/Codex/genui/empty-flute-media/alankars/all-alankars.html) in a browser, or serve the project root with a static server.
 
-## What it does
+## Deploy
 
-- Takes a natural-language task prompt.
-- Classifies the prompt into a workspace type like travel planning, project tracking, comparison, study planning, or meeting prep.
-- Renders a fresh interface with forms, timelines, checklists, summaries, and quick metrics.
-- Falls back to a generic adaptive workspace when the request does not match a preset intent.
+This repo includes a GitHub Pages workflow:
 
-## Next step if you want real AI generation
-
-Replace the local `intentLibrary` logic in [`app.js`](/Users/shashanksrinivas/Documents/Codex/genui/app.js) with a model call that returns a UI schema, then render that schema through the existing `renderGeneratedWorkspace()` flow.
+- The site artifact is published from `/empty-flute-media`
+- The root page redirects to `/alankars/all-alankars.html`
+- GitHub Pages should be configured to use `GitHub Actions`
