@@ -890,18 +890,18 @@
     }
 
     .practice-layout {
-      display: grid;
-      grid-template-columns: minmax(400px, 500px) minmax(0, 1fr);
-      gap: 16px;
-      align-items: start;
+      display: block;
     }
 
     .practice-sidebar {
       position: sticky;
-      top: 8px;
-      align-self: start;
+      top: 10px;
+      z-index: 12;
       display: grid;
-      gap: 18px;
+      grid-template-columns: minmax(340px, 1.15fr) minmax(320px, 1fr) minmax(320px, 1fr);
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 18px;
     }
 
     .practice-main {
@@ -911,16 +911,21 @@
     .practice-sidebar .tempo-panel,
     .practice-sidebar .tool-panel,
     .practice-sidebar .game-panel {
-      padding: 16px;
+      padding: 18px;
+      min-height: 100%;
+    }
+
+    .practice-sidebar .tools-grid {
+      margin: 0;
     }
 
     .practice-sidebar .tuner-display {
       grid-template-columns: 1fr;
-      gap: 14px;
+      gap: 12px;
     }
 
     .practice-sidebar .tuner-primary {
-      grid-template-columns: minmax(0, 1fr) minmax(150px, 0.72fr);
+      grid-template-columns: minmax(0, 1fr) minmax(136px, 0.68fr);
     }
 
     .practice-sidebar .stat-row {
@@ -1312,32 +1317,7 @@
       background: rgba(255,255,255,0.12);
     }
 
-    @media (min-width: 981px) {
-      .hero {
-        margin-left: 446px;
-      }
-
-      .practice-layout {
-        display: block;
-      }
-
-      .practice-sidebar {
-        position: fixed;
-        top: 10px;
-        left: max(10px, calc((100vw - min(1680px, calc(100vw - 24px))) / 2 + 10px));
-        width: 430px;
-        max-height: calc(100vh - 20px);
-        overflow-x: hidden;
-        overflow-y: auto;
-        z-index: 10;
-        padding-right: 6px;
-        scrollbar-gutter: stable;
-      }
-
-      .practice-main {
-        margin-left: 446px;
-      }
-
+    @media (min-width: 1181px) {
       .practice-sidebar .section-label {
         margin-bottom: 6px;
         font-size: 10px;
@@ -1356,18 +1336,6 @@
         display: none;
       }
 
-      .practice-sidebar .swara-legend,
-      .practice-sidebar .game-results {
-        display: none;
-      }
-
-      .practice-sidebar .tempo-panel,
-      .practice-sidebar .tool-panel,
-      .practice-sidebar .game-panel,
-      .practice-sidebar .game-card {
-        border-radius: 16px;
-      }
-
       .practice-sidebar .tempo-row,
       .practice-sidebar .tempo-presets,
       .practice-sidebar .tuner-sub,
@@ -1378,12 +1346,6 @@
       .practice-sidebar .game-status,
       .practice-sidebar .progress-track {
         margin-top: 8px;
-      }
-
-      .practice-sidebar .tempo-panel,
-      .practice-sidebar .tool-panel,
-      .practice-sidebar .game-panel {
-        padding: 14px;
       }
 
       .practice-sidebar .tuner-main {
@@ -1408,6 +1370,16 @@
 
       .practice-sidebar .target-value {
         font-size: 2.2rem;
+      }
+    }
+
+    @media (min-width: 981px) and (max-width: 1180px) {
+      .practice-sidebar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .practice-sidebar .game-panel {
+        grid-column: 1 / -1;
       }
     }
 
@@ -1440,6 +1412,7 @@
 
       .practice-sidebar {
         position: static;
+        grid-template-columns: 1fr;
         max-height: none;
         overflow: visible;
         padding-right: 0;
