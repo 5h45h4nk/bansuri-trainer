@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>All Alankars</title>
+  <title>Bansuri Bandhu</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Serif+Devanagari:wght@600;700&display=swap');
+
     :root {
       --bg-1: #05070a;
       --bg-2: #10141a;
@@ -111,11 +113,24 @@
 
     h1 {
       margin: 0;
-      font-family: "SF Pro Display", "Avenir Next", "Segoe UI", sans-serif;
+      font-family: "Cormorant Garamond", "Iowan Old Style", "Baskerville", serif;
       font-size: clamp(2.8rem, 6vw, 5.25rem);
-      line-height: 0.9;
-      letter-spacing: -0.055em;
-      font-weight: 650;
+      line-height: 0.92;
+      letter-spacing: -0.035em;
+      font-weight: 600;
+      word-spacing: 0.04em;
+      text-wrap: balance;
+      text-shadow: 0 0 22px rgba(122, 247, 255, 0.08);
+    }
+
+    .hero-sanskrit {
+      display: inline-block;
+      margin-left: 0.08em;
+      font-family: "Noto Serif Devanagari", "Kohinoor Devanagari", serif;
+      font-size: 0.84em;
+      font-weight: 700;
+      letter-spacing: 0;
+      vertical-align: 0.02em;
     }
 
     .hero {
@@ -189,9 +204,14 @@
       color: #cfeef2;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
       border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-copy h1 + .intro {
+      margin-top: 12px;
+      max-width: 60ch;
     }
 
     .intro {
@@ -524,6 +544,14 @@
       margin-top: 8px;
       font-size: 12px;
       color: #96a4ac;
+    }
+
+    .tabla-config {
+      margin-top: 8px;
+    }
+
+    .tabla-config[hidden] {
+      display: none;
     }
 
     .tools-grid {
@@ -2010,9 +2038,9 @@
     <section class="hero">
       <div class="hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow">Bansuri Performance Console</div>
-          <h1>All Alankars</h1>
-          <p class="intro">A focused practice view for all digitized alankars, with live bansuri-style playback, tempo shaping, and note-following. Taar Sa is written as <strong>S'</strong>, and each exercise can be practiced interactively or compared against the fixed reference recording.</p>
+          <div class="eyebrow">Your Bansuri Companion</div>
+          <h1>Bansuri <span class="hero-sanskrit" lang="sa">बन्धु</span></h1>
+          <p class="intro">Practice alankars with live playback, swara tracking, and a gentle guide by your side.</p>
         </div>
         <div class="hero-aside">
           <div class="hero-card dark">
@@ -2080,12 +2108,38 @@
         </div>
         <div class="metronome-grid">
           <div>
+            <label for="rhythmMode">Rhythm Source</label>
+            <select id="rhythmMode">
+              <option value="metronome" selected>Metronome</option>
+              <option value="tabla">Tabla</option>
+            </select>
+          </div>
+          <div>
             <label for="metronomeAccent">Accent Every</label>
             <select id="metronomeAccent">
               <option value="1">Every beat</option>
               <option value="2">2 beats</option>
               <option value="4" selected>4 beats</option>
               <option value="8">8 beats</option>
+            </select>
+          </div>
+          <div class="tabla-config" id="tablaConfig" hidden>
+            <label for="tablaTaal">Tabla Taal</label>
+            <select id="tablaTaal">
+              <option value="teentaal" selected>Teentaal</option>
+              <option value="teentaal_tika">Teentaal (TiKa)</option>
+              <option value="keherwa">Keherwa</option>
+              <option value="keherwa_4">Keherwa (4 Beat)</option>
+              <option value="dadra">Dadra</option>
+              <option value="jhaptaal">Jhaptaal</option>
+            </select>
+          </div>
+          <div class="tabla-config" id="tablaPackConfig" hidden>
+            <label for="tablaPack">Tabla Sound</label>
+            <select id="tablaPack">
+              <option value="auto" selected>Auto</option>
+              <option value="samples">Samples</option>
+              <option value="synth">Synth</option>
             </select>
           </div>
           <div>
@@ -2097,8 +2151,8 @@
           </div>
         </div>
         <div class="metronome-actions">
-          <button type="button" id="startMetronome">Preview Click</button>
-          <button type="button" id="stopMetronome" class="stop">Stop Click</button>
+          <button type="button" id="startMetronome">Preview Rhythm</button>
+          <button type="button" id="stopMetronome" class="stop">Stop Rhythm</button>
         </div>
         <div class="metronome-status" id="metronomeStatus">Metronome is armed and will sync with Live Play and the game.</div>
       </div>
@@ -2882,9 +2936,14 @@
     const stopGameButton = document.getElementById("stopGame");
     const stopPracticeButton = document.getElementById("stopPractice");
     const metronomeEnabledInput = document.getElementById("metronomeEnabled");
+    const rhythmModeSelect = document.getElementById("rhythmMode");
     const metronomeAccentSelect = document.getElementById("metronomeAccent");
     const metronomeVolumeInput = document.getElementById("metronomeVolume");
     const metronomeVolumeValue = document.getElementById("metronomeVolumeValue");
+    const tablaConfig = document.getElementById("tablaConfig");
+    const tablaPackConfig = document.getElementById("tablaPackConfig");
+    const tablaTaalSelect = document.getElementById("tablaTaal");
+    const tablaPackSelect = document.getElementById("tablaPack");
     const startMetronomeButton = document.getElementById("startMetronome");
     const stopMetronomeButton = document.getElementById("stopMetronome");
     const metronomeStatus = document.getElementById("metronomeStatus");
@@ -2934,6 +2993,9 @@
     let activePractice = null;
     let metronomePreviewTimeout = null;
     let metronomePreviewBeat = 0;
+    let tablaSampleLibrary = new Map();
+    let tablaSamplesReady = false;
+    let tablaLoadingSamples = false;
     let magicRAF = null;
     let magicThree = null;
     let magicScene = null;
@@ -2977,6 +3039,47 @@
       "D": "Dha",
       "N": "Ni"
     };
+
+    const TABLA_TAALS = {
+      teentaal: { name: "Teentaal", bols: ["Dha", "Dhin", "Dhin", "Dha", "Dha", "Dhin", "Dhin", "Dha", "Dha", "Tin", "Tin", "Ta", "Ta", "Dhin", "Dhin", "Dha"] },
+      teentaal_tika: { name: "Teentaal (TiKa)", bols: ["Dha", "Dhin", "Dhin", "Dha", "Dha", "Dhin", "Dhin", "Dha", "Dha", "Tin", "Tin", "Ta", "TiKa", "Dhin", "Dhin", "Dha"] },
+      keherwa: { name: "Keherwa", bols: ["Dha", "Ge", "Na", "Ti", "Na", "Ka", "Dhi", "Na"] },
+      keherwa_4: { name: "Keherwa (4 Beat)", bols: ["DhaGe", "NaTi", "NaKa", "DhiNa"] },
+      dadra: { name: "Dadra", bols: ["Dha", "Dhin", "Na", "Dha", "Tin", "Na"] },
+      jhaptaal: { name: "Jhaptaal", bols: ["Dhin", "Na", "Dhin", "DhiDhi", "NaNa", "Tin", "Na", "Dhin", "DhiDhi", "NaNa"] }
+    };
+    const TABLA_SAMPLE_FILES = {
+      tabla_na: "assets/tabla-samples/tabla_na.flac",
+      tabla_na_s: "assets/tabla-samples/tabla_na_s.flac",
+      tabla_tun1: "assets/tabla-samples/tabla_tun1.flac",
+      tabla_te1: "assets/tabla-samples/tabla_te1.flac",
+      tabla_te2: "assets/tabla-samples/tabla_te2.flac",
+      tabla_tas1: "assets/tabla-samples/tabla_tas1.flac",
+      tabla_ke1: "assets/tabla-samples/tabla_ke1.flac",
+      tabla_ghe1: "assets/tabla-samples/tabla_ghe1.flac",
+      tabla_ghe2: "assets/tabla-samples/tabla_ghe2.flac"
+    };
+    const TABLA_BOL_SAMPLE_MAP = {
+      Dha: [{ choices: ["tabla_ghe1", "tabla_ghe2"], gain: 0.95 }, { choices: ["tabla_na", "tabla_na_s"], gain: 0.78 }],
+      Dhin: [{ choices: ["tabla_ghe2", "tabla_ghe1"], gain: 0.88 }, { choices: ["tabla_tun1", "tabla_na"], gain: 0.68 }],
+      Dhi: [{ id: "tabla_tun1", gain: 0.8 }],
+      Tin: [{ id: "tabla_tun1", gain: 0.72, rate: 1.42 }],
+      Ta: [{ choices: ["tabla_tas1", "tabla_te1"], gain: 0.72 }],
+      Na: [{ id: "tabla_na", gain: 0.86 }],
+      Ge: [{ choices: ["tabla_ghe1", "tabla_ghe2"], gain: 0.94 }],
+      Ti: [{ choices: ["tabla_te1", "tabla_te2"], gain: 0.7 }],
+      Ka: [{ choices: ["tabla_ke1", "tabla_tas1"], gain: 0.7 }]
+    };
+    const TABLA_COMBINED_BOLS = {
+      TiKa: ["Ti", "Ka"],
+      DhaGe: ["Dha", "Ge"],
+      NaTi: ["Na", "Ti"],
+      NaKa: ["Na", "Ka"],
+      DhiNa: ["Dhi", "Na"],
+      DhiDhi: ["Dhi", "Dhi"],
+      NaNa: ["Na", "Na"]
+    };
+    const TABLA_COMBINED_SPLIT_RATIO = { DhiDhi: 0.5, NaNa: 0.5 };
 
     const SWARA_HUES = {
       "S": 190,
@@ -3435,6 +3538,226 @@
       return "plain";
     }
 
+    function isTablaMode() {
+      return rhythmModeSelect.value === "tabla";
+    }
+
+    function currentTablaTaal() {
+      return TABLA_TAALS[tablaTaalSelect.value] || TABLA_TAALS.teentaal;
+    }
+
+    function updateRhythmUI() {
+      const tablaActive = isTablaMode();
+      tablaConfig.hidden = !tablaActive;
+      tablaPackConfig.hidden = !tablaActive;
+      metronomeAccentSelect.disabled = tablaActive;
+      if (!isMetronomeEnabled()) {
+        metronomeStatus.textContent = `${tablaActive ? "Tabla" : "Metronome"} disabled.`;
+        return;
+      }
+      metronomeStatus.textContent = tablaActive
+        ? `${currentTablaTaal().name} is armed and will sync with Live Play and the game.`
+        : "Metronome is armed and will sync with Live Play and the game.";
+    }
+
+    async function loadTablaSample(id, url) {
+      if (window.location.protocol === "file:") {
+        const resolved = await probeSampleUrl(url);
+        if (!resolved) throw new Error(`Failed to probe ${id}`);
+        const audio = new Audio(resolved);
+        audio.preload = "auto";
+        audio.load();
+        tablaSampleLibrary.set(id, { audio, url: resolved });
+        return;
+      }
+
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`Failed to fetch ${id}`);
+      const audioData = await response.arrayBuffer();
+      const decoded = await audioContext.decodeAudioData(audioData.slice(0));
+      tablaSampleLibrary.set(id, { buffer: decoded, url });
+    }
+
+    async function ensureTablaSamples() {
+      await ensureAudioContext();
+      if (tablaSamplesReady || tablaLoadingSamples || tablaPackSelect.value === "synth") return tablaSamplesReady;
+      tablaLoadingSamples = true;
+      try {
+        await Promise.all(Object.entries(TABLA_SAMPLE_FILES).map(([id, url]) => loadTablaSample(id, url)));
+        tablaSamplesReady = true;
+      } catch (error) {
+        tablaSamplesReady = false;
+      } finally {
+        tablaLoadingSamples = false;
+      }
+      return tablaSamplesReady;
+    }
+
+    function tablaShouldUseSamples() {
+      if (tablaPackSelect.value === "synth") return false;
+      if (tablaPackSelect.value === "samples") return tablaSamplesReady;
+      return tablaSamplesReady;
+    }
+
+    function percussiveGainNode(time, attack, decay, peak = 1, end = 0.0001) {
+      const gain = audioContext.createGain();
+      gain.gain.setValueAtTime(0.0001, time);
+      gain.gain.linearRampToValueAtTime(peak, time + attack);
+      gain.gain.exponentialRampToValueAtTime(end, time + attack + decay);
+      gain.connect(audioContext.destination);
+      return gain;
+    }
+
+    function tablaPlaySample(sampleId, time, gainValue = 1, playbackRate = 1) {
+      const sample = tablaSampleLibrary.get(sampleId);
+      if (!sample) return false;
+
+      if (sample.buffer) {
+        const source = audioContext.createBufferSource();
+        const gain = audioContext.createGain();
+        source.buffer = sample.buffer;
+        source.playbackRate.setValueAtTime(playbackRate, time);
+        gain.gain.setValueAtTime(gainValue * getMetronomeVolume(), time);
+        source.connect(gain);
+        gain.connect(audioContext.destination);
+        source.start(time);
+        return true;
+      }
+
+      if (sample.audio) {
+        const audio = sample.audio.cloneNode();
+        const delayMs = Math.max(0, (time - audioContext.currentTime) * 1000);
+        audio.preload = "auto";
+        audio.volume = Math.min(1, Math.max(0.0001, gainValue * getMetronomeVolume()));
+        audio.playbackRate = playbackRate;
+        audio.preservesPitch = false;
+        window.setTimeout(() => {
+          audio.play().catch(() => {});
+        }, delayMs);
+        return true;
+      }
+
+      return false;
+    }
+
+    function tablaPlayBolWithSamples(bol, time) {
+      const layers = TABLA_BOL_SAMPLE_MAP[bol];
+      if (!layers) return false;
+      let allPlayed = true;
+      layers.forEach((layer, layerIndex) => {
+        const sampleId = layer.id || layer.choices[layerIndex % layer.choices.length];
+        const ok = tablaPlaySample(sampleId, time, layer.gain ?? 0.8, layer.rate ?? 1);
+        allPlayed = allPlayed && ok;
+      });
+      return allPlayed;
+    }
+
+    function tablaPlayDayan(time, freq = 540, decay = 0.16, level = 0.34) {
+      const osc = audioContext.createOscillator();
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(freq, time);
+      osc.connect(percussiveGainNode(time, 0.002, decay, level * getMetronomeVolume()));
+      osc.start(time);
+      osc.stop(time + decay + 0.05);
+    }
+
+    function tablaPlayBayan(time, freqStart = 170, freqEnd = 110, decay = 0.22, level = 0.48) {
+      const osc = audioContext.createOscillator();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freqStart, time);
+      osc.frequency.exponentialRampToValueAtTime(freqEnd, time + 0.09);
+      osc.connect(percussiveGainNode(time, 0.002, decay, level * getMetronomeVolume()));
+      osc.start(time);
+      osc.stop(time + decay + 0.06);
+    }
+
+    function tablaPlayAttackNoise(time, decay = 0.045, level = 0.12) {
+      const size = Math.floor(audioContext.sampleRate * 0.08);
+      const buffer = audioContext.createBuffer(1, size, audioContext.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < size; i += 1) data[i] = (Math.random() * 2 - 1) * (1 - i / size);
+      const source = audioContext.createBufferSource();
+      const highpass = audioContext.createBiquadFilter();
+      highpass.type = "highpass";
+      highpass.frequency.value = 1400;
+      source.buffer = buffer;
+      source.connect(highpass);
+      highpass.connect(percussiveGainNode(time, 0.001, decay, level * getMetronomeVolume()));
+      source.start(time);
+      source.stop(time + 0.09);
+    }
+
+    function tablaTriggerBaseBol(bol, time) {
+      if (tablaShouldUseSamples() && tablaPlayBolWithSamples(bol, time)) return;
+      switch (bol) {
+        case "Dha":
+          tablaPlayBayan(time, 180, 110, 0.22, 0.5);
+          tablaPlayDayan(time, 520, 0.16, 0.32);
+          tablaPlayAttackNoise(time, 0.03, 0.04);
+          break;
+        case "Dhin":
+          tablaPlayBayan(time, 175, 120, 0.21, 0.4);
+          tablaPlayDayan(time, 640, 0.2, 0.28);
+          break;
+        case "Dhi":
+          tablaPlayDayan(time, 580, 0.16, 0.3);
+          break;
+        case "Tin":
+          tablaPlayDayan(time, 760, 0.1, 0.28);
+          break;
+        case "Ta":
+          tablaPlayDayan(time, 820, 0.06, 0.22);
+          tablaPlayAttackNoise(time, 0.026, 0.1);
+          break;
+        case "Na":
+          tablaPlayDayan(time, 700, 0.08, 0.22);
+          tablaPlayAttackNoise(time, 0.028, 0.08);
+          break;
+        case "Ge":
+          tablaPlayBayan(time, 190, 115, 0.2, 0.46);
+          break;
+        case "Ti":
+          tablaPlayDayan(time, 900, 0.06, 0.2);
+          break;
+        case "Ka":
+          tablaPlayAttackNoise(time, 0.02, 0.12);
+          break;
+        default:
+          tablaPlayDayan(time, 620, 0.12, 0.22);
+          break;
+      }
+    }
+
+    async function triggerTablaBeat(beatIndex = 0) {
+      if (!isMetronomeEnabled()) return;
+      await ensureAudioContext();
+      if (tablaPackSelect.value !== "synth" && !tablaSamplesReady) {
+        await ensureTablaSamples();
+      }
+      const taal = currentTablaTaal();
+      const bol = taal.bols[beatIndex % taal.bols.length];
+      const beatDuration = 60 / Number(tempoInput.value);
+      const combined = TABLA_COMBINED_BOLS[bol];
+      const startTime = audioContext.currentTime + 0.002;
+      if (combined) {
+        const splitRatio = TABLA_COMBINED_SPLIT_RATIO[bol] ?? 0.45;
+        const split = Math.max(0.035, beatDuration * splitRatio);
+        tablaTriggerBaseBol(combined[0], startTime);
+        tablaTriggerBaseBol(combined[1], startTime + split);
+      } else {
+        tablaTriggerBaseBol(bol, startTime);
+      }
+    }
+
+    async function triggerRhythmBeat(beatIndex = 0) {
+      if (!isMetronomeEnabled()) return;
+      if (isTablaMode()) {
+        await triggerTablaBeat(beatIndex);
+      } else {
+        await triggerMetronomeBeat(beatIndex);
+      }
+    }
+
     function stopMetronomePreview(message = "Metronome stopped.") {
       if (metronomePreviewTimeout) {
         window.clearTimeout(metronomePreviewTimeout);
@@ -3477,21 +3800,21 @@
 
     function runMetronomePreview() {
       if (!isMetronomeEnabled()) {
-        stopMetronomePreview("Enable Sync On to hear the metronome.");
+        stopMetronomePreview(`Enable Sync On to hear the ${isTablaMode() ? "tabla" : "metronome"}.`);
         return;
       }
 
-      triggerMetronomeBeat(metronomePreviewBeat);
+      triggerRhythmBeat(metronomePreviewBeat);
       metronomePreviewBeat += 1;
       const intervalMs = (60 / Number(tempoInput.value)) * 1000;
       metronomePreviewTimeout = window.setTimeout(runMetronomePreview, intervalMs);
     }
 
     function startMetronomePreview() {
-      stopMetronomePreview("Metronome restarting...");
+      stopMetronomePreview(`${isTablaMode() ? "Tabla" : "Metronome"} restarting...`);
       startMetronomeButton.disabled = true;
       stopMetronomeButton.disabled = false;
-      metronomeStatus.textContent = `Previewing click at ${tempoInput.value} BPM.`;
+      metronomeStatus.textContent = `Previewing ${isTablaMode() ? currentTablaTaal().name : "click"} at ${tempoInput.value} BPM.`;
       runMetronomePreview();
     }
 
@@ -3759,7 +4082,7 @@
       stopGameButton.disabled = true;
       gameStatus.textContent = message;
       if (isMetronomeEnabled() && !metronomePreviewTimeout) {
-        metronomeStatus.textContent = "Metronome ready to sync with the next game or playback.";
+        updateRhythmUI();
       }
     }
 
@@ -3798,7 +4121,7 @@
       gameStatus.textContent = `Finished ${run.label}. ${correctNotes} clean notes out of ${run.notes.length}.`;
       gameResults.textContent = `Score ${run.score}/${maxScore} (${percent}%). Correct: ${correctNotes}. Detected notes: ${scoredNotes}. Average cents error: ${avgCents === null ? "--" : avgCents}. Longest streak: ${run.bestStreak}.`;
       if (isMetronomeEnabled() && !metronomePreviewTimeout) {
-        metronomeStatus.textContent = `Metronome synced through ${run.label} at ${run.bpm} BPM.`;
+        metronomeStatus.textContent = `${isTablaMode() ? currentTablaTaal().name : "Metronome"} synced through ${run.label} at ${run.bpm} BPM.`;
       }
     }
 
@@ -3890,7 +4213,7 @@
 
         highlightNote(run.id, index);
         if (isMetronomeEnabled()) {
-          triggerMetronomeBeat(index);
+          triggerRhythmBeat(index);
         }
         targetSwara.textContent = targetSwaraValue;
         targetConcert.textContent = `${formatConcertNote(targetMidiValue)} • note ${index + 1} of ${run.notes.length}`;
@@ -3951,7 +4274,7 @@
       const bpm = Number(tempoInput.value);
       const noteDurationMs = (60 / bpm) * 1000;
 
-      stopMetronomePreview(`Syncing metronome to ${bpm} BPM game timing...`);
+      stopMetronomePreview(`Syncing rhythm to ${bpm} BPM game timing...`);
       stopGame("Preparing new game...");
       clearNoteResults(id);
       clearHighlight(id);
@@ -3991,7 +4314,7 @@
 
       gameStatus.textContent = `Armed for ${run.label}. Play a steady note to start immediately.`;
       if (isMetronomeEnabled()) {
-        metronomeStatus.textContent = `Metronome armed for ${run.label} at ${bpm} BPM.`;
+        metronomeStatus.textContent = `${isTablaMode() ? currentTablaTaal().name : "Metronome"} armed for ${run.label} at ${bpm} BPM.`;
       }
 
       const waitForFirstNote = () => {
@@ -4021,7 +4344,7 @@
       const id = gameAlankarSelect.value;
       const notes = sequences[id];
 
-      stopMetronomePreview("Self-paced practice ignores tempo and metronome.");
+      stopMetronomePreview("Self-paced practice ignores tempo and rhythm.");
       stopGame("Preparing self-paced practice...");
       stopPractice("Preparing self-paced practice...");
       resetPracticeProgress(id);
@@ -4178,7 +4501,7 @@
       setPlayingCard(currentRun.id, false);
       setStatus(currentRun.id, `Stopped at ${tempoInput.value} BPM`);
       if (isMetronomeEnabled() && !metronomePreviewTimeout) {
-        metronomeStatus.textContent = "Metronome ready to sync with the next playback.";
+        updateRhythmUI();
       }
       currentRun = null;
     }
@@ -4589,7 +4912,7 @@
     }
 
     async function playSequence(id) {
-      stopMetronomePreview(`Syncing metronome to Alankar ${id}...`);
+      stopMetronomePreview(`Syncing rhythm to Alankar ${id}...`);
       stopCurrentPlayback();
       await ensureAudioContext();
       const samples = await initializeSamples();
@@ -4645,7 +4968,7 @@
         const repeatTouchSample = repeatTouchKey ? samples[repeatTouchKey] : null;
         const graceDuration = Math.max(0.07, Math.min(0.22, noteDuration * (0.24 + getRepeatTouchDepth() * 0.34)));
         if (isMetronomeEnabled()) {
-          triggerMetronomeBeat(run.noteIndex);
+          triggerRhythmBeat(run.noteIndex);
         }
         if (note === "-") {
           // Sustain steps inherit the previous note sound; no retrigger here.
@@ -4705,7 +5028,7 @@
       ornamentStatus.textContent = `${ornamentModeSelect.options[ornamentModeSelect.selectedIndex].text} shaping active at ${tempoInput.value} BPM.`;
       repeatTouchStatus.textContent = `${repeatTouchModeSelect.options[repeatTouchModeSelect.selectedIndex].text} articulation ready for repeated notes.`;
       if (isMetronomeEnabled()) {
-        metronomeStatus.textContent = `Metronome synced to Alankar ${id} at ${tempoInput.value} BPM.`;
+        metronomeStatus.textContent = `${isTablaMode() ? currentTablaTaal().name : "Metronome"} synced to Alankar ${id} at ${tempoInput.value} BPM.`;
       }
       setPlayingCard(id, true);
       playNextNote();
@@ -4726,7 +5049,7 @@
         }
       });
       if (metronomePreviewTimeout) {
-        metronomeStatus.textContent = `Previewing click at ${tempoInput.value} BPM.`;
+        metronomeStatus.textContent = `Previewing ${isTablaMode() ? currentTablaTaal().name : "click"} at ${tempoInput.value} BPM.`;
       }
       updateMagicTempoState();
     }
@@ -4759,10 +5082,40 @@
     stopMetronomeButton.addEventListener("click", () => stopMetronomePreview("Metronome stopped."));
     metronomeEnabledInput.addEventListener("change", () => {
       if (!isMetronomeEnabled()) {
-        stopMetronomePreview("Metronome disabled.");
+        stopMetronomePreview(`${isTablaMode() ? "Tabla" : "Metronome"} disabled.`);
       } else {
+        updateRhythmUI();
+      }
+    });
+    rhythmModeSelect.addEventListener("change", async () => {
+      updateRhythmUI();
+      if (isTablaMode() && tablaPackSelect.value !== "synth") {
+        metronomeStatus.textContent = `Preparing ${currentTablaTaal().name} samples...`;
+        const loaded = await ensureTablaSamples();
+        metronomeStatus.textContent = loaded
+          ? `${currentTablaTaal().name} samples ready.`
+          : `${currentTablaTaal().name} will use synth fallback if samples are unavailable.`;
+      }
+      if (!isTablaMode()) {
         metronomeStatus.textContent = "Metronome is armed and will sync with Live Play and the game.";
       }
+    });
+    tablaTaalSelect.addEventListener("change", () => {
+      if (isTablaMode()) {
+        metronomeStatus.textContent = `${currentTablaTaal().name} selected for rhythm sync.`;
+      }
+    });
+    tablaPackSelect.addEventListener("change", async () => {
+      if (!isTablaMode()) return;
+      if (tablaPackSelect.value === "synth") {
+        metronomeStatus.textContent = `${currentTablaTaal().name} will use synth tabla.`;
+        return;
+      }
+      metronomeStatus.textContent = `Loading ${currentTablaTaal().name} samples...`;
+      const loaded = await ensureTablaSamples();
+      metronomeStatus.textContent = loaded
+        ? `${currentTablaTaal().name} samples ready.`
+        : `${currentTablaTaal().name} sample load failed, using synth fallback.`;
     });
     metronomeVolumeInput.addEventListener("input", () => {
       metronomeVolumeValue.textContent = `${metronomeVolumeInput.value}%`;
@@ -4809,6 +5162,7 @@
     populateGameAlankars();
     startMagicScene();
     updateTempoUI();
+    updateRhythmUI();
     stopTunerButton.disabled = true;
     stopGameButton.disabled = true;
     stopPracticeButton.disabled = true;
