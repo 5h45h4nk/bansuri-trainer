@@ -23,6 +23,6 @@ window.ALANKAR_DATA = {
     "21": { subtitle: "Two-two clustering", lines: [["S","S","R","R","G","G","M","M","P","P","D","D","N","N","S'","S'"],["S'","S'","N","N","D","D","P","P","M","M","G","G","R","R","S","S"]] },
     "22": { subtitle: "Triple clusters", lines: [["S","S","S","R","R","R","G","G","G","M","M","M","P","P","P","D","D","D","N","N","N","S'","S'","S'"],["S'","S'","S'","N","N","N","D","D","D","P","P","P","M","M","M","G","G","G","R","R","R","S","S","S"]] },
     "23": { subtitle: "Four-note clusters", lines: [["S","S","S","S","R","R","R","R","G","G","G","G","M","M","M","M","P","P","P","P","D","D","D","D","N","N","N","N","S'","S'","S'","S'"],["S'","S'","S'","S'","N","N","N","N","D","D","D","D","P","P","P","P","M","M","M","M","G","G","G","G","R","R","R","R","S","S","S","S"]] },
-    "24": { subtitle: "Four-line expansive pattern", lines: [["S","R","S","S","R","G","R","R","G","M","G","G","M","P","M","M"],["P","D","P","P","D","N","D","D","N","S'","N","N","S'","R","S'","S'"],["S'","N","S'","S'","N","D","N","N","D","P","D","D","P","M","P","P"],["M","G","M","M","G","R","G","G","R","S","R","R","S","N","S'","S'"]] }
+    "24": { subtitle: "Four-line expansive pattern", lines: [["S","R","S","S","R","G","R","R","G","M","G","G","M","P","M","M"],["P","D","P","P","D","N","D","D","N","S'","N","N","S'","R","S'","S'"],["S'","N","S'","S'","N","D","N","N","D","P","D","D","P","M","P","P"],["M","G","M","M","G","R","G","G","R","S","R","R","S","N","S","S"]] }
   }
 };

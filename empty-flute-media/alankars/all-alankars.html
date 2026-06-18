@@ -29,10 +29,16 @@
       box-sizing: border-box;
     }
 
+    html {
+      background: #05070a;
+      overscroll-behavior-y: none;
+    }
+
     body {
       margin: 0;
       font-family: "SF Pro Display", "Avenir Next", "Segoe UI", sans-serif;
       color: var(--ink);
+      background-color: #05070a;
       background:
         radial-gradient(circle at 12% 10%, rgba(79, 224, 232, 0.2), transparent 24%),
         radial-gradient(circle at 88% 8%, rgba(255, 255, 255, 0.08), transparent 18%),
@@ -67,8 +73,7 @@
       background:
         linear-gradient(180deg, rgba(19, 25, 33, 0.92), rgba(9, 12, 17, 0.96)),
         linear-gradient(135deg, rgba(78, 219, 227, 0.08), rgba(255, 255, 255, 0.02));
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(22px);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.3);
     }
 
     .hero::before,
@@ -117,7 +122,6 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(14px);
     }
 
     .intro {
@@ -145,9 +149,8 @@
       border-radius: 18px;
       background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
       border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: var(--shadow-soft);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
       color: #f4f7fb;
-      backdrop-filter: blur(18px);
     }
 
     .hero-card.dark {
@@ -173,7 +176,6 @@
       border-radius: 14px;
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(10px);
     }
 
     .dark .stat {
@@ -213,8 +215,7 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 22px;
       background: linear-gradient(180deg, rgba(17,23,31,0.92), rgba(11,15,20,0.96));
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(18px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
     }
 
     .tempo-panel h2 {
@@ -895,13 +896,20 @@
 
     .practice-sidebar {
       position: sticky;
-      top: 10px;
+      top: 8px;
       z-index: 12;
       display: grid;
       grid-template-columns: minmax(420px, 1.45fr) minmax(310px, 1fr) minmax(310px, 1fr);
       gap: 10px;
       align-items: start;
       margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(180deg, rgba(15, 20, 27, 0.96), rgba(10, 14, 19, 0.98));
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+      contain: layout paint;
+      transform: translateZ(0);
     }
 
     .practice-main {
@@ -911,12 +919,133 @@
     .practice-sidebar .tempo-panel,
     .practice-sidebar .tool-panel,
     .practice-sidebar .game-panel {
-      padding: 12px;
+      padding: 8px;
       min-height: 100%;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
     }
 
     .practice-sidebar .tools-grid {
       margin: 0;
+    }
+
+    .practice-sidebar .metronome-panel,
+    .practice-sidebar .game-card,
+    .practice-sidebar .tuner-main,
+    .practice-sidebar .tuner-meter-card,
+    .practice-sidebar .game-status,
+    .practice-sidebar .game-results,
+    .practice-sidebar .target-box,
+    .practice-sidebar .score-stat,
+    .practice-sidebar .tuner-stat {
+      background: rgba(255, 255, 255, 0.03);
+      box-shadow: none;
+    }
+
+    .practice-sidebar .tempo-panel > p:not(.section-label),
+    .practice-sidebar .tool-panel > p:not(.section-label),
+    .practice-sidebar .game-header p,
+    .practice-sidebar .game-results,
+    .practice-sidebar .swara-legend {
+      display: none;
+    }
+
+    .practice-sidebar .tempo-panel h2,
+    .practice-sidebar .tool-panel h2,
+    .practice-sidebar .game-panel h2 {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .practice-sidebar .metronome-head {
+      margin-bottom: 6px;
+    }
+
+    .practice-sidebar .metronome-panel {
+      margin-top: 8px;
+      padding: 8px;
+      border-radius: 12px;
+    }
+
+    .practice-sidebar .tempo-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+    }
+
+    .practice-sidebar .tempo-panel > .metronome-panel:nth-of-type(2),
+    .practice-sidebar .tempo-panel > .metronome-panel:nth-of-type(3) {
+      margin-top: 0;
+    }
+
+    @media (min-width: 981px) {
+      .practice-sidebar .tempo-panel {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+      }
+
+      .practice-sidebar .tempo-panel > .section-label,
+      .practice-sidebar .tempo-panel > h2,
+      .practice-sidebar .tempo-panel > p,
+      .practice-sidebar .tempo-panel > .tempo-row,
+      .practice-sidebar .tempo-panel > .tempo-presets,
+      .practice-sidebar .tempo-panel > .metronome-panel:first-of-type {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .practice-sidebar .tempo-presets,
+    .practice-sidebar .game-buttons,
+    .practice-sidebar .tuner-actions,
+    .practice-sidebar .select-wrap,
+    .practice-sidebar .tuner-sub,
+    .practice-sidebar .score-strip,
+    .practice-sidebar .game-status,
+    .practice-sidebar .progress-track {
+      margin-top: 6px;
+    }
+
+    .practice-sidebar .game-grid {
+      gap: 8px;
+    }
+
+    .practice-sidebar .game-card {
+      padding: 8px;
+      border-radius: 12px;
+    }
+
+    .practice-sidebar .tuner-main,
+    .practice-sidebar .tuner-meter-card {
+      padding: 8px;
+      border-radius: 12px;
+    }
+
+    .practice-sidebar .target-box,
+    .practice-sidebar .score-stat,
+    .practice-sidebar .tuner-stat,
+    .practice-sidebar .tuner-status,
+    .practice-sidebar .game-status {
+      padding: 7px 8px;
+      border-radius: 10px;
+    }
+
+    .practice-sidebar .target-value {
+      font-size: 1.2rem;
+    }
+
+    .practice-sidebar .tuner-note {
+      font-size: clamp(1.6rem, 2.3vw, 2rem);
+    }
+
+    .practice-sidebar .tuner-swara {
+      font-size: clamp(1.4rem, 2vw, 1.8rem);
+    }
+
+    .practice-sidebar .score-strip {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px;
     }
 
     .practice-sidebar .tuner-display {
@@ -1053,7 +1182,6 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 30px;
       box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(16px);
     }
 
     .page:last-child {
@@ -1221,8 +1349,7 @@
       background: linear-gradient(180deg, rgba(17,23,31,0.92), rgba(11,15,20,0.96));
       border: 1px solid rgba(255, 255, 255, 0.08);
       color: var(--ink);
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(18px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
     }
 
     .tool-panel,
@@ -1416,6 +1543,10 @@
         max-height: none;
         overflow: visible;
         padding-right: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
       }
 
       .tip-panel {
