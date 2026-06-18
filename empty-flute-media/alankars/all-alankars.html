@@ -43,9 +43,9 @@
     }
 
     main {
-      width: min(1780px, calc(100vw - 24px));
+      width: min(1920px, calc(100vw - 18px));
       margin: 0 auto;
-      padding: 12px 10px 34px;
+      padding: 8px 6px 28px;
     }
 
     h1 {
@@ -60,8 +60,8 @@
     .hero {
       position: relative;
       overflow: hidden;
-      margin-bottom: 16px;
-      padding: 24px 26px;
+      margin-bottom: 10px;
+      padding: 18px 20px;
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 32px;
       background:
@@ -99,7 +99,7 @@
       position: relative;
       display: grid;
       grid-template-columns: minmax(0, 1.5fr) minmax(420px, 0.95fr);
-      gap: 16px;
+      gap: 12px;
       align-items: stretch;
     }
 
@@ -122,9 +122,9 @@
 
     .intro {
       max-width: 58ch;
-      margin: 12px 0 0;
-      font-size: 15px;
-      line-height: 1.65;
+      margin: 8px 0 0;
+      font-size: 14px;
+      line-height: 1.5;
       color: var(--muted);
       font-family: "SF Pro Text", "Avenir Next", "Segoe UI", sans-serif;
     }
@@ -136,13 +136,13 @@
     .hero-aside {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      gap: 10px;
       align-content: start;
     }
 
     .hero-card {
-      padding: 16px;
-      border-radius: 22px;
+      padding: 12px;
+      border-radius: 18px;
       background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
       border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: var(--shadow-soft);
@@ -165,12 +165,12 @@
     .stat-row {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
+      gap: 8px;
     }
 
     .stat {
-      padding: 14px 12px;
-      border-radius: 16px;
+      padding: 10px 9px;
+      border-radius: 14px;
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255, 255, 255, 0.06);
       backdrop-filter: blur(10px);
@@ -183,7 +183,7 @@
 
     .stat .value {
       display: block;
-      font-size: 1.55rem;
+      font-size: 1.15rem;
       line-height: 1;
       font-weight: 700;
       letter-spacing: -0.04em;
@@ -191,8 +191,8 @@
 
     .stat .label {
       display: block;
-      margin-top: 6px;
-      font-size: 11px;
+      margin-top: 4px;
+      font-size: 10px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: inherit;
@@ -200,8 +200,8 @@
     }
 
     .section-label {
-      margin: 0 0 8px;
-      font-size: 11px;
+      margin: 0 0 6px;
+      font-size: 10px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: #84a4aa;
@@ -209,37 +209,37 @@
 
     .tempo-panel {
       margin: 0;
-      padding: 20px;
+      padding: 14px;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 28px;
+      border-radius: 22px;
       background: linear-gradient(180deg, rgba(17,23,31,0.92), rgba(11,15,20,0.96));
       box-shadow: var(--shadow-soft);
       backdrop-filter: blur(18px);
     }
 
     .tempo-panel h2 {
-      margin: 0 0 8px;
-      font-size: 24px;
+      margin: 0 0 6px;
+      font-size: 16px;
       letter-spacing: -0.02em;
       color: #fbfdff;
     }
 
     .tempo-panel p {
-      margin: 0 0 18px;
-      font-size: 15px;
-      line-height: 1.55;
+      margin: 0 0 12px;
+      font-size: 13px;
+      line-height: 1.4;
       color: var(--muted);
     }
 
     .tempo-row {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 10px;
       flex-wrap: wrap;
     }
 
     .tempo-row input[type="range"] {
-      flex: 1 1 360px;
+      flex: 1 1 240px;
       appearance: none;
       height: 8px;
       border-radius: 999px;
@@ -249,34 +249,34 @@
 
     .tempo-row input[type="range"]::-webkit-slider-thumb {
       appearance: none;
-      width: 26px;
-      height: 26px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       background: #ffffff;
-      border: 3px solid #0f151c;
+      border: 2px solid #0f151c;
       box-shadow: 0 4px 22px rgba(77, 224, 232, 0.35);
       cursor: pointer;
     }
 
     .tempo-row input[type="range"]::-moz-range-thumb {
-      width: 26px;
-      height: 26px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       background: #ffffff;
-      border: 3px solid #0f151c;
+      border: 2px solid #0f151c;
       box-shadow: 0 4px 22px rgba(77, 224, 232, 0.35);
       cursor: pointer;
     }
 
     .tempo-readout {
-      min-width: 110px;
-      padding: 13px 16px;
-      border-radius: 18px;
+      min-width: 96px;
+      padding: 10px 12px;
+      border-radius: 14px;
       background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
       color: #f9feff;
       text-align: center;
       font-family: "SF Pro Display", "Avenir Next", "Segoe UI", sans-serif;
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -285,19 +285,19 @@
 
     .tempo-presets {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
-      margin-top: 16px;
+      margin-top: 10px;
     }
 
     .tempo-presets button {
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 999px;
-      padding: 9px 12px;
+      padding: 7px 10px;
       background: rgba(255,255,255,0.05);
       color: #d8edf0;
       font: inherit;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.04em;
       cursor: pointer;
@@ -318,9 +318,9 @@
     }
 
     .metronome-panel {
-      margin-top: 16px;
-      padding: 16px;
-      border-radius: 22px;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 16px;
       background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
@@ -329,12 +329,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
+      gap: 8px;
+      margin-bottom: 8px;
     }
 
     .metronome-head strong {
-      font-size: 15px;
+      font-size: 13px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: #dcf8fb;
@@ -344,7 +344,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       color: #aac8cf;
     }
@@ -356,14 +356,14 @@
     .metronome-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      gap: 8px;
       align-items: end;
     }
 
     .metronome-grid label {
       display: block;
-      margin-bottom: 6px;
-      font-size: 11px;
+      margin-bottom: 4px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -376,7 +376,7 @@
     }
 
     .metronome-grid select {
-      padding: 10px 12px;
+      padding: 8px 10px;
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
       background: rgba(255,255,255,0.05);
@@ -387,12 +387,12 @@
     .metronome-volume {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .metronome-volume output {
-      min-width: 42px;
-      font-size: 13px;
+      min-width: 34px;
+      font-size: 12px;
       font-weight: 700;
       color: #cce6ea;
       text-align: right;
@@ -400,14 +400,14 @@
 
     .metronome-actions {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
-      margin-top: 14px;
+      margin-top: 8px;
     }
 
     .metronome-actions button {
       border: none;
-      padding: 11px 16px;
+      padding: 8px 12px;
       border-radius: 999px;
       background: linear-gradient(180deg, rgba(107,245,255,0.18), rgba(78,220,228,0.12));
       color: #f6feff;
@@ -424,8 +424,8 @@
     }
 
     .metronome-status {
-      margin-top: 10px;
-      font-size: 13px;
+      margin-top: 8px;
+      font-size: 12px;
       color: #96a4ac;
     }
 
@@ -437,7 +437,7 @@
     }
 
     .tool-panel {
-      padding: 18px;
+      padding: 14px;
       border: 1px solid rgba(140, 128, 107, 0.18);
       border-radius: 24px;
       background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(251,246,238,0.84));
@@ -445,28 +445,28 @@
     }
 
     .tool-panel h2 {
-      margin: 0 0 8px;
-      font-size: 24px;
+      margin: 0 0 6px;
+      font-size: 16px;
       letter-spacing: -0.02em;
     }
 
     .tool-panel p {
-      margin: 0 0 12px;
-      font-size: 14px;
-      line-height: 1.45;
+      margin: 0 0 8px;
+      font-size: 12px;
+      line-height: 1.35;
       color: var(--muted);
     }
 
     .tuner-display {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(240px, 0.9fr);
-      gap: 18px;
+      gap: 10px;
       align-items: stretch;
     }
 
     .tuner-main {
-      padding: 18px;
-      border-radius: 20px;
+      padding: 12px;
+      border-radius: 16px;
       background: linear-gradient(160deg, #17313d, #214b59);
       color: #fff8ef;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
@@ -474,7 +474,7 @@
 
     .tuner-note {
       font-family: "Baskerville", "Iowan Old Style", serif;
-      font-size: clamp(3rem, 7vw, 4.2rem);
+      font-size: clamp(2rem, 4vw, 2.8rem);
       line-height: 0.95;
       letter-spacing: -0.04em;
     }
@@ -482,13 +482,13 @@
     .tuner-primary {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(180px, 0.75fr);
-      gap: 16px;
+      gap: 10px;
       align-items: end;
     }
 
     .tuner-swara-block {
-      padding: 16px 18px;
-      border-radius: 22px;
+      padding: 10px 12px;
+      border-radius: 16px;
       background: rgba(255,255,255,0.08);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
     }
@@ -504,7 +504,7 @@
 
     .tuner-swara {
       font-family: "Avenir Next Condensed", "Avenir Next", sans-serif;
-      font-size: clamp(2.5rem, 6vw, 3.6rem);
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
       line-height: 0.9;
       letter-spacing: -0.04em;
       color: #ffe7a4;
@@ -512,36 +512,36 @@
 
     .tuner-swara-name {
       display: block;
-      margin-top: 8px;
-      font-size: 1rem;
+      margin-top: 4px;
+      font-size: 0.88rem;
       color: rgba(255,248,239,0.84);
     }
 
     .tuner-sub {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 14px;
+      gap: 8px;
+      margin-top: 8px;
       color: rgba(255,248,239,0.82);
-      font-size: 14px;
+      font-size: 12px;
     }
 
     .swara-legend {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
+      gap: 6px;
+      margin-top: 8px;
     }
 
     .swara-chip {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 8px 10px;
+      padding: 6px 8px;
       border-radius: 999px;
       background: rgba(255,255,255,0.08);
       color: rgba(255,248,239,0.88);
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: 0.04em;
     }
 
@@ -551,16 +551,16 @@
 
     .tuner-meter-card {
       display: grid;
-      gap: 12px;
-      padding: 14px;
-      border-radius: 18px;
+      gap: 8px;
+      padding: 10px;
+      border-radius: 16px;
       background: rgba(255,255,255,0.84);
       border: 1px solid rgba(121, 114, 95, 0.12);
     }
 
     .meter {
       position: relative;
-      height: 14px;
+      height: 10px;
       border-radius: 999px;
       overflow: hidden;
       background: linear-gradient(90deg, #8f5643 0%, #e3be66 24%, #5aa598 50%, #e3be66 76%, #8f5643 100%);
@@ -577,10 +577,10 @@
 
     .meter-needle {
       position: absolute;
-      top: -5px;
-      width: 16px;
-      height: 24px;
-      margin-left: -8px;
+      top: -4px;
+      width: 12px;
+      height: 18px;
+      margin-left: -6px;
       border-radius: 999px;
       background: #17313d;
       box-shadow: 0 8px 16px rgba(23, 49, 61, 0.2);
@@ -591,7 +591,7 @@
     .meter-labels {
       display: flex;
       justify-content: space-between;
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -601,27 +601,27 @@
     .tuner-stats {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      gap: 8px;
     }
 
     .tuner-stat {
-      padding: 12px;
-      border-radius: 14px;
+      padding: 9px;
+      border-radius: 12px;
       background: rgba(255,255,255,0.78);
       border: 1px solid rgba(121, 114, 95, 0.1);
     }
 
     .tuner-stat .value {
       display: block;
-      font-size: 1.3rem;
+      font-size: 1rem;
       font-weight: 700;
       line-height: 1.1;
     }
 
     .tuner-stat .label {
       display: block;
-      margin-top: 6px;
-      font-size: 11px;
+      margin-top: 4px;
+      font-size: 10px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #6f7873;
@@ -629,9 +629,9 @@
 
     .tuner-actions {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
-      margin-top: 16px;
+      margin-top: 8px;
     }
 
     .tuner-actions button,
@@ -642,10 +642,10 @@
 
     .tuner-actions button {
       border: none;
-      padding: 11px 16px;
+      padding: 8px 12px;
       background: linear-gradient(135deg, #235f74, #2f8d87);
       color: white;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -660,9 +660,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-top: 16px;
+      margin-top: 8px;
       color: #5d6562;
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -670,23 +670,23 @@
 
     .select-wrap select {
       border: 1px solid rgba(32, 76, 89, 0.14);
-      padding: 10px 14px;
+      padding: 8px 12px;
       background: rgba(255,255,255,0.92);
       color: #1f4b59;
     }
 
     .tuner-status {
-      margin-top: 14px;
-      padding: 10px 12px;
-      border-radius: 14px;
+      margin-top: 8px;
+      padding: 8px 10px;
+      border-radius: 12px;
       background: rgba(37, 105, 118, 0.08);
       color: #49615e;
-      font-size: 13px;
+      font-size: 12px;
     }
 
     .game-panel {
       margin-bottom: 0;
-      padding: 18px;
+      padding: 14px;
       border: 1px solid rgba(140, 128, 107, 0.18);
       border-radius: 24px;
       background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(251,246,238,0.84));
@@ -696,9 +696,9 @@
     .game-header {
       display: flex;
       justify-content: space-between;
-      gap: 20px;
+      gap: 10px;
       align-items: start;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     .game-header p {
@@ -711,31 +711,31 @@
     .game-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 16px;
+      gap: 10px;
       align-items: stretch;
     }
 
     .game-card {
-      padding: 14px;
-      border-radius: 18px;
+      padding: 10px;
+      border-radius: 16px;
       border: 1px solid rgba(122, 112, 94, 0.14);
       background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,244,238,0.84));
     }
 
     .game-controls {
       display: grid;
-      gap: 14px;
+      gap: 10px;
     }
 
     .control-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
     }
 
     .control-row label {
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -743,9 +743,9 @@
     }
 
     .control-row select {
-      min-width: 180px;
+      min-width: 150px;
       border: 1px solid rgba(32, 76, 89, 0.14);
-      padding: 10px 14px;
+      padding: 8px 12px;
       border-radius: 999px;
       background: rgba(255,255,255,0.92);
       color: #1f4b59;
@@ -754,16 +754,16 @@
 
     .game-buttons {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .game-buttons button {
       border: none;
       border-radius: 999px;
-      padding: 11px 16px;
+      padding: 8px 12px;
       font: inherit;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -788,8 +788,8 @@
     }
 
     .target-box {
-      padding: 14px;
-      border-radius: 16px;
+      padding: 10px;
+      border-radius: 14px;
       background: rgba(23,49,61,0.96);
       color: #fff8ef;
     }
@@ -802,8 +802,8 @@
 
     .target-label {
       display: block;
-      margin-bottom: 8px;
-      font-size: 11px;
+      margin-bottom: 6px;
+      font-size: 10px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       opacity: 0.72;
@@ -812,43 +812,43 @@
     .target-value {
       display: block;
       font-family: "Avenir Next Condensed", "Avenir Next", sans-serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-size: clamp(1.45rem, 3vw, 2rem);
       line-height: 0.95;
       letter-spacing: -0.04em;
     }
 
     .target-sub {
       display: block;
-      margin-top: 8px;
-      font-size: 0.95rem;
+      margin-top: 6px;
+      font-size: 0.82rem;
       opacity: 0.85;
     }
 
     .score-strip {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 16px;
+      gap: 8px;
+      margin-top: 10px;
     }
 
     .score-stat {
-      padding: 12px;
-      border-radius: 14px;
+      padding: 9px;
+      border-radius: 12px;
       background: rgba(255,255,255,0.84);
       border: 1px solid rgba(122, 112, 94, 0.12);
     }
 
     .score-stat .value {
       display: block;
-      font-size: 1.4rem;
+      font-size: 1rem;
       font-weight: 700;
       line-height: 1.1;
     }
 
     .score-stat .label {
       display: block;
-      margin-top: 6px;
-      font-size: 11px;
+      margin-top: 4px;
+      font-size: 10px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #6f7873;
@@ -856,8 +856,8 @@
 
     .progress-track {
       position: relative;
-      height: 12px;
-      margin-top: 16px;
+      height: 8px;
+      margin-top: 10px;
       border-radius: 999px;
       overflow: hidden;
       background: rgba(26, 72, 81, 0.12);
@@ -873,18 +873,18 @@
     }
 
     .game-status {
-      margin-top: 14px;
-      padding: 12px 14px;
-      border-radius: 16px;
+      margin-top: 8px;
+      padding: 8px 10px;
+      border-radius: 12px;
       background: rgba(37, 105, 118, 0.08);
       color: #49615e;
-      font-size: 14px;
+      font-size: 12px;
     }
 
     .game-results {
-      margin-top: 16px;
-      padding: 16px;
-      border-radius: 18px;
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 14px;
       background: rgba(255,255,255,0.82);
       border: 1px solid rgba(122, 112, 94, 0.12);
     }
@@ -898,10 +898,10 @@
       top: 10px;
       z-index: 12;
       display: grid;
-      grid-template-columns: minmax(340px, 1.15fr) minmax(320px, 1fr) minmax(320px, 1fr);
-      gap: 16px;
+      grid-template-columns: minmax(420px, 1.45fr) minmax(310px, 1fr) minmax(310px, 1fr);
+      gap: 10px;
       align-items: start;
-      margin-bottom: 18px;
+      margin-bottom: 10px;
     }
 
     .practice-main {
@@ -911,7 +911,7 @@
     .practice-sidebar .tempo-panel,
     .practice-sidebar .tool-panel,
     .practice-sidebar .game-panel {
-      padding: 18px;
+      padding: 12px;
       min-height: 100%;
     }
 
