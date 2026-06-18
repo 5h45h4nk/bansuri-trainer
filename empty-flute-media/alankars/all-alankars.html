@@ -6,20 +6,23 @@
   <title>All Alankars</title>
   <style>
     :root {
-      --bg-1: #f3ead9;
-      --bg-2: #e5d4ba;
-      --ink: #1d2228;
-      --muted: #5e645d;
-      --line: #d5d8dc;
-      --panel: rgba(255, 250, 242, 0.8);
-      --panel-strong: rgba(255, 253, 248, 0.94);
-      --panel-dark: #17313d;
-      --accent: #dff0ee;
-      --accent-strong: #2f7f7a;
-      --gold: #f3bf4c;
-      --gold-deep: #d58c17;
-      --shadow: 0 20px 50px rgba(57, 39, 10, 0.11);
-      --shadow-soft: 0 12px 30px rgba(47, 36, 17, 0.08);
+      --bg-1: #05070a;
+      --bg-2: #10141a;
+      --bg-3: #171c24;
+      --ink: #f4f7fb;
+      --muted: #8e9aa8;
+      --line: rgba(255, 255, 255, 0.08);
+      --panel: rgba(17, 23, 31, 0.78);
+      --panel-strong: rgba(20, 27, 36, 0.92);
+      --panel-soft: rgba(255, 255, 255, 0.04);
+      --panel-dark: #0b0f14;
+      --accent: #7af7ff;
+      --accent-strong: #4de0e8;
+      --accent-warm: #f6f7f8;
+      --gold: #d7f9ff;
+      --gold-deep: #97f4ff;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+      --shadow-soft: 0 16px 32px rgba(0, 0, 0, 0.22);
     }
 
     * {
@@ -28,41 +31,44 @@
 
     body {
       margin: 0;
-      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      font-family: "SF Pro Display", "Avenir Next", "Segoe UI", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(255, 244, 201, 0.65), transparent 28%),
-        radial-gradient(circle at 85% 12%, rgba(154, 212, 207, 0.33), transparent 24%),
-        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+        radial-gradient(circle at 12% 10%, rgba(79, 224, 232, 0.2), transparent 24%),
+        radial-gradient(circle at 88% 8%, rgba(255, 255, 255, 0.08), transparent 18%),
+        radial-gradient(circle at 50% 120%, rgba(77, 224, 232, 0.12), transparent 30%),
+        linear-gradient(145deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
       min-height: 100vh;
+      letter-spacing: 0.01em;
     }
 
     main {
-      width: min(1680px, calc(100vw - 24px));
+      width: min(1780px, calc(100vw - 24px));
       margin: 0 auto;
-      padding: 16px 10px 30px;
+      padding: 12px 10px 34px;
     }
 
     h1 {
       margin: 0;
-      font-family: "Baskerville", "Iowan Old Style", serif;
-      font-size: clamp(2.6rem, 6vw, 4.9rem);
-      line-height: 0.94;
-      letter-spacing: -0.03em;
+      font-family: "SF Pro Display", "Avenir Next", "Segoe UI", sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5.25rem);
+      line-height: 0.9;
+      letter-spacing: -0.055em;
+      font-weight: 650;
     }
 
     .hero {
       position: relative;
       overflow: hidden;
       margin-bottom: 16px;
-      padding: 18px 20px;
-      border: 1px solid rgba(116, 98, 64, 0.18);
-      border-radius: 24px;
+      padding: 24px 26px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 32px;
       background:
-        linear-gradient(135deg, rgba(255,255,255,0.86), rgba(255,248,238,0.72)),
-        linear-gradient(160deg, rgba(43, 96, 100, 0.06), rgba(240, 178, 58, 0.06));
+        linear-gradient(180deg, rgba(19, 25, 33, 0.92), rgba(9, 12, 17, 0.96)),
+        linear-gradient(135deg, rgba(78, 219, 227, 0.08), rgba(255, 255, 255, 0.02));
       box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(22px);
     }
 
     .hero::before,
@@ -74,19 +80,19 @@
     }
 
     .hero::before {
-      width: 220px;
-      height: 220px;
-      right: -50px;
-      top: -70px;
-      background: radial-gradient(circle, rgba(64, 160, 154, 0.16), transparent 68%);
+      width: 380px;
+      height: 380px;
+      right: -110px;
+      top: -170px;
+      background: radial-gradient(circle, rgba(77, 224, 232, 0.22), transparent 72%);
     }
 
     .hero::after {
-      width: 260px;
-      height: 260px;
-      left: -80px;
-      bottom: -110px;
-      background: radial-gradient(circle, rgba(243, 191, 76, 0.16), transparent 68%);
+      width: 300px;
+      height: 300px;
+      left: -90px;
+      bottom: -130px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.12), transparent 72%);
     }
 
     .hero-grid {
@@ -102,23 +108,25 @@
       align-items: center;
       gap: 8px;
       margin-bottom: 10px;
-      padding: 7px 10px;
+      padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(28, 96, 112, 0.08);
-      color: #215160;
-      font-size: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #cfeef2;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
     }
 
     .intro {
       max-width: 58ch;
       margin: 12px 0 0;
       font-size: 15px;
-      line-height: 1.5;
+      line-height: 1.65;
       color: var(--muted);
-      font-family: "Baskerville", "Palatino Linotype", serif;
+      font-family: "SF Pro Text", "Avenir Next", "Segoe UI", sans-serif;
     }
 
     .hero-copy {
@@ -133,16 +141,18 @@
     }
 
     .hero-card {
-      padding: 14px;
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(248,243,235,0.8));
-      border: 1px solid rgba(111, 98, 83, 0.12);
+      padding: 16px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: var(--shadow-soft);
+      color: #f4f7fb;
+      backdrop-filter: blur(18px);
     }
 
     .hero-card.dark {
-      background: linear-gradient(165deg, rgba(23,49,61,0.98), rgba(33,74,91,0.95));
-      color: #f7f0e8;
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
+      color: #f7fbff;
     }
 
     .hero-card h2,
@@ -159,23 +169,24 @@
     }
 
     .stat {
-      padding: 12px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.7);
-      border: 1px solid rgba(145, 129, 102, 0.14);
+      padding: 14px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(10px);
     }
 
     .dark .stat {
-      background: rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.05);
       border-color: rgba(255,255,255,0.08);
     }
 
     .stat .value {
       display: block;
-      font-size: 1.35rem;
+      font-size: 1.55rem;
       line-height: 1;
       font-weight: 700;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
     }
 
     .stat .label {
@@ -190,25 +201,27 @@
 
     .section-label {
       margin: 0 0 8px;
-      font-size: 12px;
-      letter-spacing: 0.14em;
+      font-size: 11px;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: #72807d;
+      color: #84a4aa;
     }
 
     .tempo-panel {
       margin: 0;
-      padding: 18px;
-      border: 1px solid rgba(140, 128, 107, 0.18);
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(251,246,238,0.84));
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(17,23,31,0.92), rgba(11,15,20,0.96));
       box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(18px);
     }
 
     .tempo-panel h2 {
       margin: 0 0 8px;
       font-size: 24px;
       letter-spacing: -0.02em;
+      color: #fbfdff;
     }
 
     .tempo-panel p {
@@ -228,9 +241,9 @@
     .tempo-row input[type="range"] {
       flex: 1 1 360px;
       appearance: none;
-      height: 10px;
+      height: 8px;
       border-radius: 999px;
-      background: linear-gradient(90deg, #2b6875 0%, #f0ae2e 100%);
+      background: linear-gradient(90deg, rgba(255,255,255,0.12) 0%, rgba(77,224,232,0.92) 100%);
       outline: none;
     }
 
@@ -239,9 +252,9 @@
       width: 26px;
       height: 26px;
       border-radius: 50%;
-      background: white;
-      border: 3px solid #214e5c;
-      box-shadow: 0 6px 18px rgba(33, 78, 92, 0.2);
+      background: #ffffff;
+      border: 3px solid #0f151c;
+      box-shadow: 0 4px 22px rgba(77, 224, 232, 0.35);
       cursor: pointer;
     }
 
@@ -249,24 +262,25 @@
       width: 26px;
       height: 26px;
       border-radius: 50%;
-      background: white;
-      border: 3px solid #214e5c;
-      box-shadow: 0 6px 18px rgba(33, 78, 92, 0.2);
+      background: #ffffff;
+      border: 3px solid #0f151c;
+      box-shadow: 0 4px 22px rgba(77, 224, 232, 0.35);
       cursor: pointer;
     }
 
     .tempo-readout {
       min-width: 110px;
-      padding: 12px 14px;
-      border-radius: 16px;
-      background: #17313d;
-      color: #f9f4ec;
+      padding: 13px 16px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      color: #f9feff;
       text-align: center;
-      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      font-family: "SF Pro Display", "Avenir Next", "Segoe UI", sans-serif;
       font-size: 15px;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .tempo-presets {
@@ -277,11 +291,11 @@
     }
 
     .tempo-presets button {
-      border: 1px solid rgba(38, 76, 88, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 999px;
       padding: 9px 12px;
-      background: rgba(255,255,255,0.85);
-      color: #204c59;
+      background: rgba(255,255,255,0.05);
+      color: #d8edf0;
       font: inherit;
       font-size: 13px;
       font-weight: 700;
@@ -293,21 +307,22 @@
     .tempo-presets button:hover,
     .player-controls button:hover {
       transform: translateY(-1px);
-      box-shadow: 0 10px 18px rgba(46, 68, 74, 0.12);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.26);
     }
 
     .tempo-presets button.active {
-      background: #17313d;
-      color: #fff8ef;
-      border-color: #17313d;
+      background: linear-gradient(180deg, rgba(94,239,247,0.22), rgba(72,217,226,0.12));
+      color: #edfeff;
+      border-color: rgba(101, 237, 245, 0.48);
+      box-shadow: inset 0 0 0 1px rgba(111, 244, 255, 0.16), 0 0 26px rgba(77, 224, 232, 0.16);
     }
 
     .metronome-panel {
       margin-top: 16px;
       padding: 16px;
-      border-radius: 20px;
-      background: linear-gradient(180deg, rgba(23,49,61,0.08), rgba(255,255,255,0.78));
-      border: 1px solid rgba(91, 106, 112, 0.14);
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .metronome-head {
@@ -322,7 +337,7 @@
       font-size: 15px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: #1d4957;
+      color: #dcf8fb;
     }
 
     .metronome-toggle {
@@ -331,7 +346,7 @@
       gap: 8px;
       font-size: 13px;
       font-weight: 700;
-      color: #31525d;
+      color: #aac8cf;
     }
 
     .metronome-toggle input {
@@ -352,7 +367,7 @@
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #6a736f;
+      color: #7f98a1;
     }
 
     .metronome-grid select,
@@ -362,11 +377,11 @@
 
     .metronome-grid select {
       padding: 10px 12px;
-      border: 1px solid rgba(121, 114, 95, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
-      background: rgba(255,255,255,0.88);
+      background: rgba(255,255,255,0.05);
       font: inherit;
-      color: #244754;
+      color: #e4f4f7;
     }
 
     .metronome-volume {
@@ -379,7 +394,7 @@
       min-width: 42px;
       font-size: 13px;
       font-weight: 700;
-      color: #1d4957;
+      color: #cce6ea;
       text-align: right;
     }
 
@@ -394,23 +409,24 @@
       border: none;
       padding: 11px 16px;
       border-radius: 999px;
-      background: linear-gradient(135deg, #235f74, #2f8d87);
-      color: white;
+      background: linear-gradient(180deg, rgba(107,245,255,0.18), rgba(78,220,228,0.12));
+      color: #f6feff;
       font: inherit;
       font-weight: 700;
       cursor: pointer;
+      border: 1px solid rgba(104, 240, 249, 0.34);
     }
 
     .metronome-actions button.stop {
-      background: rgba(23,49,61,0.1);
-      color: #224652;
-      border: 1px solid rgba(35,95,116,0.14);
+      background: rgba(255,255,255,0.04);
+      color: #cfdee2;
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
     .metronome-status {
       margin-top: 10px;
       font-size: 13px;
-      color: #56605c;
+      color: #96a4ac;
     }
 
     .tools-grid {
@@ -927,10 +943,10 @@
     .audio-card {
       margin: 0;
       padding: 18px;
-      border: 1px solid rgba(122, 112, 94, 0.14);
-      border-radius: 20px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,244,238,0.84));
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.55);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
     }
 
     .audio-card strong {
@@ -940,13 +956,13 @@
       font-size: 13px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #60716d;
+      color: #8fa9b2;
     }
 
     audio {
       width: 100%;
       margin-top: 10px;
-      filter: sepia(18%);
+      filter: saturate(0.8) contrast(1.08) brightness(0.94);
     }
 
     .player-controls {
@@ -958,22 +974,24 @@
     }
 
     .player-controls button {
-      border: none;
+      border: 1px solid rgba(115, 244, 252, 0.28);
       border-radius: 999px;
       padding: 11px 16px;
-      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      font-family: "SF Pro Display", "Avenir Next", "Segoe UI", sans-serif;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       cursor: pointer;
-      background: linear-gradient(135deg, #235f74, #2f8d87);
-      color: white;
+      background: linear-gradient(180deg, rgba(100,242,250,0.16), rgba(79,225,233,0.1));
+      color: #f4fdff;
       transition: transform 140ms ease, box-shadow 140ms ease, opacity 140ms ease;
     }
 
     .player-controls button.stop {
-      background: linear-gradient(135deg, #9b5e44, #7b4636);
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.08);
+      color: #d8e1e6;
     }
 
     .player-controls button:disabled {
@@ -988,9 +1006,10 @@
       margin-top: 10px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(37, 105, 118, 0.08);
+      background: rgba(255,255,255,0.05);
       font-size: 13px;
-      color: #49615e;
+      color: #a6bac1;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .player-status::before {
@@ -998,8 +1017,8 @@
       width: 9px;
       height: 9px;
       border-radius: 50%;
-      background: #8ca8a3;
-      box-shadow: 0 0 0 4px rgba(140, 168, 163, 0.18);
+      background: #6ce8f1;
+      box-shadow: 0 0 0 4px rgba(108, 232, 241, 0.16);
     }
 
     .page-header {
@@ -1024,11 +1043,12 @@
       position: relative;
       page-break-after: always;
       break-after: page;
-      padding: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(251,246,238,0.84));
-      border: 1px solid rgba(140, 128, 107, 0.16);
-      border-radius: 28px;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(19,25,33,0.95), rgba(11,15,20,0.98));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 30px;
       box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(16px);
     }
 
     .page:last-child {
@@ -1039,7 +1059,8 @@
     h2 {
       margin: 0 0 8px;
       font-size: clamp(1.8rem, 3vw, 2.4rem);
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
+      font-weight: 650;
     }
 
     .subtitle {
@@ -1063,12 +1084,13 @@
       gap: 8px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(32, 88, 97, 0.07);
-      color: #355862;
+      background: rgba(255,255,255,0.05);
+      color: #cbe5ea;
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     table {
@@ -1076,12 +1098,12 @@
       border-collapse: collapse;
       table-layout: fixed;
       margin: 0;
-      font-family: "Avenir Next Condensed", "Avenir Next", sans-serif;
+      font-family: "SF Pro Display", "Avenir Next Condensed", "Avenir Next", sans-serif;
       font-size: 22px;
-      background: rgba(255,255,255,0.92);
-      border-radius: 20px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: inset 0 0 0 1px rgba(213, 216, 220, 0.9);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
     }
 
     td, th {
@@ -1090,34 +1112,35 @@
       padding: 10px 4px;
       height: 54px;
       transition: background-color 120ms ease, box-shadow 120ms ease, color 120ms ease;
+      color: #f3f7fc;
     }
 
     th.label, td.label {
       width: 7%;
       font-weight: 700;
-      background: linear-gradient(180deg, #e7f4f1, #d7ece8);
-      color: #24555f;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      color: #bceef5;
     }
 
     .group-head {
-      background: linear-gradient(180deg, #faf4e7, #f0e4cb);
+      background: linear-gradient(180deg, rgba(108,232,241,0.12), rgba(108,232,241,0.05));
       font-size: 12px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      font-family: "Avenir Next", "Segoe UI", sans-serif;
-      color: #655b4e;
+      font-family: "SF Pro Display", "Avenir Next", "Segoe UI", sans-serif;
+      color: #b9ecf2;
     }
 
 
     .sequence {
-      font-family: "Avenir Next Condensed", "Avenir Next", sans-serif;
+      font-family: "SF Pro Display", "Avenir Next Condensed", "Avenir Next", sans-serif;
       font-size: 28px;
       line-height: 1.7;
-      background: rgba(255,255,255,0.92);
+      background: rgba(255,255,255,0.04);
       border: 1px solid var(--line);
       padding: 22px;
-      border-radius: 22px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+      border-radius: 24px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
     }
 
     .sequence-line {
@@ -1137,47 +1160,156 @@
     }
 
     .is-current {
-      background: linear-gradient(180deg, #ffe7a4, #ffd264);
-      color: #2e2300;
-      box-shadow: inset 0 0 0 2px #f2b400, 0 10px 18px rgba(233, 175, 15, 0.18);
+      background: linear-gradient(180deg, rgba(115,246,255,0.25), rgba(115,246,255,0.12));
+      color: #f7feff;
+      box-shadow: inset 0 0 0 2px rgba(110, 245, 255, 0.46), 0 0 22px rgba(77, 224, 232, 0.18);
       transform: translateY(-1px);
     }
 
     .note-correct {
-      background: linear-gradient(180deg, #d8f4e8, #b8ebd4);
-      color: #144c33;
-      box-shadow: inset 0 0 0 2px rgba(34, 126, 81, 0.18);
+      background: linear-gradient(180deg, rgba(107,245,255,0.2), rgba(107,245,255,0.08));
+      color: #effdff;
+      box-shadow: inset 0 0 0 2px rgba(111, 244, 255, 0.22);
     }
 
     .note-close {
-      background: linear-gradient(180deg, #fff0bf, #ffe19a);
-      color: #5e4300;
-      box-shadow: inset 0 0 0 2px rgba(212, 155, 32, 0.2);
+      background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+      color: #fcfeff;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.12);
     }
 
     .note-missed {
-      background: linear-gradient(180deg, #f7d8d0, #f0bbb0);
-      color: #69261f;
-      box-shadow: inset 0 0 0 2px rgba(152, 70, 58, 0.16);
+      background: linear-gradient(180deg, rgba(255,77,109,0.18), rgba(255,77,109,0.08));
+      color: #ffecef;
+      box-shadow: inset 0 0 0 2px rgba(255, 96, 126, 0.18);
     }
 
     .page.is-playing {
-      border-color: rgba(47, 127, 122, 0.38);
-      box-shadow: 0 18px 40px rgba(31, 100, 106, 0.12);
+      border-color: rgba(111, 244, 255, 0.34);
+      box-shadow: 0 18px 40px rgba(23, 183, 204, 0.12);
     }
 
     .page.is-playing .player-status {
-      background: rgba(39, 124, 117, 0.12);
-      color: #235953;
+      background: rgba(104, 240, 249, 0.12);
+      color: #dffbff;
     }
 
     .page.is-playing .player-status::before {
-      background: #2f8d87;
-      box-shadow: 0 0 0 4px rgba(47, 141, 135, 0.18);
+      background: #6ce8f1;
+      box-shadow: 0 0 0 4px rgba(108, 232, 241, 0.16);
     }
 
     .page.is-playing .page-title h2 {
-      color: #204f58;
+      color: #f7fdff;
+    }
+
+    .tool-panel,
+    .game-panel,
+    .game-card,
+    .tuner-main,
+    .tuner-meter-card,
+    .tuner-stat,
+    .score-stat,
+    .target-box,
+    .game-results,
+    .game-status {
+      background: linear-gradient(180deg, rgba(17,23,31,0.92), rgba(11,15,20,0.96));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--ink);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(18px);
+    }
+
+    .tool-panel,
+    .game-panel,
+    .game-card {
+      border-radius: 28px;
+    }
+
+    .tool-panel h2,
+    .game-panel h2,
+    .page-title h2,
+    .tuner-note,
+    .tuner-swara,
+    .target-value,
+    .score-stat .value,
+    .tuner-stat .value {
+      color: #f9fdff;
+      font-family: "SF Pro Display", "Avenir Next", "Segoe UI", sans-serif;
+      letter-spacing: -0.04em;
+    }
+
+    .tuner-status,
+    .game-status,
+    .game-results,
+    .subtitle,
+    .tool-panel p,
+    .game-header p,
+    .tuner-swara-name,
+    .tuner-sub,
+    .score-stat .label,
+    .tuner-stat .label,
+    .target-label,
+    .target-sub {
+      color: var(--muted);
+    }
+
+    .meter,
+    .progress-track {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .progress-fill,
+    .meter-needle {
+      background: linear-gradient(90deg, #effcff, #79f5ff);
+      box-shadow: 0 0 18px rgba(121, 245, 255, 0.28);
+    }
+
+    .control-row select,
+    .select-wrap select,
+    .metronome-grid select {
+      appearance: none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, #dff8fb 50%),
+        linear-gradient(135deg, #dff8fb 50%, transparent 50%);
+      background-position:
+        calc(100% - 18px) calc(50% - 3px),
+        calc(100% - 12px) calc(50% - 3px);
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+    }
+
+    .tuner-actions button,
+    .game-buttons button {
+      border: 1px solid rgba(115, 244, 252, 0.28);
+      background: linear-gradient(180deg, rgba(100,242,250,0.16), rgba(79,225,233,0.1));
+      color: #f4fdff;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+    }
+
+    .tuner-actions button.stop,
+    .game-buttons button.stop {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.08);
+      color: #d6e2e6;
+    }
+
+    .swara-chip,
+    .target-box.secondary,
+    .tuner-stat,
+    .score-stat {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.06);
+    }
+
+    .practice-sidebar::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .practice-sidebar::-webkit-scrollbar-thumb {
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
     }
 
     @media (min-width: 981px) {
@@ -1391,7 +1523,7 @@
     <section class="hero">
       <div class="hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow">Empty Flute Practice Studio</div>
+          <div class="eyebrow">Bansuri Performance Console</div>
           <h1>All Alankars</h1>
           <p class="intro">A focused practice view for all digitized alankars, with live bansuri-style playback, tempo shaping, and note-following. Taar Sa is written as <strong>S'</strong>, and each exercise can be practiced interactively or compared against the fixed reference recording.</p>
         </div>
@@ -1400,7 +1532,7 @@
             <p class="section-label">Session Snapshot</p>
             <div class="stat-row">
               <div class="stat">
-                <span class="value">3</span>
+                <span class="value">27</span>
                 <span class="label">Alankars</span>
               </div>
               <div class="stat">
