@@ -1008,7 +1008,9 @@
     }
 
     .practice-sidebar .game-grid {
-      gap: 8px;
+      gap: 6px;
+      grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
+      align-items: start;
     }
 
     .practice-sidebar .game-card {
@@ -1016,10 +1018,91 @@
       border-radius: 12px;
     }
 
+    .practice-sidebar .game-controls {
+      gap: 6px;
+    }
+
+    .practice-sidebar .control-row {
+      gap: 6px;
+    }
+
+    .practice-sidebar .control-row select {
+      min-width: 120px;
+      padding: 7px 10px;
+    }
+
+    .practice-sidebar .game-buttons button {
+      padding: 7px 10px;
+      font-size: 11px;
+    }
+
+    .practice-sidebar .progress-track {
+      height: 6px;
+    }
+
+    .practice-sidebar .game-target {
+      gap: 6px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .practice-sidebar .score-strip {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+
     .practice-sidebar .tuner-main,
     .practice-sidebar .tuner-meter-card {
       padding: 8px;
       border-radius: 12px;
+    }
+
+    .practice-sidebar .tuner-display {
+      grid-template-columns: minmax(0, 1.25fr) minmax(180px, 0.8fr);
+      gap: 8px;
+      align-items: start;
+    }
+
+    .practice-sidebar .tuner-main {
+      display: grid;
+      gap: 6px;
+      align-content: start;
+    }
+
+    .practice-sidebar .tuner-primary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 140px;
+      gap: 8px;
+      align-items: stretch;
+      min-height: 72px;
+    }
+
+    .practice-sidebar .tuner-meter-card {
+      align-self: stretch;
+    }
+
+    .practice-sidebar .tuner-sub {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 20px;
+      flex-wrap: wrap;
+    }
+
+    .practice-sidebar .select-wrap,
+    .practice-sidebar .tuner-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .practice-sidebar .tuner-status {
+      min-height: auto;
+    }
+
+    .practice-sidebar .swara-chip,
+    .practice-sidebar .tuner-swara-name {
+      display: none;
     }
 
     .practice-sidebar .target-box,
@@ -1037,6 +1120,7 @@
 
     .practice-sidebar .tuner-note {
       font-size: clamp(1.6rem, 2.3vw, 2rem);
+      align-self: center;
     }
 
     .practice-sidebar .tuner-swara {
@@ -1048,21 +1132,25 @@
       gap: 6px;
     }
 
-    .practice-sidebar .tuner-display {
-      grid-template-columns: 1fr;
-      gap: 12px;
+    .practice-sidebar .target-sub {
+      font-size: 0.74rem;
+      margin-top: 4px;
+      line-height: 1.28;
+      word-break: break-word;
     }
 
-    .practice-sidebar .tuner-primary {
-      grid-template-columns: minmax(0, 1fr) minmax(136px, 0.68fr);
+    .practice-sidebar .score-stat .label,
+    .practice-sidebar .target-label {
+      line-height: 1.2;
+      word-break: break-word;
+    }
+
+    .practice-sidebar .game-results {
+      display: none;
     }
 
     .practice-sidebar .stat-row {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .practice-sidebar .score-strip {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .tip-panel {
@@ -1893,7 +1981,9 @@
           </div>
           <div class="game-buttons">
             <button type="button" id="startGame">Start Game</button>
+            <button type="button" id="startPractice">Start Practice</button>
             <button type="button" id="stopGame" class="stop">Stop Game</button>
+            <button type="button" id="stopPractice" class="stop">Stop Practice</button>
           </div>
           <div class="progress-track" aria-hidden="true">
             <div class="progress-fill" id="gameProgress"></div>
@@ -1939,6 +2029,47 @@
       </aside>
       <section class="practice-main">
     <div class="section-stack">
+    <section class="page" data-alankar="sargam-loop">
+      <div class="page-header">
+        <div class="page-title">
+          <h2>Sargam Practice</h2>
+          <p class="subtitle">Continuous warm-up loop for steady swara practice before the alankars.</p>
+          <div class="meta-strip">
+            <span class="meta-pill">Looping Warm-up</span>
+            <span class="meta-pill">16 Notes</span>
+            <span class="meta-pill">Ascend + Descend</span>
+          </div>
+        </div>
+        <div class="audio-card page-audio">
+          <strong>Play Sargam Loop</strong>
+          <div class="player-controls">
+            <button type="button" data-play="sargam-loop">Live Play</button>
+            <button type="button" class="stop" data-stop="sargam-loop">Stop</button>
+          </div>
+          <div class="player-status" id="status-sargam-loop">Ready at 120 BPM</div>
+        </div>
+      </div>
+      <div class="sequence" data-sequence-id="sargam-loop">
+        <div class="sequence-line">
+          <span class="note-token">S</span>
+          <span class="note-token">R</span>
+          <span class="note-token">G</span>
+          <span class="note-token">M</span>
+          <span class="note-token">P</span>
+          <span class="note-token">D</span>
+          <span class="note-token">N</span>
+          <span class="note-token">S'</span>
+          <span class="note-token">S'</span>
+          <span class="note-token">N</span>
+          <span class="note-token">D</span>
+          <span class="note-token">P</span>
+          <span class="note-token">M</span>
+          <span class="note-token">G</span>
+          <span class="note-token">R</span>
+          <span class="note-token">S</span>
+        </div>
+      </div>
+    </section>
     <div id="generatedAlankars"></div>
     <section class="page" data-alankar="25">
       <div class="page-header">
@@ -2244,6 +2375,7 @@
     };
 
     const sequences = {
+      "sargam-loop": ["S","R","G","M","P","D","N","S'","S'","N","D","P","M","G","R","S"],
       "25": [
         "S","S","R","S","S","R","S","R","S","S","R","R","G","G","M","M",
         "R","R","G","R","R","G","R","G","R","R","G","G","M","M","P","P",
@@ -2281,6 +2413,7 @@
         "M","M","G","G","R","R","S","S"
       ]
     };
+    const LOOP_SEQUENCE_IDS = new Set(["sargam-loop"]);
 
     const SAMPLE_CANDIDATES = {
       "S": [
@@ -2450,7 +2583,9 @@
     const saRootSelect = document.getElementById("saRoot");
     const gameAlankarSelect = document.getElementById("gameAlankar");
     const startGameButton = document.getElementById("startGame");
+    const startPracticeButton = document.getElementById("startPractice");
     const stopGameButton = document.getElementById("stopGame");
+    const stopPracticeButton = document.getElementById("stopPractice");
     const metronomeEnabledInput = document.getElementById("metronomeEnabled");
     const metronomeAccentSelect = document.getElementById("metronomeAccent");
     const metronomeVolumeInput = document.getElementById("metronomeVolume");
@@ -2501,23 +2636,27 @@
     let weakFrameCount = 0;
     let currentDetection = null;
     let activeGame = null;
+    let activePractice = null;
     let metronomePreviewTimeout = null;
     let metronomePreviewBeat = 0;
 
     const NOTE_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-    const SWARA_NAMES = ["S", "r", "R", "g", "G", "M", "m", "P", "d", "D", "n", "N"];
+    const NATURAL_SWARA_INTERVALS = [
+      { interval: 0, swara: "S" },
+      { interval: 2, swara: "R" },
+      { interval: 4, swara: "G" },
+      { interval: 5, swara: "M" },
+      { interval: 7, swara: "P" },
+      { interval: 9, swara: "D" },
+      { interval: 11, swara: "N" }
+    ];
     const SWARA_FULL_NAMES = {
       "S": "Sa",
-      "r": "Komal Re",
       "R": "Re",
-      "g": "Komal Ga",
       "G": "Ga",
       "M": "Ma",
-      "m": "Tivra Ma",
       "P": "Pa",
-      "d": "Komal Dha",
       "D": "Dha",
-      "n": "Komal Ni",
       "N": "Ni"
     };
 
@@ -2540,7 +2679,51 @@
       const saRoot = Number(saRootSelect.value);
       const rounded = Math.round(midi);
       const interval = ((rounded - saRoot) % 12 + 12) % 12;
-      return SWARA_NAMES[interval] || "--";
+      const closest = NATURAL_SWARA_INTERVALS.reduce((best, candidate) => {
+        const bestDistance = Math.min(
+          Math.abs(interval - best.interval),
+          12 - Math.abs(interval - best.interval)
+        );
+        const candidateDistance = Math.min(
+          Math.abs(interval - candidate.interval),
+          12 - Math.abs(interval - candidate.interval)
+        );
+        return candidateDistance < bestDistance ? candidate : best;
+      }, NATURAL_SWARA_INTERVALS[0]);
+      return closest?.swara || "--";
+    }
+
+    function swaraDisplayFromMidi(midi) {
+      const baseSwara = swaraFromMidi(midi);
+      if (baseSwara === "--") return "--";
+      const saRoot = Number(saRootSelect.value);
+      const rounded = Math.round(midi);
+      const displayAnchor = saRoot + 12;
+      const octaveOffset = Math.floor((rounded - displayAnchor) / 12);
+      if (octaveOffset < 0) {
+        return baseSwara === "S" ? "Ș" : baseSwara;
+      }
+      if (octaveOffset > 0) {
+        return `${baseSwara}${"'".repeat(octaveOffset)}`;
+      }
+      return baseSwara;
+    }
+
+    function swaraLongFromDisplay(swaraDisplay) {
+      if (!swaraDisplay || swaraDisplay === "--") return "--";
+      const normalizedDisplay = swaraDisplay === "Ș" ? "S" : swaraDisplay;
+      const baseSwara = normalizedDisplay.replace(/'+$/g, "");
+      const octaveMarks = (swaraDisplay.match(/'/g) || []).length;
+      const baseName = SWARA_FULL_NAMES[baseSwara] || "--";
+      if (swaraDisplay === "Ș") return `Mandra ${baseName}`;
+      if (octaveMarks === 0) return baseName;
+      if (octaveMarks === 1) return `Taar ${baseName}`;
+      return `Ati Taar ${baseName}`;
+    }
+
+    function swaraClassFromDisplay(swaraDisplay) {
+      if (!swaraDisplay || swaraDisplay === "--") return "--";
+      return swaraDisplay.replace("Ș", "S").replace(/'+$/g, "");
     }
 
     function ensureAudioContext() {
@@ -2894,14 +3077,16 @@
     }
 
     function updateTunerDisplay(frequency, clarity) {
-      const midi = normalizeOctave(freqToMidi(frequency));
-      const roundedMidi = Math.round(midi);
-      lastDetectedMidi = roundedMidi;
-      const cents = Math.round((midi - roundedMidi) * 100);
+      const rawMidi = freqToMidi(frequency);
+      const rawRoundedMidi = Math.round(rawMidi);
+      const normalizedMidi = normalizeOctave(rawMidi);
+      const normalizedRoundedMidi = Math.round(normalizedMidi);
+      lastDetectedMidi = normalizedRoundedMidi;
+      const cents = Math.round((rawMidi - rawRoundedMidi) * 100);
       const absCents = Math.abs(cents);
-      const noteName = formatConcertNote(roundedMidi);
-      const swara = swaraFromMidi(roundedMidi);
-      const swaraLong = SWARA_FULL_NAMES[swara] || "--";
+      const noteName = formatConcertNote(rawRoundedMidi);
+      const swara = swaraDisplayFromMidi(rawRoundedMidi);
+      const swaraLong = swaraLongFromDisplay(swara);
       const needlePct = 50 + Math.max(-50, Math.min(50, cents)) * 0.9;
 
       detectedNote.textContent = noteName;
@@ -2917,7 +3102,8 @@
       tunerStatus.textContent = `Listening... ${clarity > 0.75 ? "stable note detected" : "finding a steadier pitch"}.`;
       currentDetection = {
         frequency,
-        midi: roundedMidi,
+        midi: normalizedRoundedMidi,
+        rawMidi: rawRoundedMidi,
         swara,
         swaraLong,
         noteName,
@@ -2943,8 +3129,18 @@
       }
     }
 
+    function resetPracticeProgress(id) {
+      clearNoteResults(id);
+      clearHighlight(id);
+      resetGameUI();
+    }
+
     function swaraMatches(targetNote, detectedSwara) {
-      return swaraFromMidi(NOTE_TO_MIDI[targetNote]) === detectedSwara;
+      return swaraDisplayFromMidi(NOTE_TO_MIDI[targetNote]) === detectedSwara;
+    }
+
+    function practiceSwaraMatches(targetNote, detectedSwara) {
+      return swaraClassFromDisplay(swaraDisplayFromMidi(NOTE_TO_MIDI[targetNote])) === swaraClassFromDisplay(detectedSwara);
     }
 
     function scoreAttempt(targetNote, attempt) {
@@ -2953,20 +3149,28 @@
       }
 
       const targetMidi = NOTE_TO_MIDI[targetNote];
-      const targetSwaraValue = swaraFromMidi(targetMidi);
+      const targetSwaraValue = swaraDisplayFromMidi(targetMidi);
       const swaraOk = attempt.swara === targetSwaraValue;
-      const centsError = Math.abs(freqToMidi(attempt.frequency) - targetMidi) * 100;
+      const attemptMidi = freqToMidi(attempt.frequency);
+      const candidateTargets = [targetMidi - 12, targetMidi, targetMidi + 12];
+      const normalizedTargetMidi = candidateTargets.reduce((best, candidate) => (
+        Math.abs(candidate - attemptMidi) < Math.abs(best - attemptMidi) ? candidate : best
+      ), targetMidi);
+      const centsError = Math.abs(attemptMidi - normalizedTargetMidi) * 100;
 
       if (!swaraOk) {
         return { score: 18, result: "missed", label: "Wrong Swara", cents: centsError };
       }
-      if (centsError <= 12) {
+      if (centsError <= 20) {
         return { score: 100, result: "correct", label: "Great", cents: centsError };
       }
-      if (centsError <= 28) {
-        return { score: 82, result: "correct", label: "Good", cents: centsError };
+      if (centsError <= 40) {
+        return { score: 92, result: "correct", label: "Good", cents: centsError };
       }
-      return { score: 62, result: "close", label: "Close", cents: centsError };
+      if (centsError <= 65) {
+        return { score: 78, result: "close", label: "Close", cents: centsError };
+      }
+      return { score: 72, result: "close", label: "Swara Right", cents: centsError };
     }
 
     function applyNoteResult(id, index, result) {
@@ -2993,6 +3197,22 @@
       }
     }
 
+    function stopPractice(message = "Practice stopped.") {
+      if (!activePractice) {
+        gameStatus.textContent = message;
+        return;
+      }
+      activePractice.cancelled = true;
+      activePractice.timeouts.forEach((timeoutId) => clearTimeout(timeoutId));
+      clearHighlight(activePractice.id);
+      activePractice = null;
+      startPracticeButton.disabled = false;
+      stopPracticeButton.disabled = true;
+      startGameButton.disabled = false;
+      stopGameButton.disabled = true;
+      gameStatus.textContent = message;
+    }
+
     function finishGame(run) {
       if (activeGame !== run) return;
       clearHighlight(run.id);
@@ -3016,6 +3236,78 @@
       }
     }
 
+    function updatePracticeTarget(run) {
+      const note = run.notes[run.noteIndex];
+      const targetMidiValue = NOTE_TO_MIDI[note];
+      targetSwara.textContent = swaraDisplayFromMidi(targetMidiValue);
+      targetConcert.textContent = `${formatConcertNote(targetMidiValue)} • note ${run.noteIndex + 1} of ${run.notes.length}`;
+      gameNoteCount.textContent = `${run.noteIndex + 1} / ${run.notes.length}`;
+      gameProgress.style.width = `${(run.noteIndex / run.notes.length) * 100}%`;
+      highlightNote(run.id, run.noteIndex);
+    }
+
+    function finishPractice(run) {
+      if (activePractice !== run) return;
+      clearHighlight(run.id);
+      activePractice = null;
+      startPracticeButton.disabled = false;
+      stopPracticeButton.disabled = true;
+      startGameButton.disabled = false;
+      stopGameButton.disabled = true;
+      gameProgress.style.width = "100%";
+      gameStatus.textContent = `Finished self-paced practice for ${run.label}.`;
+      gameResults.textContent = `Completed ${run.notes.length} notes by playing each one in order.`;
+    }
+
+    function runSelfPacedPractice(run) {
+      const step = () => {
+        if (activePractice !== run || run.cancelled) return;
+        if (run.noteIndex >= run.notes.length) {
+          finishPractice(run);
+          return;
+        }
+
+        const detection = currentDetection;
+        const note = run.notes[run.noteIndex];
+        const freshEnough = detection && performance.now() - detection.timestamp < 180;
+        const stableEnough = detection && detection.clarity >= 0.45;
+        const correctNow = freshEnough && stableEnough && practiceSwaraMatches(note, detection.swara);
+        const currentTargetSwara = swaraDisplayFromMidi(NOTE_TO_MIDI[note]);
+
+        if (run.awaitingRetrigger) {
+          const released = !freshEnough || !detection || !practiceSwaraMatches(note, detection.swara);
+          if (released) {
+            run.awaitingRetrigger = false;
+            gameStatus.textContent = `Retrigger detected. Play ${currentTargetSwara} again to continue.`;
+          }
+        } else if (correctNow && detection.timestamp > run.lastAcceptedTimestamp + 120) {
+          applyNoteResult(run.id, run.noteIndex, "correct");
+          run.lastAcceptedTimestamp = detection.timestamp;
+          const matchedSwara = currentTargetSwara;
+          run.noteIndex += 1;
+          const nextNote = run.notes[run.noteIndex] || null;
+          const nextSwara = nextNote ? swaraDisplayFromMidi(NOTE_TO_MIDI[nextNote]) : null;
+          gameStatus.textContent = `Correct: ${matchedSwara}. ${nextSwara ? `Now play ${nextSwara}.` : "Practice complete."}`;
+
+          if (run.noteIndex >= run.notes.length) {
+            finishPractice(run);
+            return;
+          }
+
+          run.awaitingRetrigger = nextSwara === matchedSwara;
+          updatePracticeTarget(run);
+        }
+
+        const timeoutId = window.setTimeout(step, 70);
+        run.timeouts.push(timeoutId);
+      };
+
+      updatePracticeTarget(run);
+      gameResults.textContent = "Self-paced mode active. Each note turns green when you play the correct swara.";
+      gameStatus.textContent = `Play ${targetSwara.textContent} to begin.`;
+      step();
+    }
+
     function runGameplay(run) {
       const evaluateNext = () => {
         if (activeGame !== run || run.cancelled) return;
@@ -3027,7 +3319,7 @@
         const index = run.noteIndex;
         const note = run.notes[index];
         const targetMidiValue = NOTE_TO_MIDI[note];
-        const targetSwaraValue = swaraFromMidi(targetMidiValue);
+        const targetSwaraValue = swaraDisplayFromMidi(targetMidiValue);
         const startWindow = performance.now();
 
         highlightNote(run.id, index);
@@ -3156,6 +3448,39 @@
       };
 
       waitForFirstNote();
+    }
+
+    function startPractice() {
+      const id = gameAlankarSelect.value;
+      const notes = sequences[id];
+
+      stopMetronomePreview("Self-paced practice ignores tempo and metronome.");
+      stopGame("Preparing self-paced practice...");
+      stopPractice("Preparing self-paced practice...");
+      resetPracticeProgress(id);
+
+      if (!tunerStream) {
+        gameStatus.textContent = "Start the mic tuner first, then press Start Practice again.";
+        return;
+      }
+
+      const run = {
+        id,
+        label: `Alankar ${id}`,
+        notes,
+        noteIndex: 0,
+        timeouts: [],
+        cancelled: false,
+        awaitingRetrigger: false,
+        lastAcceptedTimestamp: 0
+      };
+
+      activePractice = run;
+      startPracticeButton.disabled = true;
+      stopPracticeButton.disabled = false;
+      startGameButton.disabled = true;
+      stopGameButton.disabled = true;
+      runSelfPacedPractice(run);
     }
 
     function tunerLoop() {
@@ -3353,14 +3678,15 @@
         ? targetMidi
         : targetMidi + (nextMidi - targetMidi) * (transitionStyle === "meend" ? 0.82 : transitionStyle === "gamak" ? 0.22 : 0);
       const endRate = Math.pow(2, (endTargetMidi - sample.baseMidi) / 12);
-      const attackMs = Math.max(10, Math.min(26, duration * 160));
-      const releaseMs = Math.max(70, Math.min(180, duration * 360));
+      const legatoProfile = getLegatoProfile(duration, { ...options, targetMidi, nextMidi });
+      const attackMs = legatoProfile.attackMs;
+      const releaseMs = Math.round(legatoProfile.releaseSec * 1000);
       const safeDuration = Math.max(0.12, duration);
       const fadeOutStartMs = Math.max(0, safeDuration * 1000 - releaseMs);
-      const startOffset = 0.01;
+      const startOffset = legatoProfile.sustainStart;
       const startDelayMs = Math.max(0, options.startDelayMs ?? 0);
-      const attackFloor = options.attackFloor ?? 0.02;
-      const attackPeak = options.attackPeak ?? 0.92;
+      const attackFloor = options.attackFloor ?? legatoProfile.attackFloor;
+      const attackPeak = options.attackPeak ?? legatoProfile.attackPeak;
 
       audio.preload = "auto";
       audio.playbackRate = Math.max(0.7, Math.min(1.35, startRate));
@@ -3496,6 +3822,43 @@
       return curve;
     }
 
+    function getLegatoProfile(duration, options = {}) {
+      const prevMidi = options.prevMidi ?? null;
+      const nextMidi = options.nextMidi ?? null;
+      const hasPrevious = prevMidi !== null;
+      const sameAsPrevious = hasPrevious && prevMidi === options.targetMidi;
+      const phraseLegato = Math.max(0, Math.min(1, options.phraseLegato ?? 0.5));
+      const speedTightness = Math.max(0, Math.min(1, (0.42 - duration) / 0.22));
+      const melodicMotion = nextMidi === null ? 0 : Math.min(1, Math.abs(nextMidi - options.targetMidi) / 4);
+      const sustainStart = 0.012
+        + (hasPrevious ? 0.02 : 0)
+        + speedTightness * 0.07
+        + phraseLegato * 0.018
+        + (sameAsPrevious ? 0.028 : 0);
+      const attackFloor = hasPrevious
+        ? 0.02 + speedTightness * 0.045 + phraseLegato * 0.01
+        : 0.02 + speedTightness * 0.015;
+      const attackPeak = hasPrevious
+        ? 0.78 - speedTightness * 0.12 + melodicMotion * 0.03 - phraseLegato * 0.05
+        : 0.92 - speedTightness * 0.05;
+      const attackMs = hasPrevious
+        ? 4 + (1 - speedTightness) * 8 - phraseLegato * 1.5
+        : 10 + (1 - speedTightness) * 14;
+      const releaseSec = Math.max(
+        0.075,
+        Math.min(0.28, duration * (0.58 + speedTightness * 0.42 + phraseLegato * 0.16 + (sameAsPrevious ? 0.12 : 0)))
+      );
+
+      return {
+        sustainStart,
+        attackFloor: Math.max(0.0001, Math.min(0.5, attackFloor)),
+        attackPeak: Math.max(0.3, Math.min(0.96, attackPeak)),
+        attackMs,
+        attackSec: attackMs / 1000,
+        releaseSec
+      };
+    }
+
     function playBufferSampleNote(sample, targetMidi, duration, options = {}) {
       const source = audioContext.createBufferSource();
       source.buffer = sample.buffer;
@@ -3522,13 +3885,14 @@
         ? targetMidi
         : targetMidi + (nextMidi - targetMidi) * (transitionStyle === "meend" ? 0.82 : transitionStyle === "gamak" ? 0.22 : 0);
       const endRate = Math.pow(2, (endTargetMidi - sample.baseMidi) / 12);
+      const legatoProfile = getLegatoProfile(duration, { ...options, targetMidi, nextMidi });
       const startDelayMs = Math.max(0, options.startDelayMs ?? 0);
-      const attackFloor = options.attackFloor ?? 0.02;
-      const attackPeak = options.attackPeak ?? 0.92;
+      const attackFloor = options.attackFloor ?? legatoProfile.attackFloor;
+      const attackPeak = options.attackPeak ?? legatoProfile.attackPeak;
       const safeDuration = Math.max(0.12, duration);
-      const releaseSec = Math.max(0.07, Math.min(0.18, duration * 0.36));
-      const attackSec = Math.max(0.01, Math.min(0.026, duration * 0.16));
-      const startOffset = 0.01;
+      const releaseSec = legatoProfile.releaseSec;
+      const attackSec = legatoProfile.attackSec;
+      const startOffset = legatoProfile.sustainStart;
       const when = audioContext.currentTime + startDelayMs / 1000;
       const endAt = when + safeDuration;
       const stopAt = endAt + 0.05;
@@ -3670,19 +4034,21 @@
       const playNextNote = () => {
         if (currentRun !== run || run.cancelled) return;
         if (run.noteIndex >= notes.length) {
+          if (LOOP_SEQUENCE_IDS.has(id)) {
+            run.noteIndex = 0;
+          } else {
           clearHighlight(id);
           setPlayingCard(id, false);
           setStatus(id, `Finished at ${tempoInput.value} BPM`);
           currentRun = null;
           return;
+          }
         }
 
         const bpm = Number(tempoInput.value);
         const noteDuration = 60 / bpm;
-        const overlap = Math.min(0.14, Math.max(0.05, noteDuration * 0.32));
         const note = notes[run.noteIndex];
         const sustainSteps = NOTE_TO_MIDI[note] !== undefined ? countFollowingSustainSteps(notes, run.noteIndex) : 0;
-        const gate = Math.max(0.16, noteDuration * (1 + sustainSteps) + overlap);
         const targetMidi = resolveSequenceMidi(notes, run.noteIndex);
         const noteKey = resolveSequenceNoteKey(notes, run.noteIndex);
         const prevMidi = run.noteIndex > 0 ? resolveSequenceMidi(notes, run.noteIndex - 1) : null;
@@ -3690,6 +4056,22 @@
         const nextNextMidi = run.noteIndex < notes.length - 2 ? resolveSequenceMidi(notes, run.noteIndex + 2) : null;
         const sample = noteKey ? samples[noteKey] : null;
         const hasRepeatedPrev = prevMidi === targetMidi;
+        const hasPrevConnection = prevMidi !== null && targetMidi !== null;
+        const hasNextConnection = nextMidi !== null && targetMidi !== null;
+        const phraseLegato = Math.max(
+          0,
+          Math.min(
+            1,
+            (hasPrevConnection ? 0.46 : 0)
+              + (hasNextConnection ? 0.34 : 0)
+              + (hasRepeatedPrev ? 0.2 : 0)
+          )
+        );
+        const overlap = Math.min(
+          0.24,
+          Math.max(0.08, noteDuration * (0.44 + phraseLegato * 0.22))
+        );
+        const gate = Math.max(0.18, noteDuration * (1 + sustainSteps) + overlap);
         const repeatTouchDirection = hasRepeatedPrev ? getRepeatTouchDirection(targetMidi, nextMidi) : 0;
         const repeatTouchMidi = repeatTouchDirection === 0 ? null : getAdjacentScaleMidi(targetMidi, repeatTouchDirection);
         const repeatTouchKey = repeatTouchMidi === null ? null : getNoteKeyForMidi(repeatTouchMidi);
@@ -3708,9 +4090,10 @@
             prevMidi,
             nextMidi,
             nextNextMidi,
+            phraseLegato,
             startDelayMs: hasRepeatedPrev && repeatTouchSample ? graceDuration * 1000 * 0.88 : 0,
-            attackFloor: hasRepeatedPrev && repeatTouchSample ? 0.0 : 0.02,
-            attackPeak: hasRepeatedPrev && repeatTouchSample ? 0.84 : 0.92
+            attackFloor: hasRepeatedPrev && repeatTouchSample ? 0.0001 : undefined,
+            attackPeak: hasRepeatedPrev && repeatTouchSample ? 0.66 : undefined
           }));
         } else {
           const freq = midiToFreq(targetMidi);
@@ -3724,16 +4107,16 @@
           id,
           note === "-"
             ? `Sustaining previous note ${run.noteIndex} of ${notes.length} at ${bpm} BPM`
-            : `Playing note ${run.noteIndex} of ${notes.length} at ${bpm} BPM${sample ? " using samples" : " using synth fallback"}`
+            : `${LOOP_SEQUENCE_IDS.has(id) ? "Looping" : "Playing"} note ${run.noteIndex} of ${notes.length} at ${bpm} BPM${sample ? " using samples" : " using synth fallback"}`
         );
 
-        const handoffMs = Math.max(24, (noteDuration - overlap) * 1000);
+        const handoffMs = Math.max(24, noteDuration * 1000);
         const timeoutId = window.setTimeout(playNextNote, handoffMs);
         run.timeouts.push(timeoutId);
       };
 
       const loadedCount = Object.keys(samples).length;
-      setStatus(id, `Playing live at ${tempoInput.value} BPM${loadedCount ? ` with ${loadedCount} sample notes` : " with synth fallback"}`);
+      setStatus(id, `${LOOP_SEQUENCE_IDS.has(id) ? "Looping live" : "Playing live"} at ${tempoInput.value} BPM${loadedCount ? ` with ${loadedCount} sample notes` : " with synth fallback"}`);
       ornamentStatus.textContent = `${ornamentModeSelect.options[ornamentModeSelect.selectedIndex].text} shaping active at ${tempoInput.value} BPM.`;
       repeatTouchStatus.textContent = `${repeatTouchModeSelect.options[repeatTouchModeSelect.selectedIndex].text} articulation ready for repeated notes.`;
       if (isMetronomeEnabled()) {
@@ -3783,7 +4166,9 @@
     startTunerButton.addEventListener("click", () => startTuner());
     stopTunerButton.addEventListener("click", () => stopTuner());
     startGameButton.addEventListener("click", () => startGame());
+    startPracticeButton.addEventListener("click", () => startPractice());
     stopGameButton.addEventListener("click", () => stopGame("Game stopped."));
+    stopPracticeButton.addEventListener("click", () => stopPractice("Practice stopped."));
     startMetronomeButton.addEventListener("click", () => startMetronomePreview());
     stopMetronomeButton.addEventListener("click", () => stopMetronomePreview("Metronome stopped."));
     metronomeEnabledInput.addEventListener("change", () => {
@@ -3812,10 +4197,10 @@
     });
     saRootSelect.addEventListener("change", () => {
       if (lastDetectedMidi !== null) {
-        const swara = swaraFromMidi(lastDetectedMidi);
+        const swara = swaraDisplayFromMidi(lastDetectedMidi);
         detectedSwara.textContent = swara;
         detectedSwaraBig.textContent = swara;
-        detectedSwaraLong.textContent = SWARA_FULL_NAMES[swara] || "--";
+        detectedSwaraLong.textContent = swaraLongFromDisplay(swara);
       }
       tunerStatus.textContent = `Sa root set to ${saRootSelect.options[saRootSelect.selectedIndex].text}.`;
     });
@@ -3832,6 +4217,7 @@
     updateTempoUI();
     stopTunerButton.disabled = true;
     stopGameButton.disabled = true;
+    stopPracticeButton.disabled = true;
     stopMetronomeButton.disabled = true;
     resetGameUI();
     resetTunerDisplay();
