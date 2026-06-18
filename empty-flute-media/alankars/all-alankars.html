@@ -23,6 +23,12 @@
       --gold-deep: #97f4ff;
       --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
       --shadow-soft: 0 16px 32px rgba(0, 0, 0, 0.22);
+      --magic-hue: 188;
+      --magic-energy: 0.24;
+      --magic-secondary-hue: 262;
+      --magic-accent: hsla(var(--magic-hue), 92%, 73%, 0.78);
+      --magic-accent-soft: hsla(var(--magic-hue), 100%, 72%, 0.18);
+      --magic-violet: hsla(var(--magic-secondary-hue), 90%, 72%, 0.24);
     }
 
     * {
@@ -35,23 +41,72 @@
     }
 
     body {
+      position: relative;
       margin: 0;
       font-family: "SF Pro Display", "Avenir Next", "Segoe UI", sans-serif;
       color: var(--ink);
       background-color: #05070a;
       background:
-        radial-gradient(circle at 12% 10%, rgba(79, 224, 232, 0.2), transparent 24%),
-        radial-gradient(circle at 88% 8%, rgba(255, 255, 255, 0.08), transparent 18%),
-        radial-gradient(circle at 50% 120%, rgba(77, 224, 232, 0.12), transparent 30%),
+        radial-gradient(circle at 12% 10%, hsla(var(--magic-hue), 86%, 64%, calc(0.16 + var(--magic-energy) * 0.22)), transparent 24%),
+        radial-gradient(circle at 88% 8%, rgba(255, 255, 255, 0.09), transparent 18%),
+        radial-gradient(circle at 78% 20%, hsla(var(--magic-secondary-hue), 88%, 70%, calc(0.05 + var(--magic-energy) * 0.12)), transparent 22%),
+        radial-gradient(circle at 50% 120%, hsla(var(--magic-hue), 96%, 72%, calc(0.08 + var(--magic-energy) * 0.18)), transparent 30%),
         linear-gradient(145deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
       min-height: 100vh;
       letter-spacing: 0.01em;
+      transition: background 280ms ease;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.045), transparent 14%),
+        radial-gradient(circle at 50% -10%, hsla(var(--magic-hue), 100%, 88%, calc(0.04 + var(--magic-energy) * 0.08)), transparent 40%);
+      opacity: 0.42;
+      z-index: 0;
     }
 
     main {
+      position: relative;
+      z-index: 1;
       width: min(1920px, calc(100vw - 18px));
       margin: 0 auto;
       padding: 8px 6px 28px;
+    }
+
+    .aurora-stage {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .aurora-canvas,
+    .aurora-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .aurora-layer {
+      opacity: 0.9;
+    }
+
+    .aurora-layer.one {
+      display: none;
+    }
+
+    .aurora-layer.two {
+      display: none;
+    }
+
+    .starfield {
+      display: none;
     }
 
     h1 {
@@ -71,9 +126,9 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 32px;
       background:
-        linear-gradient(180deg, rgba(19, 25, 33, 0.92), rgba(9, 12, 17, 0.96)),
-        linear-gradient(135deg, rgba(78, 219, 227, 0.08), rgba(255, 255, 255, 0.02));
-      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.3);
+        linear-gradient(180deg, rgba(19, 25, 33, 0.74), rgba(9, 12, 17, 0.88)),
+        linear-gradient(135deg, hsla(var(--magic-hue), 88%, 68%, 0.08), rgba(255, 255, 255, 0.02));
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255,255,255,0.02);
     }
 
     .hero::before,
@@ -89,7 +144,7 @@
       height: 380px;
       right: -110px;
       top: -170px;
-      background: radial-gradient(circle, rgba(77, 224, 232, 0.22), transparent 72%);
+      background: radial-gradient(circle, hsla(var(--magic-hue), 100%, 72%, calc(0.14 + var(--magic-energy) * 0.16)), transparent 72%);
     }
 
     .hero::after {
@@ -97,7 +152,22 @@
       height: 300px;
       left: -90px;
       bottom: -130px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.12), transparent 72%);
+      background: radial-gradient(circle, hsla(var(--magic-secondary-hue), 100%, 82%, calc(0.08 + var(--magic-energy) * 0.12)), transparent 72%);
+    }
+
+    .hero-grid::after {
+      content: "";
+      position: absolute;
+      right: 29%;
+      top: -24px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, rgba(255,255,255,0.7) 0 4%, hsla(var(--magic-hue), 100%, 76%, 0.22) 18%, transparent 66%);
+      opacity: calc(0.24 + var(--magic-energy) * 0.34);
+      animation: haloPulse 7.5s ease-in-out infinite;
+      pointer-events: none;
     }
 
     .hero-grid {
@@ -145,12 +215,34 @@
     }
 
     .hero-card {
+      position: relative;
+      overflow: hidden;
       padding: 12px;
       border-radius: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
       border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255,255,255,0.06);
       color: #f4f7fb;
+    }
+
+    .hero-card::before,
+    .tempo-panel::before,
+    .tool-panel::before,
+    .game-panel::before,
+    .page::before,
+    .metronome-panel::before,
+    .tuner-main::before,
+    .tuner-meter-card::before,
+    .game-card::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: inherit;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.08), transparent 34%, transparent 66%, hsla(var(--magic-hue), 100%, 76%, 0.06));
+      opacity: 0.8;
+      pointer-events: none;
+      mask-image: linear-gradient(black, black);
     }
 
     .hero-card.dark {
@@ -210,11 +302,13 @@
     }
 
     .tempo-panel {
+      position: relative;
+      overflow: hidden;
       margin: 0;
       padding: 14px;
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 22px;
-      background: linear-gradient(180deg, rgba(17,23,31,0.92), rgba(11,15,20,0.96));
+      background: linear-gradient(180deg, rgba(17,23,31,0.72), rgba(11,15,20,0.86));
       box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
     }
 
@@ -319,10 +413,12 @@
     }
 
     .metronome-panel {
+      position: relative;
+      overflow: hidden;
       margin-top: 10px;
       padding: 10px;
       border-radius: 16px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
@@ -1532,6 +1628,199 @@
       background: rgba(255,255,255,0.12);
     }
 
+    .tool-panel,
+    .game-panel,
+    .audio-card,
+    .page,
+    .target-box,
+    .target-box.secondary,
+    .score-stat,
+    .tuner-stat,
+    .tuner-meter-card,
+    .game-card {
+      position: relative;
+      overflow: hidden;
+      border-color: rgba(255,255,255,0.08);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    }
+
+    .tool-panel,
+    .game-panel,
+    .game-card,
+    .audio-card,
+    .tuner-meter-card,
+    .target-box.secondary,
+    .score-stat {
+      background: linear-gradient(180deg, rgba(19, 25, 34, 0.78), rgba(11, 15, 21, 0.9));
+      color: #eff8ff;
+    }
+
+    .tool-panel p,
+    .game-header p,
+    .game-status,
+    .game-results,
+    .score-stat .label,
+    .target-sub,
+    .control-row label,
+    .select-wrap,
+    .tuner-status,
+    .tuner-stat .label,
+    .meter-labels,
+    .metronome-status {
+      color: rgba(214, 231, 241, 0.72);
+    }
+
+    .tool-panel h2,
+    .game-panel h2,
+    .page-title h2,
+    .audio-card strong,
+    .score-stat .value,
+    .tuner-stat .value,
+    .target-value {
+      color: #f5fbff;
+    }
+
+    .tuner-main {
+      background:
+        radial-gradient(circle at 82% 18%, hsla(var(--magic-hue), 100%, 74%, 0.12), transparent 34%),
+        linear-gradient(155deg, rgba(10, 30, 40, 0.92), rgba(10, 18, 25, 0.96));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .tuner-note,
+    .tuner-swara,
+    .target-value,
+    #playerSwara,
+    #targetSwara {
+      text-shadow: 0 0 18px hsla(var(--magic-hue), 100%, 76%, calc(0.16 + var(--magic-energy) * 0.24));
+    }
+
+    .tuner-swara-block,
+    .target-box {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .target-box.secondary {
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .progress-track,
+    .meter {
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06), 0 0 18px rgba(0,0,0,0.16);
+    }
+
+    .progress-fill {
+      background: linear-gradient(90deg, hsla(var(--magic-secondary-hue), 90%, 70%, 0.9), hsla(var(--magic-hue), 100%, 74%, 0.92), rgba(255, 215, 135, 0.9));
+    }
+
+    .audio-card,
+    .page {
+      background:
+        linear-gradient(180deg, rgba(17, 23, 31, 0.76), rgba(9, 12, 18, 0.9)),
+        linear-gradient(135deg, hsla(var(--magic-hue), 88%, 68%, 0.06), transparent 32%, hsla(var(--magic-secondary-hue), 88%, 72%, 0.04));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .page.is-playing {
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.34), inset 0 0 0 1px hsla(var(--magic-hue), 100%, 76%, 0.16);
+    }
+
+    .meta-pill,
+    .swara-chip {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #dff5fb;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .player-controls button,
+    .game-buttons button,
+    .metronome-actions button,
+    .tuner-actions button {
+      background: linear-gradient(180deg, hsla(var(--magic-hue), 98%, 72%, 0.2), hsla(var(--magic-hue), 92%, 58%, 0.1));
+      border: 1px solid hsla(var(--magic-hue), 100%, 76%, 0.28);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 8px 18px rgba(0,0,0,0.18);
+    }
+
+    .player-controls button.stop,
+    .game-buttons button.stop,
+    .metronome-actions button.stop,
+    .tuner-actions button.stop {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    table {
+      background: linear-gradient(180deg, rgba(10, 14, 20, 0.68), rgba(8, 12, 18, 0.8));
+    }
+
+    th,
+    td {
+      background: rgba(255,255,255,0.02);
+      color: #f4f8fb;
+    }
+
+    .note-token,
+    table td:not(.label) {
+      position: relative;
+      transition: transform 160ms ease, color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+    }
+
+    .note-token::after,
+    table td:not(.label)::after {
+      content: "";
+      position: absolute;
+      inset: 16%;
+      border-radius: 12px;
+      background: radial-gradient(circle, hsla(var(--magic-hue), 100%, 76%, 0.22), transparent 74%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms ease;
+    }
+
+    .note-token:hover,
+    table td:not(.label):hover {
+      transform: translateY(-1px);
+      color: #ffffff;
+    }
+
+    .note-token:hover::after,
+    table td:not(.label):hover::after,
+    .note-token.is-current::after,
+    table td.is-current::after {
+      opacity: 1;
+    }
+
+    .note-token.is-current,
+    table td.is-current {
+      color: #ffffff;
+      box-shadow: inset 0 0 0 1px hsla(var(--magic-hue), 100%, 76%, 0.28);
+      transform: translateY(-1px) scale(1.02);
+    }
+
+    @keyframes auroraFloat {
+      0% { transform: translate3d(-2%, -1%, 0) scale(1); }
+      100% { transform: translate3d(3%, 2%, 0) scale(1.06); }
+    }
+
+    @keyframes auroraSpin {
+      0% { transform: rotate(0deg) scale(1); }
+      100% { transform: rotate(360deg) scale(1.04); }
+    }
+
+    @keyframes starsDrift {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-22px, 18px, 0); }
+    }
+
+    @keyframes haloPulse {
+      0%, 100% { transform: scale(0.96); opacity: 0.26; }
+      50% { transform: scale(1.08); opacity: 0.5; }
+    }
+
     @media (min-width: 1181px) {
       .practice-sidebar .section-label {
         margin-bottom: 6px;
@@ -1711,6 +2000,12 @@
   </style>
 </head>
 <body>
+  <div class="aurora-stage" aria-hidden="true">
+    <canvas class="aurora-canvas" id="magicCanvas"></canvas>
+    <div class="aurora-layer one"></div>
+    <div class="aurora-layer two"></div>
+    <div class="starfield"></div>
+  </div>
   <main>
     <section class="hero">
       <div class="hero-grid">
@@ -2639,6 +2934,29 @@
     let activePractice = null;
     let metronomePreviewTimeout = null;
     let metronomePreviewBeat = 0;
+    let magicRAF = null;
+    let magicThree = null;
+    let magicScene = null;
+    let magicCamera = null;
+    let magicRenderer = null;
+    let magicNoteSprites = [];
+    let magicNoteTextures = [];
+    let magicImportPromise = null;
+
+    const magicCanvas = document.getElementById("magicCanvas");
+    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const magicState = {
+      tempoNorm: 0.208,
+      clarity: 0,
+      pitchNorm: 0.36,
+      accuracyNorm: 0,
+      energy: 0.24,
+      targetEnergy: 0.24,
+      hue: 188,
+      phase: 0,
+      playbackPulse: 0,
+      playbackPulseTarget: 0
+    };
 
     const NOTE_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     const NATURAL_SWARA_INTERVALS = [
@@ -2659,6 +2977,251 @@
       "D": "Dha",
       "N": "Ni"
     };
+
+    const SWARA_HUES = {
+      "S": 190,
+      "R": 210,
+      "G": 158,
+      "M": 48,
+      "P": 235,
+      "D": 18,
+      "N": 278
+    };
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function setMagicCSS() {
+      document.documentElement.style.setProperty("--magic-hue", String(Math.round(magicState.hue)));
+      document.documentElement.style.setProperty("--magic-energy", magicState.energy.toFixed(3));
+    }
+
+    function updateMagicTempoState() {
+      magicState.tempoNorm = clamp((Number(tempoInput.value) - 20) / 480, 0, 1);
+      magicState.targetEnergy = clamp(
+        0.18 + magicState.tempoNorm * 0.14 + magicState.clarity * 0.18 + magicState.accuracyNorm * 0.12,
+        0.18,
+        0.7
+      );
+      setMagicCSS();
+    }
+
+    function updateMagicPitchState({ frequency = null, clarity = 0, swara = "--" } = {}) {
+      magicState.clarity = clamp(clarity || 0, 0, 1);
+      if (frequency) {
+        magicState.pitchNorm = clamp((Math.log2(frequency / 220) + 1.4) / 3.2, 0, 1);
+      }
+      const swaraKey = swaraClassFromDisplay(swara);
+      if (SWARA_HUES[swaraKey]) {
+        magicState.hue += (SWARA_HUES[swaraKey] - magicState.hue) * 0.12;
+      }
+      magicState.targetEnergy = clamp(
+        0.18 + magicState.tempoNorm * 0.14 + magicState.clarity * 0.22 + magicState.accuracyNorm * 0.12,
+        0.18,
+        0.76
+      );
+      setMagicCSS();
+    }
+
+    function updateMagicAccuracyState(accuracyPct = 0) {
+      magicState.accuracyNorm = clamp((accuracyPct || 0) / 100, 0, 1);
+      magicState.targetEnergy = clamp(
+        0.18 + magicState.tempoNorm * 0.14 + magicState.clarity * 0.22 + magicState.accuracyNorm * 0.16,
+        0.18,
+        0.82
+      );
+      setMagicCSS();
+    }
+
+    function triggerMagicPlaybackPulse({ midi = null, swara = "--", intensity = 0.7, sustained = false } = {}) {
+      const swaraKey = swaraClassFromDisplay(swara);
+      if (SWARA_HUES[swaraKey]) {
+        magicState.hue += (SWARA_HUES[swaraKey] - magicState.hue) * 0.22;
+      } else if (typeof midi === "number") {
+        const derivedSwara = swaraDisplayFromMidi(midi);
+        const derivedKey = swaraClassFromDisplay(derivedSwara);
+        if (SWARA_HUES[derivedKey]) {
+          magicState.hue += (SWARA_HUES[derivedKey] - magicState.hue) * 0.22;
+        }
+      }
+      if (typeof midi === "number") {
+        magicState.pitchNorm = clamp((midi - 55) / 19, 0, 1);
+      }
+      magicState.playbackPulseTarget = Math.max(
+        magicState.playbackPulseTarget,
+        clamp(intensity + (sustained ? 0.08 : 0), 0.25, 1)
+      );
+      magicState.targetEnergy = clamp(
+        magicState.targetEnergy + intensity * (sustained ? 0.1 : 0.16),
+        0.2,
+        0.92
+      );
+      spawnMagicNoteSprite({ swara, intensity, sustained });
+      setMagicCSS();
+    }
+
+    function createMagicNoteTexture(THREE, glyph) {
+      const size = 256;
+      const canvas = document.createElement("canvas");
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return null;
+      ctx.clearRect(0, 0, size, size);
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.font = "700 170px 'Avenir Next', 'Segoe UI Symbol', sans-serif";
+      ctx.shadowColor = "rgba(122, 247, 255, 0.45)";
+      ctx.shadowBlur = 22;
+      ctx.fillStyle = "rgba(244, 251, 255, 0.98)";
+      ctx.fillText(glyph, size / 2, size / 2 + 8);
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.needsUpdate = true;
+      return texture;
+    }
+
+    function spawnMagicNoteSprite({ swara = "--", intensity = 0.7, sustained = false } = {}) {
+      if (!magicNoteSprites.length || !magicThree) return;
+      const now = performance.now();
+      const available = magicNoteSprites.find((entry) => !entry.active) || magicNoteSprites.reduce((oldest, entry) => (
+        !oldest || entry.startedAt < oldest.startedAt ? entry : oldest
+      ), null);
+      if (!available) return;
+
+      const swaraKey = swaraClassFromDisplay(swara);
+      const hue = SWARA_HUES[swaraKey] ?? magicState.hue;
+      const lane = (Math.random() - 0.5) * 10.5;
+      const rise = 5.6 + intensity * 3.4 + (sustained ? 0.8 : 0);
+      const size = 0.7 + intensity * 0.95;
+
+      available.active = true;
+      available.startedAt = now;
+      available.life = 1800 + intensity * 800 + (sustained ? 250 : 0);
+      available.velocity = 0.018 + intensity * 0.018;
+      available.drift = (Math.random() - 0.5) * 0.012;
+      available.swing = Math.random() * Math.PI * 2;
+      available.baseX = lane;
+      available.baseY = -6.8;
+      available.targetY = rise;
+      available.sprite.position.set(lane, -6.8, -1.2 + Math.random() * 2.4);
+      available.sprite.scale.set(size, size, 1);
+      available.sprite.material.opacity = 0.18 + intensity * 0.5;
+      available.sprite.material.color.setHSL((((hue % 360) + 360) % 360) / 360, 0.92, 0.72);
+      available.sprite.visible = true;
+    }
+
+    async function ensureMagicScene() {
+      if (!magicCanvas) return false;
+      if (magicRenderer && magicScene && magicCamera) return true;
+      if (!magicImportPromise) {
+        magicImportPromise = import("https://unpkg.com/three@0.165.0/build/three.module.js");
+      }
+
+      try {
+        const THREE = await magicImportPromise;
+        magicThree = THREE;
+        magicRenderer = new THREE.WebGLRenderer({
+          canvas: magicCanvas,
+          alpha: true,
+          antialias: true,
+          powerPreference: "high-performance"
+        });
+        magicRenderer.setClearColor(0x000000, 0);
+        magicRenderer.outputColorSpace = THREE.SRGBColorSpace;
+
+        magicScene = new THREE.Scene();
+        magicCamera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+        magicCamera.position.set(0, 0, 18);
+
+        magicNoteTextures = ["♪", "♫", "♬"].map((glyph) => createMagicNoteTexture(THREE, glyph)).filter(Boolean);
+        magicNoteSprites = Array.from({ length: reduceMotionQuery.matches ? 10 : 18 }, (_, index) => {
+          const texture = magicNoteTextures[index % magicNoteTextures.length];
+          const material = new THREE.SpriteMaterial({
+            map: texture,
+            transparent: true,
+            opacity: 0,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
+          });
+          const sprite = new THREE.Sprite(material);
+          sprite.visible = false;
+          magicScene.add(sprite);
+          return {
+            sprite,
+            active: false,
+            startedAt: 0,
+            life: 0,
+            velocity: 0.02,
+            drift: 0,
+            swing: 0,
+            baseX: 0,
+            baseY: -6.8,
+            targetY: 6.4
+          };
+        });
+
+        resizeMagicCanvas();
+        return true;
+      } catch (error) {
+        console.warn("Three.js background failed to load", error);
+        if (magicCanvas) magicCanvas.style.display = "none";
+        return false;
+      }
+    }
+
+    function resizeMagicCanvas() {
+      if (!magicCanvas) return;
+      magicCanvas.style.width = `${window.innerWidth}px`;
+      magicCanvas.style.height = `${window.innerHeight}px`;
+      if (!magicRenderer || !magicCamera) return;
+      const dpr = clamp(window.devicePixelRatio || 1, 1, 1.5);
+      magicRenderer.setPixelRatio(dpr);
+      magicRenderer.setSize(window.innerWidth, window.innerHeight, false);
+      magicCamera.aspect = window.innerWidth / Math.max(1, window.innerHeight);
+      magicCamera.updateProjectionMatrix();
+    }
+
+    function renderMagicScene(now) {
+      if (!magicRenderer || !magicScene || !magicCamera) return;
+      magicState.phase = now * 0.001;
+      magicState.energy += (magicState.targetEnergy - magicState.energy) * 0.045;
+      magicState.playbackPulse += (magicState.playbackPulseTarget - magicState.playbackPulse) * 0.14;
+      magicState.playbackPulseTarget *= 0.9;
+      setMagicCSS();
+      const focusY = 1.8 + magicState.pitchNorm * 2.4;
+
+      magicNoteSprites.forEach((entry, index) => {
+        if (!entry.active) return;
+        const elapsed = now - entry.startedAt;
+        const progress = clamp(elapsed / entry.life, 0, 1);
+        if (progress >= 1) {
+          entry.active = false;
+          entry.sprite.visible = false;
+          return;
+        }
+        const easeOut = 1 - Math.pow(1 - progress, 2.4);
+        entry.sprite.position.x = entry.baseX + Math.sin(magicState.phase * 1.6 + entry.swing + index) * (0.26 + magicState.playbackPulse * 0.4) + elapsed * entry.drift;
+        entry.sprite.position.y = entry.baseY + (entry.targetY - entry.baseY) * easeOut;
+        entry.sprite.position.z = Math.sin(magicState.phase + entry.swing) * 0.8;
+        const scale = 0.9 + (1 - progress) * 0.5 + magicState.playbackPulse * 0.22;
+        entry.sprite.scale.setScalar(scale);
+        entry.sprite.material.opacity = (1 - progress) * (0.22 + magicState.playbackPulse * 0.34);
+      });
+
+      magicScene.rotation.z = Math.sin(magicState.phase * 0.12) * 0.018;
+      magicRenderer.render(magicScene, magicCamera);
+
+      magicRAF = window.requestAnimationFrame(renderMagicScene);
+    }
+
+    async function startMagicScene() {
+      const ready = await ensureMagicScene();
+      if (!ready) return;
+      resizeMagicCanvas();
+      if (magicRAF) window.cancelAnimationFrame(magicRAF);
+      magicRAF = window.requestAnimationFrame(renderMagicScene);
+    }
 
     function midiToFreq(midi) {
       return 440 * Math.pow(2, (midi - 69) / 12);
@@ -2975,6 +3538,7 @@
       currentDetection = null;
       playerSwara.textContent = "--";
       playerConcert.textContent = "Listening not started";
+      updateMagicPitchState({ frequency: null, clarity: 0, swara: "--" });
     }
 
     function yinDetect(buffer, sampleRate) {
@@ -3113,6 +3677,7 @@
       };
       playerSwara.textContent = swara;
       playerConcert.textContent = `${noteName} • ${frequency.toFixed(1)} Hz`;
+      updateMagicPitchState({ frequency, clarity, swara });
     }
 
     function resetGameUI() {
@@ -3127,6 +3692,7 @@
         playerSwara.textContent = "--";
         playerConcert.textContent = "Listening not started";
       }
+      updateMagicAccuracyState(0);
     }
 
     function resetPracticeProgress(id) {
@@ -3365,6 +3931,7 @@
           const accuracyPct = Math.round((run.score / maxScore) * 100);
           gameScore.textContent = String(run.score);
           gameAccuracy.textContent = `${accuracyPct}%`;
+          updateMagicAccuracyState(accuracyPct);
           gameStreak.textContent = String(run.streak);
           gameProgress.style.width = `${((index + 1) / run.notes.length) * 100}%`;
           gameStatus.textContent = `Note ${index + 1}: ${scored.label}${typeof scored.cents === "number" ? ` • ${Math.round(scored.cents)} cents` : ""}`;
@@ -4082,7 +4649,19 @@
         }
         if (note === "-") {
           // Sustain steps inherit the previous note sound; no retrigger here.
+          triggerMagicPlaybackPulse({
+            midi: targetMidi,
+            swara: noteKey ?? "--",
+            intensity: 0.34,
+            sustained: true
+          });
         } else if (sample) {
+          triggerMagicPlaybackPulse({
+            midi: targetMidi,
+            swara: noteKey,
+            intensity: hasRepeatedPrev ? 0.58 : 0.82,
+            sustained: sustainSteps > 0
+          });
           if (hasRepeatedPrev && repeatTouchSample) {
             run.nodes.push(playGraceTouchSample(repeatTouchSample, repeatTouchMidi, graceDuration));
           }
@@ -4097,6 +4676,12 @@
           }));
         } else {
           const freq = midiToFreq(targetMidi);
+          triggerMagicPlaybackPulse({
+            midi: targetMidi,
+            swara: noteKey,
+            intensity: hasRepeatedPrev ? 0.54 : 0.76,
+            sustained: sustainSteps > 0
+          });
           const startTime = audioContext.currentTime + 0.02;
           run.nodes.push(...scheduleNote(freq, startTime, gate));
         }
@@ -4143,6 +4728,7 @@
       if (metronomePreviewTimeout) {
         metronomeStatus.textContent = `Previewing click at ${tempoInput.value} BPM.`;
       }
+      updateMagicTempoState();
     }
 
     function populateGameAlankars() {
@@ -4213,7 +4799,15 @@
       button.addEventListener("click", () => stopCurrentPlayback());
     });
 
+    window.addEventListener("resize", resizeMagicCanvas);
+    if (reduceMotionQuery.addEventListener) {
+      reduceMotionQuery.addEventListener("change", () => {
+        resizeMagicCanvas();
+      });
+    }
+
     populateGameAlankars();
+    startMagicScene();
     updateTempoUI();
     stopTunerButton.disabled = true;
     stopGameButton.disabled = true;
